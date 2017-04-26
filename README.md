@@ -6,7 +6,7 @@ litool PHP 帮助文件.
     - 如果您有任何,请在git issure 中创建问题或者自由创建分支.
 
 ### 目录
-1. [liarray 数组](https://code.aliyun.com/lit/litool) <br />
+1. [liarray 数组](https://code.aliyun.com/lit/litool#%E6%95%B0%E7%BB%84%E9%83%A8%E5%88%86) <br />
 
 ### 安装
 litool PHP 需要使用 composer 进行安装.
