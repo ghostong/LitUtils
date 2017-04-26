@@ -10,7 +10,9 @@
     "keywords": [
         "litool",
         "liarray",
-        "array"
+        "lidate",
+        "listring",
+        "lidebug"
     ],
     "require": {
         "php": ">=5.4.0"
