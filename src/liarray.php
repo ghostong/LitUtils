@@ -11,6 +11,17 @@ namespace lit\litool;
 class liarray {
 
     /** 
+     * init
+     * 测试调用
+     * @access public static
+     * @since  1.0 
+     * @return string
+     **/
+    public static function init (){
+        return __CLASS__.'::'.__FUNCTION__;
+    }
+
+    /** 
      * RegexArray
      * 通过正则表达式匹配一维数组的值,返回正则表达式匹配部分
      * @access public static
