@@ -1,0 +1,25 @@
+{
+    "name": "lit/litool",
+    "description": "litool PHP",
+    "authors": [
+        {
+            "name": "李通",
+            "email": "ghostong@126.com"
+        }
+    ],
+    "keywords": [
+        "litool",
+        "liarray",
+        "array"
+    ],
+    "require": {
+        "php": ">=5.4.0"
+    },
+    "minimum-stability": "dev",
+    "autoload": {
+        "files": [],
+        "psr-4": {
+            "lit\\litool\\": "src"
+        }
+    }
+}
