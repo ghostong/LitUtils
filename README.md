@@ -27,10 +27,10 @@ litool PHP 需要使用 composer 进行安装.
 ```php
 require(__DIR__.'/vendor/autoload.php');
 use  \lit\litool\liinit;
-```
 
 #初始化:判断是否有依赖未安装 使用前运行一次即可
 liinit::init();
+```
 
 #### 数组部分
 
