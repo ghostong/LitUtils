@@ -69,3 +69,5 @@ var_dump ( lidate::MicroTime() );
 var_dump ( lidate::MilliTime() );
 
 ```
+
+#### debug部分
