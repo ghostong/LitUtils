@@ -24,6 +24,9 @@ use  \lit\litool\listring;
 #获取随机数字符串
 var_dump ( listring::RandStr(8,true,true,true,true) );
 
+#返回 haystack 在首次 needle 出现之前的字符串
+var_dump ( listring::SubStrTo('i can say my abc !',' my') );
+
 ################################
 
 use  \lit\litool\lidate;
@@ -33,3 +36,6 @@ var_dump ( lidate::MicroTime() );
 
 #回当前时间以秒为单位的毫秒数
 var_dump ( lidate::MilliTime() );
+
+#返回中文格式化的时间
+var_dump ( lidate::DateFormat('1494475359') );
