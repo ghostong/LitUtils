@@ -83,4 +83,55 @@ class listring {
         return $end;
     }
 
+
+    /** 
+     * StrEncode
+     * 简单字符串可逆加密(加密)
+     * @access public
+     * @param  string  $Str 要加密的字符串
+     * @since  1.0 
+     * @return string
+     **/
+    public static function StrEncode($Str){
+        if ( strlen($Str) == 0 ){ return ''; }
+        $NowArr = array();
+        $EnStr=base64_encode($Str);
+        $i = 0;
+        while(isset($EnStr[$i])) {
+            $NowArr[$i] = $EnStr[$i];
+            if ($i%2 == 1) { $NowArr[$i] = $NowArr[$i-1];$NowArr[$i-1] = $EnStr[$i];}
+            $i++;
+        }
+        $NowStr = implode('',$NowArr);
+        $HalfLen = floor(strlen($NowStr) / 2);
+        $NowStr = substr ($NowStr,$HalfLen).substr ($NowStr,0,$HalfLen);
+        $NowStr = str_rot13($NowStr);
+        return $NowStr;
+    }
+    
+    /** 
+     * StrEncode
+     * 简单字符串可逆加密(解密)
+     * @access public
+     * @param  string  $Str 要加密的字符串
+     * @since  1.0 
+     * @return string
+     **/
+    public static function StrDecode($Str){
+        if ( strlen($Str) == 0 ){ return ''; }
+        $NowStr = str_rot13($Str);
+        $HalfLen = ceil(strlen($NowStr) / 2);
+        $NowStr = substr ($NowStr,$HalfLen).substr ($NowStr,0,$HalfLen);
+        $i=0;
+        while(isset($NowStr[$i])) {
+            $NowArr[$i] = $NowStr[$i];
+            if ($i%2 == 1) { $NowArr[$i] = $NowArr[$i-1]; $NowArr[$i-1] = $NowStr[$i];}
+            $i++;
+        }
+        $EnStr = implode('',$NowArr);
+        $Str = base64_decode($EnStr);
+        return $Str;
+    }
+
+
 }

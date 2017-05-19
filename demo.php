@@ -6,6 +6,7 @@ require(__DIR__.'/vendor/autoload.php');
 use lit\litool\liinit;
 
 liinit::init();
+echo "\n";
 
 ################################
 
@@ -27,6 +28,14 @@ var_dump ( listring::RandStr(8,true,true,true,true) );
 #返回 haystack 在首次 needle 出现之前的字符串
 var_dump ( listring::SubStrTo('i can say my abc !',' my') );
 
+#简单字符串可逆加密(加密)
+$Encode = listring::StrEncode('可逆运算');
+var_dump ( $Encode );
+
+#简单字符串可逆加密(解密)
+$Decode = listring::StrDecode($Encode);
+var_dump ( $Decode );
+
 ################################
 
 use  \lit\litool\lidate;
@@ -39,3 +48,5 @@ var_dump ( lidate::MilliTime() );
 
 #返回中文格式化的时间
 var_dump ( lidate::DateFormat('1494475359') );
+
+
