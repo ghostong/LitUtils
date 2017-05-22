@@ -10,6 +10,7 @@ litool PHP 帮助文件.
 1. [liarray 数组](https://code.aliyun.com/lit/litool#%E6%95%B0%E7%BB%84%E9%83%A8%E5%88%86) <br />
 2. [liarray 字符串](https://code.aliyun.com/lit/litool#%e5%ad%97%e7%ac%a6%e4%b8%b2%e9%83%a8%e5%88%86) <br />
 2. [liarray 日期时间](https://code.aliyun.com/lit/litool#%e6%97%a5%e6%9c%9f%e6%97%b6%e9%97%b4%e9%83%a8%e5%88%86) <br />
+2. [limath  数学函数](https://code.aliyun.com/lit/litool#%E6%95%B0%E5%AD%A6%E5%87%BD%E6%95%B0%E9%83%A8%E5%88%86) <br />
 
 ### 安装
 litool PHP 需要使用 composer 进行安装.
@@ -83,6 +84,24 @@ var_dump ( lidate::MilliTime() );
 #返回中文格式化的时间
 var_dump ( lidate::DateFormat('1494475359') );
 
+#返回下个月是几月
+var_dump ( lidate::NextMonth('2015-2-28') );
+
+#返回上个月是几月
+var_dump ( lidate::LastMonth('2015-01-01') );
+
+```
+
+#### 数学函数部分
+```php
+require(__DIR__.'/vendor/autoload.php');
+use  \lit\litool\limath;
+
+#10进制转62进制
+var_dump ( limath::Base10to62(40000) );
+
+#62进制转10进制
+var_dump ( limath::Base62to10('ACG97') );
 ```
 
 #### debug部分

@@ -74,4 +74,34 @@ class lidate {
         return '';
      }
 
+    /** 
+     * NextMonth
+     * 返回下个月是几月
+     * @access public
+     * @param  string $date
+     * @param  string $format
+     * @since  1.0 
+     * @return string
+     **/
+    public static function NextMonth ( $date='', $format='Y-m' ){
+        $date ? $date : $date = date( 'Y-m-d' );
+        $ts = strtotime ( date( "Y-m-25",strtotime($date) ) )+ 3600*24*10;
+        return date($format,$ts);
+    }
+
+    /** 
+     * LastMonth
+     * 返回上个月是几月
+     * @access public
+     * @param  string $date
+     * @param  string $format
+     * @since  1.0 
+     * @return string
+     **/
+    public static function LastMonth ( $date='',$format='Y-m' ){
+        $date ? $date : $date = date( 'Y-m-d' );
+        $ts = strtotime ( date( "Y-m-01",strtotime($date) ) ) - 3600*24*10;
+        return date($format,$ts);
+    }
+
 }

@@ -49,4 +49,18 @@ var_dump ( lidate::MilliTime() );
 #返回中文格式化的时间
 var_dump ( lidate::DateFormat('1494475359') );
 
+#返回下个月是几月
+var_dump ( lidate::NextMonth('2015-2-28') );
 
+#返回上个月是几月
+var_dump ( lidate::LastMonth('2015-01-01') );
+
+################################
+
+use  \lit\litool\limath;
+
+#10进制转62进制
+var_dump ( limath::Base10to62(40000) );
+
+#62进制转10进制
+var_dump ( limath::Base62to10('ACG97') );
