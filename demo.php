@@ -71,3 +71,6 @@ use  \lit\litool\lisundry;
 
 #获取用户来源IP
 var_dump ( lisundry::GetRemoteAddr() );
+
+#发送http状态码
+lisundry::SendHttpStatus(404) ;
