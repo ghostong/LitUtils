@@ -6,11 +6,12 @@ litool PHP 帮助文件.
     - 如果您有任何,请在git issure 中创建问题或者自由创建分支.
 
 ### 目录
-0. [liinit 初始化](https://code.aliyun.com/lit/litool#%e5%88%9d%e5%a7%8b%e5%8c%96) <br/>
+0. [liinit 初始化](https://code.aliyun.com/lit/litool#%e5%88%9d%e5%a7%8b%e5%8c%96) <br />
 1. [liarray 数组](https://code.aliyun.com/lit/litool#%E6%95%B0%E7%BB%84%E9%83%A8%E5%88%86) <br />
-2. [liarray 字符串](https://code.aliyun.com/lit/litool#%e5%ad%97%e7%ac%a6%e4%b8%b2%e9%83%a8%e5%88%86) <br />
-2. [liarray 日期时间](https://code.aliyun.com/lit/litool#%e6%97%a5%e6%9c%9f%e6%97%b6%e9%97%b4%e9%83%a8%e5%88%86) <br />
-2. [limath  数学函数](https://code.aliyun.com/lit/litool#%E6%95%B0%E5%AD%A6%E5%87%BD%E6%95%B0%E9%83%A8%E5%88%86) <br />
+2. [listring 字符串](https://code.aliyun.com/lit/litool#%e5%ad%97%e7%ac%a6%e4%b8%b2%e9%83%a8%e5%88%86) <br />
+3. [lidate 日期时间](https://code.aliyun.com/lit/litool#%e6%97%a5%e6%9c%9f%e6%97%b6%e9%97%b4%e9%83%a8%e5%88%86) <br />
+4. [limath  数学函数](https://code.aliyun.com/lit/litool#%E6%95%B0%E5%AD%A6%E5%87%BD%E6%95%B0%E9%83%A8%E5%88%86) <br />
+5. [lisundry  杂项](https://code.aliyun.com/lit/litool#%D4%D3%CF%EE%B2%BF%B7%D6) <br />
 
 ### 安装
 litool PHP 需要使用 composer 进行安装.
@@ -104,4 +105,10 @@ var_dump ( limath::Base10to62(40000) );
 var_dump ( limath::Base62to10('ACG97') );
 ```
 
-#### debug部分
+#### 杂项部分
+```php
+use  \lit\litool\lisundry;
+
+#获取用户来源IP
+var_dump ( lisundry::GetRemoteAddr() );
+```

@@ -64,3 +64,10 @@ var_dump ( limath::Base10to62(40000) );
 
 #62进制转10进制
 var_dump ( limath::Base62to10('ACG97') );
+
+################################
+
+use  \lit\litool\lisundry;
+
+#获取用户来源IP
+var_dump ( lisundry::GetRemoteAddr() );
