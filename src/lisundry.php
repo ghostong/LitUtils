@@ -73,5 +73,29 @@ class lisundry {
             header('HTTP/1.1 '.$code.' '.$status[$code]);
             header('Status:'.$code.' '.$status[$code]);
         }
-    }   
+    }
+
+    /** 
+     * GetWeight
+     * 根据权重随机返回被选数据
+     * @access public
+     * @param  intval $code  Http状态码
+     * @since  1.0 
+     * @return mixed
+     **/
+    public static function GetWeight( $wd ){
+        $temp = array();
+        $weight = 0;
+        foreach ( $wd as $val ) {
+            $w = $val['w'];
+            $weight += $w;
+            for ( $i =0 ; $i<$w ; $i++ ) {
+                $temp[] = $val['v'];
+            }
+        }
+        $r = mt_rand( 0, $weight-1 );
+        shuffle ( $temp );
+        return $temp[$r];
+    }
+
 }

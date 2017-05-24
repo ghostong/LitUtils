@@ -74,3 +74,11 @@ var_dump ( lisundry::GetRemoteAddr() );
 
 #发送http状态码
 lisundry::SendHttpStatus(404) ;
+
+#根据权重随机返回备选数据
+$wd = array (
+    array ( 'w' => 60, 'v' => '我是60%概率') ,
+    array ( 'w' => 35, 'v' => '我是35%概率') ,
+    array ( 'w' => 5 , 'v' => '我是5%概率') ,
+);
+var_dump ( lisundry::GetWeight( $wd ) );
