@@ -30,7 +30,7 @@ class limath {
      * @since  1.0 
      * @return string
      **/
-    function Base10to62( $n ){
+    public static function Base10to62( $n ){
         $base = 62;  
         $index = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';  
         $ret = '';  
@@ -51,7 +51,7 @@ class limath {
      * @since  1.0 
      * @return intval
      **/
-    function Base62to10( $s ){
+    public static function Base62to10( $s ){
         $base = 62;  
         $index = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';  
         $ret = 0;  

@@ -5,6 +5,10 @@ require(__DIR__.'/vendor/autoload.php');
 #初始化调用 可以确定依赖是否完善,只调用一次即可
 use lit\litool\liinit;
 
+echo liinit::Class2Function();
+
+exit;
+
 liinit::init();
 echo "\n";
 
@@ -35,6 +39,9 @@ var_dump ( $Encode );
 #简单字符串可逆加密(解密)
 $Decode = listring::StrDecode($Encode);
 var_dump ( $Decode );
+
+#限制字符串的字符数量
+var_dump ( listring::StrLimit('不a管b什么样的字符都可以了',7) );
 
 ################################
 
