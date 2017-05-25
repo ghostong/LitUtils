@@ -14,14 +14,45 @@ litool PHP 帮助文件.
 5. [lisundry  杂项](https://code.aliyun.com/lit/litool#%E6%9D%82%E9%A1%B9%E9%83%A8%E5%88%86) <br />
 
 ### 安装
-litool PHP 需要使用 composer 进行安装.
 
+1. composer 安装.
 ```php
+#编辑composer.json文件
 "require" : {
     ...
     "lit/litool": "dev-master"
 }
+#安装后使用文档中的调用方法即可使用.
 ```
+
+2. 源码下载安装 
+```php
+#引入litool代码
+spl_autoload_register( 'liSplLoadLitool' );
+spl_autoload_extensions( '.php' );
+function liSplLoadLitool ( $ClassName ) {
+    $IncludePath = __DIR__.DIRECTORY_SEPARATOR.'src';
+    set_include_path( get_include_path().':'.$IncludePath );  #此处为代码包中litool/src路径,必要时请手动修改
+    $ClassFile = end (explode('\\',$ClassName));
+    spl_autoload ($ClassFile);
+}
+#安装后使用文档中的调用方法即可使用.
+```
+
+3. 使用函数
+```php
+#为了提供了更方便的调用,可以直接引入 functions.php 文件调用函数
+include ('./functions.php');
+var_dump ( liBase10to62('100') );
+#在类方法名前面加上li即可使用函数调用
+#例如:
+#    limath::Base10to62(40000) 可以简化为 liBase10to62(40000);
+#    lidate::MicroTime()       可以简化为 liMicroTime()
+#为此我们不在提供专门的文档
+#参考 liinit::Class2Function() 来更新 functions.php
+
+```
+
 
 ### 使用方法
 
@@ -32,6 +63,9 @@ use  \lit\litool\liinit;
 
 #初始化:判断是否有依赖未安装 使用前运行一次即可
 liinit::init();
+
+#类转函数,方便非composer安装与快速调用[此方法会生成文件,默认为 dirname(__DIR__).'/functions.php']
+liinit::Class2Function();
 ```
 
 #### 数组部分

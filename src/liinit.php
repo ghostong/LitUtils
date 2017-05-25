@@ -25,7 +25,24 @@ class liinit {
         }
     }
 
+
+    /** 
+     * Class2Function
+     * 类转函数,方便非composer安装与快速调用
+     * @access public
+     * @since  1.0 
+     * @return string
+     **/
     public static function Class2Function ( $SaveTo = '' ) {
+        $AutoLoad = '';
+        $AutoLoad .= "spl_autoload_register( 'liSplLoadLitool' );\n";
+        $AutoLoad .= "spl_autoload_extensions( '.php' );\n";
+        $AutoLoad .= "function liSplLoadLitool ( \$ClassName ) {\n";
+        $AutoLoad .= "    \$IncludePath = __DIR__.DIRECTORY_SEPARATOR.'src';\n";
+        $AutoLoad .= "    set_include_path( get_include_path(). ':'. \$IncludePath );\n";
+        $AutoLoad .= "    \$ClassFile = end ( explode( '\\\\', \$ClassName ) );\n";
+        $AutoLoad .= "    spl_autoload ( \$ClassFile );\n";
+        $AutoLoad .= "}";
         $ClassList = array (
             'lit\litool\liarray',
             'lit\litool\listring',
@@ -34,7 +51,6 @@ class liinit {
             'lit\litool\lisundry'
         );
         $OutPut  = '' ;
-        
         foreach ($ClassList as $class) {
             $ClassRe = new \ReflectionClass ($class);
             $FileContent = file_get_contents( $ClassRe->getFileName () );
@@ -48,7 +64,7 @@ class liinit {
                 $FunctionName = str_replace($method -> name, $NewFunction, $Matches[2] );
                 $ParamArr = array();
                 foreach( $method->getParameters () as $param ) {
-                        $ParamArr[] = '$'.$param->name;
+                    $ParamArr[] = '$'.$param->name;
                 }
                 $ParamStr = implode(',',$ParamArr);
                 $OutPut .= "if (!function_exists('{$NewFunction}')){\n";
@@ -57,10 +73,16 @@ class liinit {
                 $OutPut .= "    }\n}\n\n";
             }
         }
-        $OutPut = "<?php\n\n".$OutPut;
+        $OutPut = "<?php\n\n".$AutoLoad."\n\n".$OutPut;
         if (''==$SaveTo) {
-            $SaveTo = dirname(dirname(__FILE__)).'/functions.php';
+            $SaveTo = dirname(__DIR__).'/functions.php';
         }
-        file_put_contents($SaveTo,$OutPut);
+        $SFI = new \SplFileInfo(dirname($SaveTo));
+        if ( $SFI -> isWritable () ) {
+            file_put_contents($SaveTo,$OutPut);
+            echo '函数文件保存在 ',$SaveTo," 请手动导入\n";
+        } else {
+            echo dirname($SaveTo),'目录不可写!',"\n";
+        }
     }
 }

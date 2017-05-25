@@ -2,15 +2,14 @@
 
 require(__DIR__.'/vendor/autoload.php');
 
-#初始化调用 可以确定依赖是否完善,只调用一次即可
 use lit\litool\liinit;
 
-echo liinit::Class2Function();
-
-exit;
-
+#初始化调用 可以确定依赖是否完善,只调用一次即可
 liinit::init();
 echo "\n";
+
+#类转函数,方便非composer安装与快速调用[此方法会生成文件,默认为 dirname(__DIR__).'/functions.php']
+liinit::Class2Function();
 
 ################################
 
