@@ -18,32 +18,32 @@ litool PHP 帮助文件.
 1. composer 安装.
 ```php
 #编辑composer.json文件
-"require" : {
-	...
-	"lit/litool": "dev-master"
-}
+#"require" : {
+#    ...
+#    "lit/litool": "dev-master"
+#}
 #安装后使用文档中的调用方法即可使用.
 ```
 
 2. 源码下载安装 
 ```php
 #引入litool代码
-spl_autoload_register( 'liSplLoadLitool' );
-spl_autoload_extensions( '.php' );
-function liSplLoadLitool ( $ClassName ) {
-    $IncludePath = __DIR__.DIRECTORY_SEPARATOR.'src';
-    set_include_path( get_include_path().':'.$IncludePath );  #此处为代码包中litool/src路径,必要时请手动修改
-    $ClassFile = end (explode('\\',$ClassName));
-    spl_autoload ($ClassFile);
-}
+#spl_autoload_register( 'liSplLoadLitool' );
+#spl_autoload_extensions( '.php' );
+#function liSplLoadLitool ( $ClassName ) {
+#    $IncludePath = __DIR__.DIRECTORY_SEPARATOR.'src';
+#    set_include_path( get_include_path().':'.$IncludePath );  #此处为代码包中litool/src路径,必要时请手动修改
+#    $ClassFile = end (explode('\\',$ClassName));
+#    spl_autoload ($ClassFile);
+#}
 #安装后使用文档中的调用方法即可使用.
 ```
 
 3. 使用函数
 ```php
 #为了提供了更方便的调用,可以直接引入 functions.php 文件调用函数
-include ('./functions.php');
-var_dump ( liBase10to62('100') );
+#include ('./functions.php');
+#var_dump ( liBase10to62('100') );
 #在类方法名前面加上li即可使用函数调用
 #例如:
 #    limath::Base10to62(40000) 可以简化为 liBase10to62(40000);
