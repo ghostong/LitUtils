@@ -2,7 +2,9 @@ litool PHP
 ==============
 litool PHP 帮助文件.
 
-### 贡献代码
+### 写在前面
+    - 此项目出生是为了"实现一些常用又不内置的PHP方法(函数)"
+    - 部分代码前面加 "-" 是因为在没处理好代码缩进之前解决代码易读问题.个人感觉比加全角空格更合理.
     - 如果您有任何,请在git issure 中创建问题或者自由创建分支.
 
 ### 目录
@@ -28,22 +30,22 @@ litool PHP 帮助文件.
 2. 源码下载安装 
 ```php
 #引入litool代码
-spl_autoload_register( 'liSplLoadLitool' );
-spl_autoload_extensions( '.php' );
-function liSplLoadLitool ( $ClassName ) {
-    $IncludePath = __DIR__.DIRECTORY_SEPARATOR.'src';
-    set_include_path( get_include_path().':'.$IncludePath );  #此处为代码包中litool/src路径,必要时请手动修改
-    $ClassFile = end (explode('\\',$ClassName));
-    spl_autoload ($ClassFile);
-}
+- spl_autoload_register( 'liSplLoadLitool' );
+- spl_autoload_extensions( '.php' );
+- function liSplLoadLitool ( $ClassName ) {
+-     $IncludePath = __DIR__.DIRECTORY_SEPARATOR.'src';
+-     set_include_path( get_include_path().':'.$IncludePath );  #此处为代码包中litool/src路径,必要时请手动修改
+-     $ClassFile = end (explode('\\',$ClassName));
+-     spl_autoload ($ClassFile);
+- }
 #安装后使用文档中的调用方法即可使用.
 ```
 
 3. 使用函数
 ```php
 #为了提供了更方便的调用,可以直接引入 functions.php 文件调用函数
-include ('./functions.php');
-var_dump ( liBase10to62('100') );
+- include ('./functions.php');
+- var_dump ( liBase10to62('100') );
 #在类方法名前面加上li即可使用函数调用
 #例如:
 #    limath::Base10to62(40000) 可以简化为 liBase10to62(40000);
