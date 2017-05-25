@@ -50,9 +50,7 @@ var_dump ( liBase10to62('100') );
 #    lidate::MicroTime()       可以简化为 liMicroTime()
 #为此我们不在提供专门的文档
 #参考 liinit::Class2Function() 来更新 functions.php
-
 ```
-
 
 ### 使用方法
 
