@@ -18,10 +18,10 @@ litool PHP 帮助文件.
 1. composer 安装.
 ```php
 #编辑composer.json文件
-"require" : {
-&nbsp;&nbsp;&nbsp;&nbsp;...
-&nbsp;&nbsp;&nbsp;&nbsp;"lit/litool": "dev-master"
-}
+1. "require" : {
+2.     ...
+3.     "lit/litool": "dev-master"
+4. }
 #安装后使用文档中的调用方法即可使用.
 ```
 
