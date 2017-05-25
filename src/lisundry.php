@@ -98,4 +98,30 @@ class lisundry {
         return $temp[$r];
     }
 
+    /** 
+     * IsLocalIp
+     * 判断是否私网IP
+     * @access public
+     * @param  string $IP  要判官的IP
+     * @since  1.0 
+     * @return mixed
+     **/
+    public static function IsLocalIp($IP){
+        $LongIp = ip2long($IP);
+        $IPArr = array(
+            array('s' => '10.0.0.0'   , 'e' => '10.255.255.255' ),
+            array('s' => '127.0.0.0'  , 'e' => '127.255.255.255'),
+            array('s' => '172.16.0.0' , 'e' => '172.31.255.255' ),
+            array('s' => '192.168.0.0', 'e' => '192.168.255.255')
+        );
+        $IsLocalIp = false;
+        foreach ( $IPArr as $val ){
+            if ( $LongIp >= ip2long($val['s']) &&  $LongIp <= ip2long($val['e']) ) {
+                $IsLocalIp = true;
+                break;
+            }
+        }
+        return $IsLocalIp;
+    }
+
 }

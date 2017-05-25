@@ -111,3 +111,9 @@ if (!function_exists('liGetWeight')){
     }
 }
 
+if (!function_exists('liIsLocalIp')){
+    function liIsLocalIp($IP){
+        return lit\litool\lisundry::IsLocalIp($IP) ;
+    }
+}
+

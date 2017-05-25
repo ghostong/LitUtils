@@ -88,3 +88,6 @@ $wd = array (
     array ( 'w' => 5 , 'v' => '我是5%概率') ,
 );
 var_dump ( lisundry::GetWeight( $wd ) );
+
+#判断是否私网IP
+var_dump ( lisundry::IsLocalIp('10.25.11.58') );
