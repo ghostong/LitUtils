@@ -162,4 +162,11 @@ var_dump ( lisundry::GetWeight( $wd ) );
 
 #判断是否私网IP
 var_dump ( lisundry::IsLocalIp('10.25.11.58') );
+
+#判断是否18位身份证号
+var_dump ( lisundry::IsIdNumber18('130602199001011111',1) );
+
+#判断是否15位身份证号
+var_dump ( lisundry::IsIdNumber15('110100010923582',0) );
+
 ```
