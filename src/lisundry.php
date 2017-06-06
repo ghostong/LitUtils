@@ -59,7 +59,7 @@ class lisundry {
      * @since  1.0 
      * @return mixed
      **/
-    public static function SendHttpStatus($code) {
+    public static function SendHttpStatus( $code ) {
         static $status = array(
             100 => 'Continue', 101 => 'Switching Protocols',
             200 => 'OK', 201 => 'Created', 202 => 'Accepted', 203 => 'Non-Authoritative Information', 204 => 'No Content', 205 => 'Reset Content', 206 => 'Partial Content',
@@ -102,11 +102,11 @@ class lisundry {
      * IsLocalIp
      * 判断是否私网IP
      * @access public
-     * @param  string $IP  要判官的IP
+     * @param  string $IP  要判断的IP
      * @since  1.0 
-     * @return mixed
+     * @return boolean
      **/
-    public static function IsLocalIp($IP){
+    public static function IsLocalIp( $IP ){
         $LongIp = ip2long($IP);
         $IPArr = array(
             array('s' => '10.0.0.0'   , 'e' => '10.255.255.255' ),
@@ -124,4 +124,79 @@ class lisundry {
         return $IsLocalIp;
     }
 
+    /** 
+     * IsIdNumber18
+     * 判断是否18位身份证号
+     * @access public
+     * @param  string $IdNum 要判断的身份证号
+     * @param  string $Gender 性别 0 女 , 1 男
+     * @since  dev
+     * @return boolean
+     **/
+    public static function IsIdNumber18 ( $IdNum, $Gender=Null ){
+        $Weight = array ( "7","9","10","5","8","4","2","1","6","3","7","9","10","5","8","4","2" );
+        $CheckCode = array ( "1","0","X","9","8","7","6","5","4","3","2" );
+        $Num = substr ($IdNum, 0, 17);
+        $BD = substr ($IdNum, 6 ,8); //生日
+        $GC = substr($IdNum, 14, 3); //顺序码
+        $CC = substr($IdNum, -1); //校验码
+        if ( strlen( $Num ) != 17 || !is_numeric( $Num ) || !in_array( $CC, $CheckCode ) ) { //判断身份证规则
+            return false;
+        }
+        if ( $Gender !== Null && $GC % 2 != $Gender ) { //判断性别
+            return false;
+        }
+        //判断生日
+        if ( date('Ymd',strtotime($BD)) != $BD ){
+            return false;
+        }
+        $MaxAge = 130;
+        $BY = substr ($BD,0,4);
+        $EndYear = date('Y');
+        $StartYear = $EndYear - $MaxAge;
+        if ( $StartYear > $BY || $BY > $EndYear ) {
+            return false;
+        }
+        //判断校验码
+        $CNum = 0;
+        for ( $i = 0 ; $i < 17 ; $i ++ ) {
+            $CNum += $Num[$i]*$Weight[$i];
+        }
+        if ( $CheckCode[$CNum % 11] != strtoupper($CC) ) {
+            return false;
+        }
+        return true;
+    }
+
+    /** 
+     * IsIdNumber15
+     * 判断是否15位身份证号
+     * @access public
+     * @param  string $IdNum 要判断的身份证号
+     * @param  string $Gender 性别 0 女 , 1 男
+     * @since  dev 
+     * @return boolean
+     **/
+    public static function IsIdNumber15 ( $IdNum, $Gender=Null ){
+        $BD = '19'.substr ($IdNum, 6 ,6); //生日
+        $GC = substr($IdNum, 12, 3); //顺序码
+        if ( strlen( $IdNum ) != 15 || !is_numeric( $IdNum ) ) { //判断身份证规则
+            return false;
+        }
+        if ( $Gender !== Null && $GC % 2 != $Gender ) { //判断性别
+            return false;
+        }
+        //判断生日
+        if ( date('Ymd',strtotime($BD)) != $BD ){
+            return false;
+        }
+        $MaxAge = 130;
+        $BY = substr ($BD,0,4);
+        $EndYear = date('Y');
+        $StartYear = $EndYear - $MaxAge;
+        if ( $StartYear > $BY || $BY > $EndYear ) {
+            return false;
+        }
+        return true;
+    }
 }

@@ -100,7 +100,7 @@ if (!function_exists('liGetRemoteAddr')){
 }
 
 if (!function_exists('liSendHttpStatus')){
-    function liSendHttpStatus($code){
+    function liSendHttpStatus( $code ){
         return lit\litool\lisundry::SendHttpStatus($code) ;
     }
 }
@@ -112,8 +112,20 @@ if (!function_exists('liGetWeight')){
 }
 
 if (!function_exists('liIsLocalIp')){
-    function liIsLocalIp($IP){
+    function liIsLocalIp( $IP ){
         return lit\litool\lisundry::IsLocalIp($IP) ;
+    }
+}
+
+if (!function_exists('liIsIdNumber18')){
+    function liIsIdNumber18 ( $IdNum, $Gender=Null ){
+        return lit\litool\lisundry::IsIdNumber18($IdNum,$Gender) ;
+    }
+}
+
+if (!function_exists('liIsIdNumber15')){
+    function liIsIdNumber15 ( $IdNum, $Gender=Null ){
+        return lit\litool\lisundry::IsIdNumber15($IdNum,$Gender) ;
     }
 }
 
