@@ -104,4 +104,15 @@ class lidate {
         return date($format,$ts);
     }
 
+    /** 
+     * TodayRemainTime
+     * 返回今天还剩多少秒
+     * @access public
+     * @since  1.0 
+     * @return string
+     **/
+    public static function TodayRemainTime (){
+        return strtotime( date('Y-m-d').' 24:00:00' ) - time();
+    }
+
 }

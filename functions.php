@@ -81,6 +81,12 @@ if (!function_exists('liLastMonth')){
     }
 }
 
+if (!function_exists('liTodayRemainTime')){
+    function liTodayRemainTime (){
+        return lit\litool\lidate::TodayRemainTime() ;
+    }
+}
+
 if (!function_exists('liBase10to62')){
     function liBase10to62( $n ){
         return lit\litool\limath::Base10to62($n) ;

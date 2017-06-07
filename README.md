@@ -127,6 +127,9 @@ var_dump ( lidate::NextMonth('2015-2-28') );
 #返回上个月是几月
 var_dump ( lidate::LastMonth('2015-01-01') );
 
+#返回今天还剩多少秒
+var_dump ( lidate::TodayRemainTime() );
+
 ```
 
 #### 数学函数部分
