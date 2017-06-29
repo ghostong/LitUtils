@@ -5,7 +5,7 @@ litool PHP 帮助文件.
 ### 写在前面
     - 此项目出生是为了"实现一些常用又不内置的PHP方法(函数)".
     - 部分代码前面加 "-" 是因为在没处理好代码缩进之前解决代码易读问题.个人感觉比加全角空格更合理.
-    - liinit::Class2Function() 会覆盖现有文件( 默认为irname(__DIR__).'/functions.php' ),使用时请注意备份旧文件.
+    - liinit::Class2Function() 会覆盖现有文件( 默认为 dirname(__DIR__).'/functions.php' ),使用时请注意备份旧文件.
     - 项目目录中的 demo.php 可以直观的帮助理解代码.
     - 如果您有任何,请在git issure 中创建问题或者自由创建分支.
 
