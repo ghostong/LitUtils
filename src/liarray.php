@@ -67,5 +67,19 @@ class liarray {
         }
     }
 
+    /** 
+     * XmlToArray
+     * 标准的XML解析成数组
+     * @access public
+     * @param  string $xml 要转换的XML字符串
+     * @since  1.0 
+     * @return array
+     **/
+    public static function XmlToArray($xml){
+        libxml_disable_entity_loader(true);
+        $xmlstring = simplexml_load_string($xml, 'SimpleXMLElement', LIBXML_NOCDATA);
+        $val = json_decode(json_encode($xmlstring),true);
+        return $val;
+    }
 
 }

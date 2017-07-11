@@ -82,6 +82,10 @@ var_dump ( liarray::RegexArray (['aa','bb','cc','ab','ac'],'/^a/') );
 #归替换多维数中指定的字符串
 var_dump (liarray::ArrayReplace('a','b',['aacd','aag','have','aa'=>['cba']]));
 
+#标准的XML解析成数组
+$xml = '<?xml version="1.0" encoding="UTF-8"?> <note><to>Tove</to><from>Jani</from><heading>Reminder</heading></note>';
+var_dump (liarray::XmlToArray($xml));
+
 ```
 
 #### 字符串部分

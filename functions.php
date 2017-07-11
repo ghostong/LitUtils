@@ -21,6 +21,12 @@ if (!function_exists('liArrayReplace')){
     }
 }
 
+if (!function_exists('liXmlToArray')){
+    function liXmlToArray($xml){
+        return lit\litool\liarray::XmlToArray($xml) ;
+    }
+}
+
 if (!function_exists('liRandStr')){
     function liRandStr ( $len=8, $number=true, $letter=false, $capitals=false , $symbols=false ){
         return lit\litool\listring::RandStr($len,$number,$letter,$capitals,$symbols) ;
