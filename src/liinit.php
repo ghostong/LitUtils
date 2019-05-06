@@ -14,8 +14,7 @@ class liinit {
      * init
      * 测试调用
      * @access public
-     * @since  1.0 
-     * @return mixed
+     * @since  1.0
      **/
     public static function init (){
         try {
@@ -30,8 +29,8 @@ class liinit {
      * Class2Function
      * 类转函数,方便非composer安装与快速调用
      * @access public
-     * @since  1.0 
-     * @return string
+     * @param string $SaveTo 指定函数保存位置
+     * @since  1.0
      **/
     public static function Class2Function ( $SaveTo = '' ) {
         $AutoLoad = '';

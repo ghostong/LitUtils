@@ -105,6 +105,12 @@ if (!function_exists('liBase62to10')){
     }
 }
 
+if (!function_exists('liBetween')){
+    function liBetween ( $num, $start, $end ){
+        return lit\litool\limath::Between($num,$start,$end) ;
+    }
+}
+
 if (!function_exists('liGetRemoteAddr')){
     function liGetRemoteAddr (){
         return lit\litool\lisundry::GetRemoteAddr() ;

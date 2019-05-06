@@ -26,7 +26,7 @@ class limath {
      * Base10to62
      * 10进制转62进制
      * @access public
-     * @param  intval  $n  要转换为62进制的10进制数字
+     * @param  int  $n  要转换为62进制的10进制数字
      * @since  1.0 
      * @return string
      **/
@@ -49,7 +49,7 @@ class limath {
      * @access public
      * @param  string  $s  要转换为10进制的62进制字符串
      * @since  1.0 
-     * @return intval
+     * @return int
      **/
     public static function Base62to10( $s ){
         $base = 62;  
@@ -60,6 +60,24 @@ class limath {
             $ret += strpos($index, substr($s, $t, 1)) * pow($base, $len - $t);  
         }  
         return $ret; 
+    }
+
+    /**
+     * Between
+     * num是否在start,end中间(包含边界)
+     * @access public
+     * @param  int  $num    要对比度数字
+     * @param  int  $start  开始数字(含)
+     * @param  int  $end    结束数字(含)
+     * @since  1.0
+     * @return bool
+     **/
+    public static function Between ( $num, $start, $end ){
+        if ( $start <= $num && $num <= $end){
+            return true;
+        }else{
+            return false;
+        }
     }
 
 }

@@ -84,7 +84,9 @@ class lidate {
      * @return string
      **/
     public static function NextMonth ( $date='', $format='Y-m' ){
-        $date ? $date : $date = date( 'Y-m-d' );
+        if($date == ''){
+            $date = date( 'Y-m-d' );
+        }
         $ts = strtotime ( date( "Y-m-25",strtotime($date) ) )+ 3600*24*10;
         return date($format,$ts);
     }
@@ -99,7 +101,9 @@ class lidate {
      * @return string
      **/
     public static function LastMonth ( $date='',$format='Y-m' ){
-        $date ? $date : $date = date( 'Y-m-d' );
+        if($date == ''){
+            $date = date( 'Y-m-d' );
+        }
         $ts = strtotime ( date( "Y-m-01",strtotime($date) ) ) - 3600*24*10;
         return date($format,$ts);
     }

@@ -55,9 +55,8 @@ class lisundry {
      * SendHttpStatus
      * 发送http状态码
      * @access public
-     * @param  intval $code  Http状态码
-     * @since  1.0 
-     * @return mixed
+     * @param  int $code  Http状态码
+     * @since  1.0
      **/
     public static function SendHttpStatus( $code ) {
         static $status = array(
@@ -79,7 +78,7 @@ class lisundry {
      * GetWeight
      * 根据权重随机返回被选数据
      * @access public
-     * @param  intval $code  Http状态码
+     * @param  array $wd  Http状态码
      * @since  1.0 
      * @return mixed
      **/
