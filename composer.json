@@ -1,6 +1,6 @@
 {
     "name": "lit/litool",
-    "description": "litool PHP",
+    "description": "二次封装的一些常用 PHP 工具",
     "authors": [
         {
             "name": "litong",
@@ -12,7 +12,10 @@
         "liarray",
         "lidate",
         "listring",
-        "lidebug"
+        "lidebug",
+        "日期",
+        "数组",
+        "杂项"
     ],
     "require": {
         "php": ">=5.4.0"
