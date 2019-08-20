@@ -1,6 +1,6 @@
 <?php 
 
-namespace lit\litool;
+namespace Lit\Litool;
 
 /**
  * listring: litool PHP 字符串部分
@@ -8,7 +8,7 @@ namespace lit\litool;
  * @since   1.0
  **/
 
-class listring {
+class LiString {
     
     /** 
      * init

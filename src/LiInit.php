@@ -1,6 +1,6 @@
 <?php 
 
-namespace lit\litool;
+namespace Lit\Litool;
 
 /**
  * liarray: litool PHP 数组部分
@@ -8,7 +8,7 @@ namespace lit\litool;
  * @since   1.0
  **/
 
-class liinit {
+class LiInit {
 
     /** 
      * init
@@ -43,11 +43,11 @@ class liinit {
         $AutoLoad .= "    spl_autoload ( \$ClassFile );\n";
         $AutoLoad .= "}";
         $ClassList = array (
-            'lit\litool\liarray',
-            'lit\litool\listring',
-            'lit\litool\lidate',
-            'lit\litool\limath',
-            'lit\litool\lisundry'
+            'Lit\Litool\LiArray',
+            'Lit\Litool\LiString',
+            'Lit\Litool\LiDate',
+            'Lit\Litool\LiMath',
+            'Lit\Litool\LiSundry'
         );
         $OutPut  = '' ;
         foreach ($ClassList as $class) {
@@ -74,7 +74,7 @@ class liinit {
         }
         $OutPut = "<?php\n\n".$AutoLoad."\n\n".$OutPut;
         if (''==$SaveTo) {
-            $SaveTo = dirname(__DIR__).'/functions.php';
+            $SaveTo = dirname(__DIR__).'/LitoolFunctions.php';
         }
         $SFI = new \SplFileInfo(dirname($SaveTo));
         if ( $SFI -> isWritable () ) {

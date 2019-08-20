@@ -1,6 +1,6 @@
 <?php 
 
-namespace lit\litool;
+namespace Lit\Litool;
 
 /**
  * limath: litool PHP 数学计算部分
@@ -8,7 +8,7 @@ namespace lit\litool;
  * @since   1.0
  **/
 
-class limath {
+class LiMath {
     
     /** 
      * init

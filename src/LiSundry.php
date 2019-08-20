@@ -1,6 +1,6 @@
 <?php 
 
-namespace lit\litool;
+namespace Lit\Litool;
 
 /**
  * lisundry: litool PHP 杂项部分
@@ -8,7 +8,7 @@ namespace lit\litool;
  * @since   1.0
  **/
 
-class lisundry {
+class LiSundry {
     
     /** 
      * init

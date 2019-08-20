@@ -1,6 +1,6 @@
 <?php 
 
-namespace lit\litool;
+namespace Lit\Litool;
 
 /**
  * liarray: litool PHP 数组部分
@@ -8,7 +8,7 @@ namespace lit\litool;
  * @since   1.0
  **/
 
-class liarray {
+class LiArray {
 
     /** 
      * init

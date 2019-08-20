@@ -2,97 +2,97 @@
 
 require(__DIR__.'/vendor/autoload.php');
 
-use lit\litool\liinit;
+use Lit\Litool\LiInit;
 
 #初始化调用 可以确定依赖是否完善,只调用一次即可
-liinit::init();
+LiInit::init();
 echo "\n";
 
 #类转函数,方便非composer安装与快速调用[此方法会生成文件,默认为 dirname(__DIR__).'/functions.php']
-liinit::Class2Function();
+LiInit::Class2Function();
 
 ################################
 
-use  \lit\litool\liarray;
+use  \Lit\Litool\LiArray;
 
 #通过正则表达式匹配一维数组的值,返回正则表达式匹配部分
-var_dump ( liarray::RegexArray (['aa','bb','cc','ab','ac'],'/^a/') );
+var_dump ( LiArray::RegexArray (['aa','bb','cc','ab','ac'],'/^a/') );
 
 #归替换多维数中指定的字符串
-var_dump (liarray::ArrayReplace('a','b',['aacd','aag','have','aa'=>['cba']]));
+var_dump (LiArray::ArrayReplace('a','b',['aacd','aag','have','aa'=>['cba']]));
 
 #归替换多维数中指定的字符串
-var_dump (liarray::ArrayReplace('a','b',['aacd','aag','have','aa'=>['cba']]));
+var_dump (LiArray::ArrayReplace('a','b',['aacd','aag','have','aa'=>['cba']]));
 
 #标准的XML解析成数组
 $xml = '<?xml version="1.0" encoding="UTF-8"?> <note><to>Tove</to><from>Jani</from><heading>Reminder</heading></note>';
-var_dump (liarray::XmlToArray($xml));
+var_dump (LiArray::XmlToArray($xml));
 
 ################################
 
-use  \lit\litool\listring;
+use  \Lit\Litool\LiString;
 
 #获取随机数字符串
-var_dump ( listring::RandStr(8,true,true,true,true) );
+var_dump ( LiString::RandStr(8,true,true,true,true) );
 
 #返回 haystack 在首次 needle 出现之前的字符串
-var_dump ( listring::SubStrTo('i can say my abc !',' my') );
+var_dump ( LiString::SubStrTo('i can say my abc !',' my') );
 
 #简单字符串可逆加密(加密)
-$Encode = listring::StrEncode('可逆运算');
+$Encode = LiString::StrEncode('可逆运算');
 var_dump ( $Encode );
 
 #简单字符串可逆加密(解密)
-$Decode = listring::StrDecode($Encode);
+$Decode = LiString::StrDecode($Encode);
 var_dump ( $Decode );
 
 #限制字符串的字符数量
-var_dump ( listring::StrLimit('不a管b什么样的字符都可以了',7) );
+var_dump ( LiString::StrLimit('不a管b什么样的字符都可以了',7) );
 
 ################################
 
-use  \lit\litool\lidate;
+use  \Lit\Litool\LiDate;
 
 #返回当前时间以秒为单位的微秒数
-var_dump ( lidate::MicroTime() );
+var_dump ( LiDate::MicroTime() );
 
 #回当前时间以秒为单位的毫秒数
-var_dump ( lidate::MilliTime() );
+var_dump ( LiDate::MilliTime() );
 
 #返回中文格式化的时间
-var_dump ( lidate::DateFormat('1494475359') );
+var_dump ( LiDate::DateFormat('1494475359') );
 
 #返回下个月是几月
-var_dump ( lidate::NextMonth('2015-2-28') );
+var_dump ( LiDate::NextMonth('2015-2-28') );
 
 #返回上个月是几月
-var_dump ( lidate::LastMonth('2015-01-01') );
+var_dump ( LiDate::LastMonth('2015-01-01') );
 
 #返回今天还剩多少秒
-var_dump ( lidate::TodayRemainTime() );
+var_dump ( LiDate::TodayRemainTime() );
 
 ################################
 
-use  \lit\litool\limath;
+use  \Lit\Litool\LiMath;
 
 #10进制转62进制
-var_dump ( limath::Base10to62(40000) );
+var_dump ( LiMath::Base10to62(40000) );
 
 #62进制转10进制
-var_dump ( limath::Base62to10('ACG97') );
+var_dump ( LiMath::Base62to10('ACG97') );
 
 #数字是否在两个数中间(包含边界)
-var_dump ( limath::Between(6,1,6) );
+var_dump ( LiMath::Between(6,1,6) );
 
 ################################
 
-use  \lit\litool\lisundry;
+use  \Lit\Litool\LiSundry;
 
 #获取用户来源IP
-var_dump ( lisundry::GetRemoteAddr() );
+var_dump ( LiSundry::GetRemoteAddr() );
 
 #发送http状态码
-lisundry::SendHttpStatus(404) ;
+LiSundry::SendHttpStatus(404) ;
 
 #根据权重随机返回备选数据
 $wd = array (
@@ -100,15 +100,15 @@ $wd = array (
     array ( 'w' => 35, 'v' => '我是35%概率') ,
     array ( 'w' => 5 , 'v' => '我是5%概率') ,
 );
-var_dump ( lisundry::GetWeight( $wd ) );
+var_dump ( LiSundry::GetWeight( $wd ) );
 
 #判断是否私网IP
-var_dump ( lisundry::IsLocalIp('10.25.11.58') );
+var_dump ( LiSundry::IsLocalIp('10.25.11.58') );
 
 #判断是否18位身份证号
-var_dump ( lisundry::IsIdNumber18('130602199001011111',1) );
+var_dump ( LiSundry::IsIdNumber18('130602199001011111',1) );
 
 #判断是否15位身份证号
-var_dump ( lisundry::IsIdNumber15('110100010923582',0) );
+var_dump ( LiSundry::IsIdNumber15('110100010923582',0) );
 
 
