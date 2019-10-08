@@ -67,7 +67,7 @@ class LiDate {
              array ( 's' => 31536000     , 'e' => PHP_INT_MAX, 'msg' => floor ($PassTime/31536000) .'年前'  ),
          );
          foreach ( $Format as $val ) {
-             if ( $val['s'] < $PassTime && $PassTime <= $val['e']) {
+             if ( $val['s'] <= $PassTime && $PassTime < $val['e']) {
                  return $val['msg'];
              }
          }
