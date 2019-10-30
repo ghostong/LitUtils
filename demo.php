@@ -49,6 +49,9 @@ var_dump ( $Decode );
 #限制字符串的字符数量
 var_dump ( LiString::StrLimit('不a管b什么样的字符都可以了',7) );
 
+#替换字符串中的变量占位符
+var_dump (LiString::ReplaceStringVariable('我叫{$name}',array('name'=>'litool')));
+
 ################################
 
 use  \Lit\Litool\LiDate;
@@ -110,5 +113,3 @@ var_dump ( LiSundry::IsIdNumber18('130602199001011111',1) );
 
 #判断是否15位身份证号
 var_dump ( LiSundry::IsIdNumber15('110100010923582',0) );
-
-

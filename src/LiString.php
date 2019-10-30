@@ -138,8 +138,8 @@ class LiString {
      * 限制字符串的字符数量
      * @access public
      * @param  string  $value  原字符串
-     * @param  intval  $limit  限制字符长度
-     * @param  string  $end  结尾连接符
+     * @param  int     $limit  限制字符长度
+     * @param  string  $end    结尾连接符
      * @since  1.0 
      * @return string
      **/
@@ -148,6 +148,29 @@ class LiString {
             return $value;
         }
         return rtrim(mb_strimwidth($value, 0, $limit, '', 'UTF-8')).$end;
+    }
+
+    /**
+     * ReplaceStringVariable
+     * 替换字符串中的变量占位符
+     * @access public
+     * @param string $string 要替换的字符串
+     * @param string $varArr 变量数组
+     * @since  1.0
+     * @return string
+     * @example
+     *     $string = '我是要替换的字符串,我的名字叫{$name},{$other}快来帮助我!!';  //此处应该为从文件读取的内容
+     *     $varArr = ["name"=>"litool","other"=>"haha"];
+     *     self::ReplaceStringVariable($string,$varArr);
+     **/
+    public static function ReplaceStringVariable($string,$varArr){
+        $search = [];
+        $replace = [];
+        foreach($varArr as $key => $val) {
+            $search[] = '{$'.$key.'}';
+            $replace[] = $val;
+        }
+        return str_replace($search,$replace,$string);
     }
 
 }

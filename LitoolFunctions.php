@@ -57,6 +57,12 @@ if (!function_exists('liStrLimit')){
     }
 }
 
+if (!function_exists('liReplaceStringVariable')){
+    function liReplaceStringVariable($string,$varArr){
+        return Lit\Litool\LiString::ReplaceStringVariable($string,$varArr) ;
+    }
+}
+
 if (!function_exists('liMicroTime')){
     function liMicroTime (){
         return Lit\Litool\LiDate::MicroTime() ;
