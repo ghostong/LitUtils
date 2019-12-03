@@ -113,3 +113,35 @@ var_dump ( LiSundry::IsIdNumber18('130602199001011111',1) );
 
 #判断是否15位身份证号
 var_dump ( LiSundry::IsIdNumber15('110100010923582',0) );
+
+################################
+
+#单例获取 LiEasyAuth 对象
+$easyAuth = \Lit\Litool\LiEasyAuth::getInstance("/tmp/aaa");
+
+#创建一个用户
+var_dump ( $easyAuth->AddUser("lit","1233333") );
+
+#判断用户是否存在
+var_dump ( $easyAuth->UserExists("lit") );
+
+#判断用户是否存在
+var_dump ( $easyAuth->UserExists("abb") );
+
+#获取用户信息
+var_dump ( $easyAuth->getUserInfo("lit"));
+var_dump ( $easyAuth->getUserInfo("abb"));
+
+#验证用户登录
+var_dump ( $easyAuth->CheckLogin("lit","1233333"));
+var_dump ( $easyAuth->CheckLogin("lit","12332333"));
+
+#是否有注册用户
+var_dump ($easyAuth->hasUser());
+
+#删除用户
+$easyAuth->DelUser("lit");
+$easyAuth->DelUser("abb");
+
+#获取用户信息保存目录
+var_dump ( $easyAuth->getDataBaseDir() );

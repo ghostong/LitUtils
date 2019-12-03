@@ -9,14 +9,6 @@ litool PHP 帮助文件.
     - 项目目录中的 demo.php 可以直观的帮助理解代码.
     - 如果您有任何,请在git issure 中创建问题或者自由创建分支.
 
-### 目录
-0. [LiInit 初始化](https://code.aliyun.com/litosrc/litool#%e5%88%9d%e5%a7%8b%e5%8c%96) <br />
-1. [LiArray 数组](https://code.aliyun.com/litosrc/litool#%E6%95%B0%E7%BB%84%E9%83%A8%E5%88%86) <br />
-2. [LiString 字符串](https://code.aliyun.com/litosrc/litool#%e5%ad%97%e7%ac%a6%e4%b8%b2%e9%83%a8%e5%88%86) <br />
-3. [LiDate 日期时间](https://code.aliyun.com/litosrc/litool#%e6%97%a5%e6%9c%9f%e6%97%b6%e9%97%b4%e9%83%a8%e5%88%86) <br />
-4. [LiMath  数学函数](https://code.aliyun.com/litosrc/litool#%E6%95%B0%E5%AD%A6%E5%87%BD%E6%95%B0%E9%83%A8%E5%88%86) <br />
-5. [LiSundry  杂项](https://code.aliyun.com/litosrc/litool#%E6%9D%82%E9%A1%B9%E9%83%A8%E5%88%86) <br />
-
 ### 安装
 
 1. composer 安装
@@ -43,23 +35,10 @@ litool PHP 帮助文件.
 #安装后使用文档中的调用方法即可使用.
 ```
 
-3. 使用函数
-```php
-#为了提供了更方便的调用,可以直接引入 functions.php 文件调用函数
-- include ('./LitoolFunctions.php');
-- var_dump ( liBase10to62('100') );
-#在类方法名前面加上li即可使用函数调用
-#例如:
-#    LiMath::Base10to62(40000) 可以简化为 liBase10to62(40000);
-#    LiDate::MicroTime()       可以简化为 liMicroTime()
-#为此我们不在提供专门的文档
-#参考 LiInit::Class2Function() 来更新 functions.php
-```
-
 ### 使用方法
 
 #### 初始化
-```php
+````php
 require(__DIR__.'/vendor/autoload.php');
 use  \Lit\Litool\LiInit;
 
@@ -68,11 +47,11 @@ LiInit::init();
 
 #类转函数,方便非composer安装与快速调用[此方法会生成文件,默认为 dirname(__DIR__).'/functions.php']
 LiInit::Class2Function();
-```
+````
 
 #### 数组部分
 
-```php
+````php
 require(__DIR__.'/vendor/autoload.php');
 use  \Lit\Litool\LiArray;
 
@@ -86,11 +65,11 @@ var_dump (LiArray::ArrayReplace('a','b',['aacd','aag','have','aa'=>['cba']]));
 $xml = '<?xml version="1.0" encoding="UTF-8"?> <note><to>Tove</to><from>Jani</from><heading>Reminder</heading></note>';
 var_dump (LiArray::XmlToArray($xml));
 
-```
+````
 
 #### 字符串部分
 
-```php
+````php
 require(__DIR__.'/vendor/autoload.php');
 use  \Lit\Litool\LiString;
 
@@ -108,11 +87,11 @@ var_dump ( $Encode );
 $Decode = LiString::StrDecode($Encode);
 var_dump ( $Decode );
 
-```
+````
 
 #### 日期时间部分
 
-```php
+````php
 require(__DIR__.'/vendor/autoload.php');
 use  \Lit\Litool\LiDate;
 
@@ -134,10 +113,10 @@ var_dump ( LiDate::LastMonth('2015-01-01') );
 #返回今天还剩多少秒
 var_dump ( LiDate::TodayRemainTime() );
 
-```
+````
 
 #### 数学函数部分
-```php
+````php
 require(__DIR__.'/vendor/autoload.php');
 use  \Lit\Litool\LiMath;
 
@@ -149,10 +128,10 @@ var_dump ( LiMath::Base62to10('ACG97') );
 
 #数字是否在两个数中间(包含边界)
 var_dump ( LiMath::Between(6,1,6) );
-```
+````
 
 #### 杂项部分
-```php
+````php
 require(__DIR__.'/vendor/autoload.php');
 use  \Lit\Litool\LiSundry;
 
@@ -179,4 +158,38 @@ var_dump ( LiSundry::IsIdNumber18('130602199001011111',1) );
 #判断是否15位身份证号
 var_dump ( LiSundry::IsIdNumber15('110100010923582',0) );
 
-```
+````
+
+#### 简单用户系统
+
+````php
+#单例获取 LiEasyAuth 对象
+$easyAuth = \Lit\Litool\LiEasyAuth::getInstance("/tmp/aaa");
+
+#创建一个用户
+var_dump ( $easyAuth->AddUser("lit","1233333") );
+
+#判断用户是否存在
+var_dump ( $easyAuth->UserExists("lit") );
+
+#判断用户是否存在
+var_dump ( $easyAuth->UserExists("abb") );
+
+#获取用户信息
+var_dump ( $easyAuth->getUserInfo("lit"));
+var_dump ( $easyAuth->getUserInfo("abb"));
+
+#验证用户登录
+var_dump ( $easyAuth->CheckLogin("lit","1233333"));
+var_dump ( $easyAuth->CheckLogin("lit","12332333"));
+
+#是否有注册用户
+var_dump ($easyAuth->hasUser());
+
+#删除用户
+$easyAuth->DelUser("lit");
+$easyAuth->DelUser("abb");
+
+#获取用户信息保存目录
+var_dump ( $easyAuth->getDataBaseDir() );
+````
