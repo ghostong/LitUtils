@@ -26,7 +26,7 @@ class LiArray {
     }
 
     /** 
-     * RegexArray
+     * regexArray
      * 通过正则表达式匹配一维数组的值,返回正则表达式匹配部分
      * @access public
      * @param  array  $array 要匹配的数组
@@ -34,7 +34,7 @@ class LiArray {
      * @since  1.0 
      * @return array
      **/
-    public static function RegexArray ( $array=array(),$regex='' ) {
+    public static function regexArray ( $array=array(),$regex='' ) {
         if ( empty($array) || !is_array ($array) || empty($regex) ) {
             return $array;
         }
@@ -44,7 +44,7 @@ class LiArray {
     }
     
     /** 
-     * ArrayReplace
+     * arrayReplace
      * 递归替换多维数中指定的字符串
      * @access public
      * @param  string $search  搜索被替换的字符串
@@ -53,13 +53,13 @@ class LiArray {
      * @since  1.0 
      * @return array
      **/
-    public static function ArrayReplace( $search, $replace, $array ){
+    public static function arrayReplace( $search, $replace, $array ){
         if ( empty($search) || empty($replace) || empty($array) ) {
             return $array;
         }
         if ( is_array($array) ){
             foreach ($array as $key => &$val) {
-                $array[$key] = self::ArrayReplace($search,$replace,$val);
+                $array[$key] = self::arrayReplace($search,$replace,$val);
             }
             return $array;
         }else{
@@ -68,14 +68,14 @@ class LiArray {
     }
 
     /** 
-     * XmlToArray
+     * xmlToArray
      * 标准的XML解析成数组
      * @access public
      * @param  string $xml 要转换的XML字符串
      * @since  1.0 
      * @return array
      **/
-    public static function XmlToArray($xml){
+    public static function xmlToArray($xml){
         libxml_disable_entity_loader(true);
         $xmlstring = simplexml_load_string($xml, 'SimpleXMLElement', LIBXML_NOCDATA);
         $val = json_decode(json_encode($xmlstring),true);

@@ -23,7 +23,7 @@ class LiString {
     }
     
     /** 
-     * RandStr
+     * randStr
      * 获取随机数字符串
      * @access public
      * @param  mixed   $len      随机字符串长度
@@ -34,7 +34,7 @@ class LiString {
      * @since  1.0 
      * @return string
      **/
-    public static function RandStr ( $len=8, $number=true, $letter=false, $capitals=false , $symbols=false ){
+    public static function randStr ( $len=8, $number=true, $letter=false, $capitals=false , $symbols=false ){
         $NumArr = array ('0','1','2','3','4','5','6','7','8','9');
         $LetArr = array ('a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z');
         $CapArr = array ('A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z');
@@ -62,7 +62,7 @@ class LiString {
     }
 
     /** 
-     * SubStrTo
+     * subStrTo
      * 返回 haystack 在首次 needle 出现之前的字符串
      * @access public
      * @param  string  $haystack  要截取的字符串
@@ -70,7 +70,7 @@ class LiString {
      * @since  1.0 
      * @return string
      **/
-    public static function SubStrTo( $haystack, $needle ){
+    public static function subStrTo( $haystack, $needle ){
         if ( empty($haystack) || empty($needle) ) {
             return $haystack;
         }
@@ -85,14 +85,14 @@ class LiString {
 
 
     /** 
-     * StrEncode
+     * strEncode
      * 简单字符串可逆加密(加密)
      * @access public
      * @param  string  $Str 要加密的字符串
      * @since  1.0 
      * @return string
      **/
-    public static function StrEncode($Str){
+    public static function strEncode($Str){
         if ( strlen($Str) == 0 ){ return ''; }
         $NowArr = array();
         $EnStr=base64_encode($Str);
@@ -110,14 +110,14 @@ class LiString {
     }
     
     /** 
-     * StrEncode
+     * strEncode
      * 简单字符串可逆加密(解密)
      * @access public
      * @param  string  $Str 要加密的字符串
      * @since  1.0 
      * @return string
      **/
-    public static function StrDecode($Str){
+    public static function strDecode($Str){
         if ( strlen($Str) == 0 ){ return ''; }
         $NowStr = str_rot13($Str);
         $HalfLen = ceil(strlen($NowStr) / 2);
@@ -134,7 +134,7 @@ class LiString {
     }
 
     /** 
-     * StrLimit
+     * strLimit
      * 限制字符串的字符数量
      * @access public
      * @param  string  $value  原字符串
@@ -143,7 +143,7 @@ class LiString {
      * @since  1.0 
      * @return string
      **/
-    public static function StrLimit($value, $limit = 100, $end = '...') {
+    public static function strLimit($value, $limit = 100, $end = '...') {
         if (mb_strwidth($value, 'UTF-8') <= $limit) {
             return $value;
         }
@@ -151,7 +151,7 @@ class LiString {
     }
 
     /**
-     * ReplaceStringVariable
+     * replaceStringVariable
      * 替换字符串中的变量占位符
      * @access public
      * @param string $string 要替换的字符串
@@ -161,9 +161,9 @@ class LiString {
      * @example
      *     $string = '我是要替换的字符串,我的名字叫{$name},{$other}快来帮助我!!';  //此处应该为从文件读取的内容
      *     $varArr = ["name"=>"litool","other"=>"haha"];
-     *     self::ReplaceStringVariable($string,$varArr);
+     *     self::replaceStringVariable($string,$varArr);
      **/
-    public static function ReplaceStringVariable($string,$varArr){
+    public static function replaceStringVariable($string,$varArr){
         $search = [];
         $replace = [];
         foreach($varArr as $key => $val) {

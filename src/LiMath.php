@@ -23,14 +23,14 @@ class LiMath {
     }
     
     /** 
-     * Base10to62
+     * base10to62
      * 10进制转62进制
      * @access public
      * @param  int  $n  要转换为62进制的10进制数字
      * @since  1.0 
      * @return string
      **/
-    public static function Base10to62( $n ){
+    public static function base10to62( $n ){
         $base = 62;  
         $index = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';  
         $ret = '';  
@@ -44,14 +44,14 @@ class LiMath {
     }
 
     /** 
-     * Base62to10
+     * base62to10
      * 62进制转10进制
      * @access public
      * @param  string  $s  要转换为10进制的62进制字符串
      * @since  1.0 
      * @return int
      **/
-    public static function Base62to10( $s ){
+    public static function base62to10( $s ){
         $base = 62;  
         $index = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';  
         $ret = 0;  
@@ -63,7 +63,7 @@ class LiMath {
     }
 
     /**
-     * Between
+     * between
      * num是否在start,end中间(包含边界)
      * @access public
      * @param  int  $num    要对比度数字
@@ -72,7 +72,7 @@ class LiMath {
      * @since  1.0
      * @return bool
      **/
-    public static function Between ( $num, $start, $end ){
+    public static function between ( $num, $start, $end ){
         if ( $start <= $num && $num <= $end){
             return true;
         }else{
