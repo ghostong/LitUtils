@@ -93,8 +93,8 @@ class LiEasyAuth {
      * @since  1.0
      * @return bool
      **/
-    public function DelUser( $userName ){
-        if ( $this->delUSerData($userName) ){
+    public function delUser( $userName ){
+        if ( $this->delUserData($userName) ){
             return true;
         }else{
             return false;
@@ -110,7 +110,7 @@ class LiEasyAuth {
      * @since  1.0
      * @return bool
      **/
-    public function CheckLogin( $userName, $passWord ){
+    public function checkLogin( $userName, $passWord ){
         $userData = $this->getUserData($userName);
         $passWord = $this->mkPassWord($passWord);
         if (!empty($passWord) && $userData["passWord"] === $passWord) {

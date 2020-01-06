@@ -134,15 +134,15 @@ var_dump ( $easyAuth->getUserInfo("lit"));
 var_dump ( $easyAuth->getUserInfo("abb"));
 
 #验证用户登录
-var_dump ( $easyAuth->CheckLogin("lit","1233333"));
-var_dump ( $easyAuth->CheckLogin("lit","12332333"));
+var_dump ( $easyAuth->checkLogin("lit","1233333"));
+var_dump ( $easyAuth->checkLogin("lit","12332333"));
 
 #是否有注册用户
 var_dump ($easyAuth->hasUser());
 
 #删除用户
-$easyAuth->DelUser("lit");
-$easyAuth->DelUser("abb");
+$easyAuth->delUser("lit");
+$easyAuth->delUser("abb");
 
 #获取用户信息保存目录
 var_dump ( $easyAuth->getDataBaseDir() );
