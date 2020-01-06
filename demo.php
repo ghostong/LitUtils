@@ -117,6 +117,7 @@ var_dump ( LiSundry::IsIdNumber15('110100010923582',0) );
 ################################
 
 #单例获取 LiEasyAuth 对象
+#注意: 此系统只适用于简单身份认证,不适合高并发,大数据量,高安全性的用户系统
 $easyAuth = \Lit\Litool\LiEasyAuth::getInstance("/tmp/aaa");
 
 #创建一个用户
