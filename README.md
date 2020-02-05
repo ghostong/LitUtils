@@ -194,3 +194,47 @@ $easyAuth->delUser("abb");
 #获取用户信息保存目录
 var_dump ( $easyAuth->getDataBaseDir() );
 ````
+
+#### 接口HTTP访问签名验证
+````php
+use  \Lit\Litool\LiSignature;
+#自定义参与运算的 accessKeyId accessKeySecret
+$accessData["accessKeyId"] = "accessKeySecret";
+$accessData["accessKeyId2"] = "accessKeySecret2";
+$accessData["accessKeyId3"] = "accessKeySecret4";
+$sign = new LiSignature();
+
+#服务端验证访问
+parse_str($queryString,$queryArray);
+$accessKeySecret = $accessData[$queryArray["AccessKeyId"]];
+if ( !empty($accessKeySecret) ) {
+    #有访问权限返回 true , 无访问权限返回 false
+    var_dump ( $sign->checkSignature("GET", $queryString, $accessKeySecret,'callBackFunction' ));
+}else{
+    #无法验证
+}
+
+#构建一个访问
+$sign->buildQuery("AccessKeyId","accessKeyId");
+$sign->buildQuery("Version","version");
+$sign->buildQuery("SignatureNonce","signaturenonce");
+$sign->buildQuery("Timestamp",time() );
+$sign->buildQuery("OtherParam","aa");
+$sign->buildQuery("OtherParam2","bb");
+var_dump ( $sign->getQueryUrl("http://192.168.11.187:9000/api","GET",$accessData["accessKeyId"]) );
+
+#获取待签名字符串 调试用
+var_dump ($sign->getSignatureString());
+
+#获取错误代码
+var_dump ( $sign->getErrorCode() );
+
+#获取错误提示
+var_dump ( $sign->getErrorString() );
+
+function callBackFunction ( $signatureNonce ) {
+    #此函数需自行实现, 用于防止网络重放攻击.
+    #$signatureNonce 为不重复字符串, 使用过返回true, 没有使用过返回false
+    #可把此值保存至redis或者memcache等数据库中并设置有效或定时清理
+}
+````
