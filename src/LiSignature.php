@@ -172,6 +172,7 @@ class LiSignature {
     public function checkSignature( $urlPath, $accessKeySecret, $get, $post, $userNonceFunction = null ){
         if (!isset( $get["Signature"] ) ) {
             $this->setError (9111, "参数Signature: 不能为空" );
+            return false;
         }
         $signature = $get["Signature"];
         unset($get["Signature"]);
