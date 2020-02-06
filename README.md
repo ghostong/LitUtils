@@ -197,31 +197,42 @@ var_dump ( $easyAuth->getDataBaseDir() );
 
 #### 接口HTTP访问签名验证
 ````php
-use  \Lit\Litool\LiSignature;
-#自定义参与运算的 accessKeyId accessKeySecret
+#服务端验证访问
+$sign = new \Lit\Litool\LiSignature();
+//自定义参与运算的 accessKeyId accessKeySecret
 $accessData["accessKeyId"] = "accessKeySecret";
 $accessData["accessKeyId2"] = "accessKeySecret2";
 $accessData["accessKeyId3"] = "accessKeySecret4";
-$sign = new LiSignature();
+//获取其他参数
+$urlPath = "/api/aaa";
+$get = $_GET;
+$post = $_POST;
+$accessKeySecret = $accessData[$get["AccessKeyId"]];
+var_dump ( $sign->checkSignature($urlPath, $accessKeySecret, $get, $post , 'callBackFunction' ));
+var_dump ( $sign->getSignatureString());
+var_dump ( $sign->getErrorString() );
 
-#服务端验证访问
-parse_str($queryString,$queryArray);
-$accessKeySecret = $accessData[$queryArray["AccessKeyId"]];
-if ( !empty($accessKeySecret) ) {
-    #有访问权限返回 true , 无访问权限返回 false
-    var_dump ( $sign->checkSignature("GET", $queryString, $accessKeySecret,'callBackFunction' ));
-}else{
-    #无法验证
+function callBackFunction ( $signatureNonce ) {
+    //此函数需自行实现, 用于防止网络重放攻击.
+    //$signatureNonce 为不重复字符串, 使用过返回true, 没有使用过返回false
+    //可把此值保存至redis或者memcache等数据库中并设置有效或定时清理
+    return false;
 }
 
-#构建一个访问
-$sign->buildQuery("AccessKeyId","accessKeyId");
-$sign->buildQuery("Version","version");
-$sign->buildQuery("SignatureNonce","signaturenonce");
-$sign->buildQuery("Timestamp",time() );
-$sign->buildQuery("OtherParam","aa");
-$sign->buildQuery("OtherParam2","bb");
-var_dump ( $sign->getQueryUrl("http://192.168.11.187:9000/api","GET",$accessData["accessKeyId"]) );
+#客户端访问构建
+//GET参数
+$sign->addGetParam("AccessKeyId","accessKeyId");
+$sign->addGetParam("Version","version");
+$sign->addGetParam("SignatureNonce","signaturenonce");
+$sign->addGetParam("Timestamp",time() );
+$sign->addGetParam("OtherParam","aa");
+$sign->addGetParam("OtherParam2","bb");
+//POST参数(可选)
+$sign->addPostParam("aa","bb");
+$sign->addPostParam("bb","bb");
+$sign->addPostParam("cc","cc");
+#获取待请求url
+var_dump ( $url= $sign->getQueryUrl("http://192.168.11.187:9000","/testServer.php","accessKeySecret" ) );
 
 #获取待签名字符串 调试用
 var_dump ($sign->getSignatureString());
@@ -232,9 +243,17 @@ var_dump ( $sign->getErrorCode() );
 #获取错误提示
 var_dump ( $sign->getErrorString() );
 
-function callBackFunction ( $signatureNonce ) {
-    #此函数需自行实现, 用于防止网络重放攻击.
-    #$signatureNonce 为不重复字符串, 使用过返回true, 没有使用过返回false
-    #可把此值保存至redis或者memcache等数据库中并设置有效或定时清理
-}
+#请求方式示例
+$ch = curl_init();
+curl_setopt($ch, CURLOPT_URL, $url);
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+curl_setopt($ch, CURLOPT_POST, 1);
+curl_setopt($ch, CURLOPT_POSTFIELDS, $sign->getPostParam());
+curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
+curl_setopt($ch, CURLOPT_HEADER, 0);
+curl_setopt($ch, CURLOPT_TIMEOUT, 10);
+$output = curl_exec($ch);
+curl_close($ch);
+var_dump ($output);
 ````
