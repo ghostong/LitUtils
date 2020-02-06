@@ -171,7 +171,7 @@ class LiSignature {
      */
     public function checkSignature( $urlPath, $accessKeySecret, $get, $post, $userNonceFunction = null ){
         if (!isset( $get["Signature"] ) ) {
-            $this->setError (9111, "参数Signature: 不能为空" );
+            $this->setError (9111, "参数 Signature 不能为空" );
             return false;
         }
         $signature = $get["Signature"];
@@ -182,7 +182,7 @@ class LiSignature {
             return false;
         }
         if( $signature !== $selfSign ) {
-            $this->setError (9101, "服务端Signature: {$signature}, 参数Signature: {$selfSign} ; 匹配失败!" );
+            $this->setError (9101, "服务端 Signature 与参数 Signature 匹配失败!" );
             return false;
         }
         //验证时间
@@ -228,11 +228,11 @@ class LiSignature {
         }
         if (!is_null($userNonceFunction)) {
             if (! function_exists($userNonceFunction) ) {
-                $this->setError(9110, "用户自定义函数 {$userNonceFunction} 不存在!");
+                $this->setError(9110, "用户自定义 Nonce 函数不存在!");
                 return false;
             }
             if ( call_user_func( $userNonceFunction, $signatureNonce ) ) { //用户自定义
-                $this->setError(9106, "用户自定义函数 {$userNonceFunction} 返回 true, 代表着此 SignatureNonce 已被使用!");
+                $this->setError(9106, "此 SignatureNonce 已被使用!");
                 return false;
             }
         }
