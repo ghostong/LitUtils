@@ -136,15 +136,15 @@ class LiSignature {
             $httpPostParam = $this->httpPostParam;
         }
         if (empty($accessKeySecret)){
-            $this->setError(9107,"accessKeySecret为空");
+            $this->setError(9107,"对应的 accessKeySecret 不存在");
             return "";
         }
         if (empty($urlPath)){
-            $this->setError(9108,"urlPath为空");
+            $this->setError(9108,"urlPath 为空");
             return "";
         }
         if ($urlPath[0] != "/") {
-            $this->setError(9109,"urlPath应从 / 开始写");
+            $this->setError(9109,"urlPath 的起始应为 / ");
             return "";
         }
         ksort($httpGetParam );
