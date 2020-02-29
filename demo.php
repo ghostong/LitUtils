@@ -2,15 +2,6 @@
 
 require(__DIR__.'/vendor/autoload.php');
 
-use Lit\Litool\LiInit;
-
-#初始化调用 可以确定依赖是否完善,只调用一次即可
-LiInit::init();
-echo "\n";
-
-#类转函数,方便非composer安装与快速调用[此方法会生成文件,默认为 dirname(__DIR__).'/functions.php']
-LiInit::Class2Function();
-
 ################################
 
 use  \Lit\Litool\LiArray;

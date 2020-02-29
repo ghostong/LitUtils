@@ -23,31 +23,19 @@ litool PHP 帮助文件.
 
 2. 源码下载安装 
 ```php
-#引入litool代码
-- spl_autoload_register( 'liSplLoadLitool' );
-- spl_autoload_extensions( '.php' );
-- function liSplLoadLitool ( $ClassName ) {
--     $IncludePath = __DIR__.DIRECTORY_SEPARATOR.'src';
--     set_include_path( get_include_path().':'.$IncludePath );  #此处为代码包中litool/src路径,必要时请手动修改
--     $ClassFile = end (explode('\\',$ClassName));
--     spl_autoload ($ClassFile);
-- }
-#安装后使用文档中的调用方法即可使用.
+//引入litool代码
+spl_autoload_register( 'liSplLoadLitool' );
+spl_autoload_extensions( '.php' );
+function liSplLoadLitool ( $ClassName ) {
+    $IncludePath = __DIR__.DIRECTORY_SEPARATOR.'src';
+    set_include_path( get_include_path().':'.$IncludePath );  #此处为代码包中litool/src路径,必要时请手动修改
+    $ClassFile = end (explode('\\',$ClassName));
+    spl_autoload ($ClassFile);
+}
+//安装后使用文档中的调用方法即可使用.
 ```
 
 ### 使用方法
-
-#### 初始化
-````php
-require(__DIR__.'/vendor/autoload.php');
-use  \Lit\Litool\LiInit;
-
-#初始化:判断是否有依赖未安装 使用前运行一次即可
-LiInit::init();
-
-#类转函数,方便非composer安装与快速调用[此方法会生成文件,默认为 dirname(__DIR__).'/functions.php']
-LiInit::Class2Function();
-````
 
 #### 数组部分
 
