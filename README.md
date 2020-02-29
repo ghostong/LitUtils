@@ -24,14 +24,14 @@ litool PHP 帮助文件.
 2. 源码下载安装 
 ```php
 //引入litool代码
-spl_autoload_register( 'liSplLoadLitool' );
-spl_autoload_extensions( '.php' );
-function liSplLoadLitool ( $ClassName ) {
-    $IncludePath = __DIR__.DIRECTORY_SEPARATOR.'src';
-    set_include_path( get_include_path().':'.$IncludePath );  #此处为代码包中litool/src路径,必要时请手动修改
-    $ClassFile = end (explode('\\',$ClassName));
-    spl_autoload ($ClassFile);
-}
+- spl_autoload_register( 'liSplLoadLitool' );
+- spl_autoload_extensions( '.php' );
+- function liSplLoadLitool ( $ClassName ) {
+-     $IncludePath = __DIR__.DIRECTORY_SEPARATOR.'src';
+-     set_include_path( get_include_path().':'.$IncludePath );  #此处为代码包中litool/src路径,必要时请手动修改
+-     $ClassFile = end (explode('\\',$ClassName));
+-     spl_autoload ($ClassFile);
+- }
 //安装后使用文档中的调用方法即可使用.
 ```
 
