@@ -10,19 +10,7 @@ namespace Lit\Utils;
 
 class LiString {
     
-    /** 
-     * init
-     * 测试调用
-     * @access public
-     * @since  1.0 
-     * @return string
-     **/   
-    public static function init (){
-        $PreStr = __CLASS__.'::'.__FUNCTION__;
-        return $PreStr.' success';
-    }
-    
-    /** 
+    /**
      * randStr
      * 获取随机数字符串
      * @access public

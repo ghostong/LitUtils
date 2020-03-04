@@ -11,21 +11,6 @@ namespace Lit\Utils;
 class LiArray {
 
     /** 
-     * init
-     * 测试调用
-     * @access public
-     * @since  1.0 
-     * @return string
-     **/
-    public static function init (){
-        $PreStr = __CLASS__.'::'.__FUNCTION__;
-        if ( !function_exists('spl_autoload') ) {
-            throw new \exception ($PreStr.' SPL extension not exist!');
-        }
-        return $PreStr.' success';
-    }
-
-    /** 
      * regexArray
      * 通过正则表达式匹配一维数组的值,返回正则表达式匹配部分
      * @access public

@@ -9,18 +9,6 @@ namespace Lit\Utils;
  **/
 
 class LiSundry {
-    
-    /** 
-     * init
-     * 测试调用
-     * @access public
-     * @since  1.0 
-     * @return string
-     **/   
-    public static function init (){
-        $PreStr = __CLASS__.'::'.__FUNCTION__;
-        return $PreStr.' success';
-    }
 
     /** 
      * RemoteAddr

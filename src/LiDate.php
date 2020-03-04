@@ -11,18 +11,6 @@ namespace Lit\Utils;
 class LiDate {
 
     /**
-     * init
-     * 测试调用
-     * @access public
-     * @since  1.0
-     * @return string
-     **/
-    public static function init (){
-        $PreStr = __CLASS__.'::'.__FUNCTION__;
-        return $PreStr.' success';
-    }
-
-    /**
      * microTime
      * 返回当前时间以秒为单位的微秒数
      * @access public

@@ -9,19 +9,7 @@ namespace Lit\Utils;
  **/
 
 class LiMath {
-    
-    /** 
-     * init
-     * 测试调用
-     * @access public
-     * @since  1.0 
-     * @return string
-     **/   
-    public static function init (){
-        $PreStr = __CLASS__.'::'.__FUNCTION__;
-        return $PreStr.' success';
-    }
-    
+
     /** 
      * base10to62
      * 10进制转62进制
