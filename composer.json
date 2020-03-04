@@ -1,5 +1,5 @@
 {
-    "name": "lit/litool",
+    "name": "lit/utils",
     "description": "二次封装的一些常用 PHP 工具",
     "authors": [
         {
