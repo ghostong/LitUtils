@@ -1,6 +1,6 @@
 <?php 
 
-namespace Lit\Litool;
+namespace Lit\Utils;
 
 /**
  * liSundry: litool PHP 杂项部分

@@ -1,6 +1,6 @@
 <?php
 
-namespace Lit\Litool;
+namespace Lit\Utils;
 
 /**
  * liEasyAuth: litool 简单身份认证

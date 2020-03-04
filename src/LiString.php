@@ -1,6 +1,6 @@
 <?php 
 
-namespace Lit\Litool;
+namespace Lit\Utils;
 
 /**
  * liString: litool PHP 字符串部分

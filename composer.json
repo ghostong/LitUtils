@@ -24,7 +24,7 @@
     "autoload": {
         "files": [],
         "psr-4": {
-            "Lit\\Litool\\": "src"
+            "Lit\\Utils\\": "src"
         }
     }
 }

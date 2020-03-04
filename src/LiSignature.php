@@ -1,6 +1,6 @@
 <?php
 
-namespace Lit\Litool;
+namespace Lit\Utils;
 
 /**
  * liSignature: litool PHP 接口HTTP访问签名验证

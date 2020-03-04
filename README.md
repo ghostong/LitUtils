@@ -1,6 +1,6 @@
-litool PHP
+LitUtils PHP
 ==============
-litool PHP 帮助文件.
+LitUtils PHP 帮助文件.
 
 ### 写在前面
     - 此项目出生是为了"实现一些常用又不内置的PHP方法(函数)".
@@ -16,19 +16,19 @@ litool PHP 帮助文件.
 #编辑composer.json文件
 - "require" : {
 -     ...
--     "lit/litool": "dev-master"
+-     "lit/utils": "dev-master"
 - }
 #安装后使用文档中的调用方法即可使用.
 ```
 
 2. 源码下载安装 
 ```php
-//引入litool代码
-- spl_autoload_register( 'liSplLoadLitool' );
+//引入LitUtils代码
+- spl_autoload_register( 'liSplLoadUtils' );
 - spl_autoload_extensions( '.php' );
-- function liSplLoadLitool ( $ClassName ) {
+- function liSplLoadUtils ( $ClassName ) {
 -     $IncludePath = __DIR__.DIRECTORY_SEPARATOR.'src';
--     set_include_path( get_include_path().':'.$IncludePath );  #此处为代码包中litool/src路径,必要时请手动修改
+-     set_include_path( get_include_path().':'.$IncludePath );  #此处为代码包中litutils/src路径,必要时请手动修改
 -     $ClassFile = end (explode('\\',$ClassName));
 -     spl_autoload ($ClassFile);
 - }
@@ -41,7 +41,7 @@ litool PHP 帮助文件.
 
 ````php
 require(__DIR__.'/vendor/autoload.php');
-use  \Lit\Litool\LiArray;
+use  \Lit\Utils\LiArray;
 
 #通过正则表达式匹配一维数组的值,返回正则表达式匹配部分
 var_dump ( LiArray::regexArray (['aa','bb','cc','ab','ac'],'/^a/') );
@@ -59,7 +59,7 @@ var_dump (LiArray::xmlToArray($xml));
 
 ````php
 require(__DIR__.'/vendor/autoload.php');
-use  \Lit\Litool\LiString;
+use  \Lit\Utils\LiString;
 
 #获取随机数字符串
 var_dump ( LiString::randStr(8,true,true,true,true) );
@@ -81,7 +81,7 @@ var_dump ( $Decode );
 
 ````php
 require(__DIR__.'/vendor/autoload.php');
-use  \Lit\Litool\LiDate;
+use  \Lit\Utils\LiDate;
 
 #返回当前时间以秒为单位的微秒数
 var_dump ( LiDate::microTime() );
@@ -106,7 +106,7 @@ var_dump ( LiDate::todayRemainTime() );
 #### 数学函数部分
 ````php
 require(__DIR__.'/vendor/autoload.php');
-use  \Lit\Litool\LiMath;
+use  \Lit\Utils\LiMath;
 
 #10进制转62进制
 var_dump ( LiMath::base10to62(40000) );
@@ -121,7 +121,7 @@ var_dump ( LiMath::between(6,1,6) );
 #### 杂项部分
 ````php
 require(__DIR__.'/vendor/autoload.php');
-use  \Lit\Litool\LiSundry;
+use  \Lit\Utils\LiSundry;
 
 #获取用户来源IP
 var_dump ( LiSundry::getRemoteAddr() );
@@ -153,7 +153,7 @@ var_dump ( LiSundry::isIdNumber15('110100010923582',0) );
 
 ````php
 #单例获取 LiEasyAuth 对象
-$easyAuth = \Lit\Litool\LiEasyAuth::getInstance("/tmp/aaa");
+$easyAuth = \Lit\Utils\LiEasyAuth::getInstance("/tmp/aaa");
 
 #创建一个用户
 var_dump ( $easyAuth->AddUser("lit","1233333") );
@@ -186,7 +186,7 @@ var_dump ( $easyAuth->getDataBaseDir() );
 #### 接口HTTP访问签名验证
 ````php
 #服务端验证访问
-$sign = new \Lit\Litool\LiSignature();
+$sign = new \Lit\Utils\LiSignature();
 //自定义参与运算的 accessKeyId accessKeySecret
 $accessData["accessKeyId"] = "accessKeySecret";
 $accessData["accessKeyId2"] = "accessKeySecret2";

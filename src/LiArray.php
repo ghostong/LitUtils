@@ -1,6 +1,6 @@
 <?php 
 
-namespace Lit\Litool;
+namespace Lit\Utils;
 
 /**
  * liArray: litool PHP 数组部分

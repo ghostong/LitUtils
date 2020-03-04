@@ -1,6 +1,6 @@
 <?php
 
-namespace Lit\Litool;
+namespace Lit\Utils;
 
 /**
  * liDate: litool PHP 日期时间部分

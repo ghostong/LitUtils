@@ -4,7 +4,7 @@ require(__DIR__.'/vendor/autoload.php');
 
 ################################
 
-use  \Lit\Litool\LiArray;
+use  \Lit\Utils\LiArray;
 
 #通过正则表达式匹配一维数组的值,返回正则表达式匹配部分
 var_dump ( LiArray::regexArray (['aa','bb','cc','ab','ac'],'/^a/') );
@@ -21,7 +21,7 @@ var_dump (LiArray::xmlToArray($xml));
 
 ################################
 
-use  \Lit\Litool\LiString;
+use  \Lit\Utils\LiString;
 
 #获取随机数字符串
 var_dump ( LiString::randStr(8,true,true,true,true) );
@@ -45,7 +45,7 @@ var_dump (LiString::replaceStringVariable('我叫{$name}',array('name'=>'litool'
 
 ################################
 
-use  \Lit\Litool\LiDate;
+use  \Lit\Utils\LiDate;
 
 #返回当前时间以秒为单位的微秒数
 var_dump ( LiDate::microTime() );
@@ -67,7 +67,7 @@ var_dump ( LiDate::todayRemainTime() );
 
 ################################
 
-use  \Lit\Litool\LiMath;
+use  \Lit\Utils\LiMath;
 
 #10进制转62进制
 var_dump ( LiMath::base10to62(40000) );
@@ -109,7 +109,7 @@ var_dump ( LiSundry::isIdNumber15('110100010923582',0) );
 
 #单例获取 LiEasyAuth 对象
 #注意: 此系统只适用于简单身份认证,不适合高并发,大数据量,高安全性的用户系统
-$easyAuth = \Lit\Litool\LiEasyAuth::getInstance("/tmp/aaa");
+$easyAuth = \Lit\Utils\LiEasyAuth::getInstance("/tmp/aaa");
 
 #创建一个用户
 var_dump ( $easyAuth->AddUser("lit","1233333") );
@@ -143,7 +143,7 @@ var_dump ( $easyAuth->getDataBaseDir() );
 #接口HTTP访问签名验证
 
 #服务端验证访问
-$sign = new \Lit\Litool\LiSignature();
+$sign = new \Lit\Utils\LiSignature();
 //自定义参与运算的 accessKeyId accessKeySecret
 $accessData["accessKeyId"] = "accessKeySecret";
 $accessData["accessKeyId2"] = "accessKeySecret2";

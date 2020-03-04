@@ -1,6 +1,6 @@
 <?php 
 
-namespace Lit\Litool;
+namespace Lit\Utils;
 
 /**
  * liMath: litool PHP 数学计算部分
