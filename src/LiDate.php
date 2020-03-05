@@ -3,7 +3,7 @@
 namespace Lit\Utils;
 
 /**
- * liDate: litool PHP 日期时间部分
+ * liDate: PHP 日期时间补充部分
  * @author  litong
  * @since   1.0
  **/

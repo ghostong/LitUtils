@@ -3,7 +3,7 @@
 namespace Lit\Utils;
 
 /**
- * liString: litool PHP 字符串部分
+ * liString: PHP 字符串补充部分
  * @author  litong
  * @since   1.0
  **/

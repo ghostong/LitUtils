@@ -3,7 +3,7 @@
 namespace Lit\Utils;
 
 /**
- * liArray: litool PHP 数组部分
+ * liArray: PHP 数组补充部分
  * @author  litong
  * @since   1.0
  **/

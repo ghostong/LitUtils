@@ -3,7 +3,7 @@
 namespace Lit\Utils;
 
 /**
- * liEasyAuth: litool 简单身份认证
+ * liEasyAuth: 简单身份认证
  * 此方法只适用于简单身份认证,不适合高并发,大数据量,高安全性的用户系统
  * @author  litong
  * @since   1.0

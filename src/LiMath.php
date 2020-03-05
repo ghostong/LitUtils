@@ -3,7 +3,7 @@
 namespace Lit\Utils;
 
 /**
- * liMath: litool PHP 数学计算部分
+ * liMath: PHP 数学计算补充部分
  * @author  litong
  * @since   1.0
  **/

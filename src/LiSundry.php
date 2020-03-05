@@ -3,7 +3,7 @@
 namespace Lit\Utils;
 
 /**
- * liSundry: litool PHP 杂项部分
+ * liSundry: PHP 杂项补充部分
  * @author  litong
  * @since   1.0
  **/

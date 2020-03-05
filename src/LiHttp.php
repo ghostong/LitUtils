@@ -1,11 +1,13 @@
 <?php
-/**
- * User: ghost
- * Date: 2020-03-04
- * Time: 15:06
- */
 
-class LitHttp{
+namespace Lit\Utils;
+/**
+ * LiHttp: Http 请求
+ * @author  litong
+ * @since   1.0
+ **/
+
+class LiHttp{
 
     private $method = "";
     private $params = [];
