@@ -77,7 +77,7 @@ var_dump ( LiMath::between(6,1,6) );
 
 ################################
 
-use  \Lit\Litool\LiSundry;
+use  \Lit\Utils\LiSundry;
 
 #获取用户来源IP
 var_dump ( LiSundry::getRemoteAddr() );
@@ -185,15 +185,20 @@ var_dump ( $sign->getErrorCode() );
 var_dump ( $sign->getErrorString() );
 
 #请求方式示例
-$ch = curl_init();
-curl_setopt($ch, CURLOPT_URL, $url);
-curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-curl_setopt($ch, CURLOPT_POST, 1);
-curl_setopt($ch, CURLOPT_POSTFIELDS, $sign->getPostParam());
-curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
-curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
-curl_setopt($ch, CURLOPT_HEADER, 0);
-curl_setopt($ch, CURLOPT_TIMEOUT, 10);
-$output = curl_exec($ch);
-curl_close($ch);
-var_dump ($output);
+var_dump ( (new \Lit\Utils\LiHttp())->get($url)->send() );
+
+################################
+
+#SMTP邮件发送
+
+$smtp = new \Lit\Utils\LiSmtp("aaa.bbb.com","25", "aaa@bbb.com","abcdef",true);
+
+$smtp->setDebug(true) // 是否debug
+    ->sendMail(
+    "a@b.com","b@b.com, c@b.com",
+    "title".date("Y-m-d H:i:s"),
+    "TXT-test",
+    "TXT",
+    "d@b.com,e@d.com",
+    "f@d.com"
+);
