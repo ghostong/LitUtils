@@ -72,6 +72,27 @@ class LiString {
     }
 
 
+    /**
+     * subStr
+     * 返回 haystack 在首次 needleStart 与 needleEnd 之间出现之前的字符串
+     * @param $haystack
+     * @param $needleStart
+     * @param $needleEnd
+     * @return bool|string
+     */
+    public static function subStr($haystack, $needleStart, $needleEnd ){
+        if ( empty($haystack) || empty($needleStart) || empty($needleEnd) ) {
+            return $haystack;
+        }
+        $pos = stripos ( $haystack, $needleStart );
+        if ( $pos !== false ){
+            $haystack = substr($haystack,$pos+strlen($needleStart));
+        }else{
+            return $haystack;
+        }
+        return self::subStrTo($haystack,$needleEnd);
+    }
+
     /** 
      * strEncode
      * 简单字符串可逆加密(加密)
