@@ -80,17 +80,21 @@ class LiString {
      * @param $needleEnd
      * @return bool|string
      */
-    public static function subStr($haystack, $needleStart, $needleEnd ){
-        if ( empty($haystack) || empty($needleStart) || empty($needleEnd) ) {
+    public static function subStr($haystack, $needleStart, $needleEnd = "" ){
+        if ( empty($haystack) || empty($needleStart) ) {
             return $haystack;
         }
         $pos = stripos ( $haystack, $needleStart );
         if ( $pos !== false ){
             $haystack = substr($haystack,$pos+strlen($needleStart));
+            if( $needleEnd ) {
+                return self::subStrTo($haystack,$needleEnd);
+            }else{
+                return $haystack;
+            }
         }else{
             return $haystack;
         }
-        return self::subStrTo($haystack,$needleEnd);
     }
 
     /** 
