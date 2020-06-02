@@ -55,7 +55,7 @@ class LiEasyAuth {
      * @since  1.0
      * @return bool
      **/
-    public function AddUser( $userName, $passWord ){
+    public function addUser( $userName, $passWord ){
         return $this->setUserData($userName,$passWord);
     }
 
@@ -67,7 +67,7 @@ class LiEasyAuth {
      * @since  1.0
      * @return bool
      **/
-    public function UserExists( $userName ) {
+    public function userExists( $userName ) {
         if (file_exists($this->userFile($userName))){
             return true;
         }else{
@@ -142,8 +142,7 @@ class LiEasyAuth {
      * @return string
      */
     private function userFile($userName ){
-        $userFile = $this->getDataBaseDir().DIRECTORY_SEPARATOR.md5($userName).".json";
-        return $userFile;
+        return $this->getDataBaseDir().DIRECTORY_SEPARATOR.md5($userName).".json";
     }
 
     /**
@@ -153,7 +152,7 @@ class LiEasyAuth {
      * @return bool|mixed
      */
     private function getUserData($userName ){
-        if($this->UserExists($userName)){
+        if($this->userExists($userName)){
             $userJson = file_get_contents($this->userFile($userName));
             if ($userJson){
                 return json_decode($userJson,true);
@@ -173,7 +172,7 @@ class LiEasyAuth {
      * @return bool
      */
     private function setUserData($userName, $passWord ){
-        if ($this->UserExists($userName)) {
+        if ($this->userExists($userName)) {
             return false;
         }
         $data = array(

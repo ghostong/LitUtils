@@ -109,13 +109,13 @@ var_dump ( LiSundry::isIdNumber15('110100010923582',0) );
 $easyAuth = \Lit\Utils\LiEasyAuth::getInstance("/tmp/aaa");
 
 #创建一个用户
-var_dump ( $easyAuth->AddUser("lit","1233333") );
+var_dump ( $easyAuth->addUser("lit","1233333") );
 
 #判断用户是否存在
-var_dump ( $easyAuth->UserExists("lit") );
+var_dump ( $easyAuth->userExists("lit") );
 
 #判断用户是否存在
-var_dump ( $easyAuth->UserExists("abb") );
+var_dump ( $easyAuth->userExists("abb") );
 
 #获取用户信息
 var_dump ( $easyAuth->getUserInfo("lit"));
