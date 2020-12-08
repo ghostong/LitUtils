@@ -7,15 +7,15 @@ namespace Lit\Utils;
  * @author  litong
  * @since   1.0
  **/
-
-class LiSignature {
+class LiSignature
+{
 
     //基础参数
     private $checkParam = [
-        "AccessKeyId" , // 访问密钥 ID
-        "Version" , // 版本
-        "SignatureNonce" , //签名唯一随机数, 用于防止网络重放攻击
-        "Timestamp" , // 请求的时间戳
+        "AccessKeyId", // 访问密钥 ID
+        "Version", // 版本
+        "SignatureNonce", //签名唯一随机数, 用于防止网络重放攻击
+        "Timestamp", // 请求的时间戳
     ];
 
     //GET参数
@@ -35,12 +35,12 @@ class LiSignature {
      * addGetParam
      * 构建GET参数
      * @access public
-     * @param  string $key get参数
-     * @param  string $val 参数值
-     * @since  1.0
+     * @param string $key get参数
+     * @param string $val 参数值
      * @return void
-     **/
-    public function addGetParam ( $key , $val ) {
+     * @since  1.0
+     */
+    public function addGetParam($key, $val) {
         $this->httpGetParam[$key] = $val;
     }
 
@@ -48,10 +48,10 @@ class LiSignature {
      * getGetParam
      * 获取GET参数
      * @access public
-     * @since  1.0
      * @return array
-     **/
-    public function getGetParam(){
+     * @since  1.0
+     */
+    public function getGetParam() {
         return $this->httpGetParam;
     }
 
@@ -59,12 +59,12 @@ class LiSignature {
      * addPostParam
      * 构建POST参数
      * @access public
-     * @param  string $key post参数
-     * @param  string $val 参数值
-     * @since  1.0
+     * @param string $key post参数
+     * @param string $val 参数值
      * @return void
-     **/
-    public function addPostParam ( $key , $val ) {
+     * @since  1.0
+     */
+    public function addPostParam($key, $val) {
         $this->httpPostParam[$key] = $val;
     }
 
@@ -72,10 +72,10 @@ class LiSignature {
      * getPostParam
      * 获取POST参数
      * @access public
-     * @since  1.0
      * @return array
-     **/
-    public function getPostParam(){
+     * @since  1.0
+     */
+    public function getPostParam() {
         return $this->httpPostParam;
     }
 
@@ -83,16 +83,16 @@ class LiSignature {
      * getQueryString
      * 获取请求字符串
      * @access public
-     * @param  string $path url路径
-     * @param  string $accessKeySecret 访问密钥
+     * @param string $path url路径
+     * @param string $accessKeySecret 访问密钥
      * @return string
      * @since  1.0
      */
-    public function getQueryString( $path, $accessKeySecret ) {
-        if ( $this->checkParam() ) {
+    public function getQueryString($path, $accessKeySecret) {
+        if ($this->checkParam()) {
             $queryString = http_build_query($this->httpGetParam);
-            return $queryString."&Signature=".$this->doSignature($path,$accessKeySecret);
-        }else{
+            return $queryString . "&Signature=" . $this->doSignature($path, $accessKeySecret);
+        } else {
             return "";
         }
     }
@@ -101,26 +101,26 @@ class LiSignature {
      * getQueryUrl
      * 获取请求URL
      * @access public
-     * @param  string $url 接口地址
-     * @param  string $urlPath url路径
-     * @param  string $accessKeySecret 访问密钥
+     * @param string $url 接口地址
+     * @param string $urlPath url路径
+     * @param string $accessKeySecret 访问密钥
      * @return string
      * @since  1.0
      */
-    public function getQueryUrl( $url, $urlPath, $accessKeySecret ){
-        $queryString = $this->getQueryString( $urlPath, $accessKeySecret );
-        if ( $queryString ) {
-            return $url.$urlPath."?".$queryString;
-        }else{
+    public function getQueryUrl($url, $urlPath, $accessKeySecret) {
+        $queryString = $this->getQueryString($urlPath, $accessKeySecret);
+        if ($queryString) {
+            return $url . $urlPath . "?" . $queryString;
+        } else {
             return "";
         }
     }
 
     //检查参数
-    private function checkParam(){
-        foreach ( $this->checkParam as $param ) {
-            if ( !isset($this->httpGetParam[$param]) ) {
-                $this->setError (9100, "参数.".$param." 不能为空" );
+    private function checkParam() {
+        foreach ($this->checkParam as $param) {
+            if (!isset($this->httpGetParam[$param])) {
+                $this->setError(9100, "参数." . $param . " 不能为空");
                 return false;
             }
         }
@@ -128,32 +128,32 @@ class LiSignature {
     }
 
     //加密
-    private function doSignature( $urlPath, $accessKeySecret, $httpGetParam = [], $httpPostParam = []){
+    private function doSignature($urlPath, $accessKeySecret, $httpGetParam = [], $httpPostParam = []) {
         if (empty($httpGetParam)) {
             $httpGetParam = $this->httpGetParam;
         }
         if (empty($httpPostParam)) {
             $httpPostParam = $this->httpPostParam;
         }
-        if (empty($accessKeySecret)){
-            $this->setError(9107,"对应的 accessKeySecret 不存在");
+        if (empty($accessKeySecret)) {
+            $this->setError(9107, "对应的 accessKeySecret 不存在");
             return "";
         }
-        if (empty($urlPath)){
-            $this->setError(9108,"urlPath 为空");
+        if (empty($urlPath)) {
+            $this->setError(9108, "urlPath 为空");
             return "";
         }
         if ($urlPath[0] != "/") {
-            $this->setError(9109,"urlPath 的起始应为 / ");
+            $this->setError(9109, "urlPath 的起始应为 / ");
             return "";
         }
-        ksort($httpGetParam );
-        $queryString = http_build_query( $httpGetParam );
-        ksort($httpPostParam );
-        $postString = http_build_query( $httpPostParam );
-        $data = "REQUEST"."&".urlencode($urlPath)."&".$queryString."&".$postString;
+        ksort($httpGetParam);
+        $queryString = http_build_query($httpGetParam);
+        ksort($httpPostParam);
+        $postString = http_build_query($httpPostParam);
+        $data = "REQUEST" . "&" . urlencode($urlPath) . "&" . $queryString . "&" . $postString;
         $this->signatureString = $data;
-        $signature = md5( hash_hmac("sha1", $data, $accessKeySecret, true) );
+        $signature = md5(hash_hmac("sha1", $data, $accessKeySecret, true));
         return $signature;
     }
 
@@ -161,77 +161,77 @@ class LiSignature {
      * checkSignature
      * 验证访问有效性
      * @access public
-     * @param  string $urlPath url路径
-     * @param  string $accessKeySecret 访问密钥
-     * @param  array $get http GET 参数
-     * @param  array $post http POST 参数
+     * @param string $urlPath url路径
+     * @param string $accessKeySecret 访问密钥
+     * @param array $get http GET 参数
+     * @param array $post http POST 参数
      * @param null $userNonceFunction
      * @return bool
      * @since  1.0
      */
-    public function checkSignature( $urlPath, $accessKeySecret, $get, $post, $userNonceFunction = null ){
-        if (!isset( $get["Signature"] ) ) {
-            $this->setError (9111, "参数 Signature 不能为空" );
+    public function checkSignature($urlPath, $accessKeySecret, $get, $post, $userNonceFunction = null) {
+        if (!isset($get["Signature"])) {
+            $this->setError(9111, "参数 Signature 不能为空");
             return false;
         }
         $signature = $get["Signature"];
         unset($get["Signature"]);
         //算法验证
-        $selfSign = $this->doSignature ( $urlPath, $accessKeySecret, $get, $post );
-        if ( empty($selfSign) ){
+        $selfSign = $this->doSignature($urlPath, $accessKeySecret, $get, $post);
+        if (empty($selfSign)) {
             return false;
         }
-        if( $signature !== $selfSign ) {
-            $this->setError (9101, "服务端 Signature 与参数 Signature 匹配失败!" );
+        if ($signature !== $selfSign) {
+            $this->setError(9101, "服务端 Signature 与参数 Signature 匹配失败!");
             return false;
         }
         //验证时间
-        if ( ! $this->doTimeCheck ($get["Timestamp"]) ) {
+        if (!$this->doTimeCheck($get["Timestamp"])) {
             return false;
         }
         //验证访问唯一性
-        if( ! $this->doSignatureNonceCheck( $get["SignatureNonce"], $userNonceFunction ) ){
+        if (!$this->doSignatureNonceCheck($get["SignatureNonce"], $userNonceFunction)) {
             return false;
         }
         return true;
     }
 
     //时间验证算法
-    private function doTimeCheck( $queryTime ){
-        try{
-            if( !is_numeric($queryTime) || strlen($queryTime) != 10 ) {
-                $this->setError (9104, "Timestamp 必须为10位时间戳!");
+    private function doTimeCheck($queryTime) {
+        try {
+            if (!is_numeric($queryTime) || strlen($queryTime) != 10) {
+                $this->setError(9104, "Timestamp 必须为10位时间戳!");
                 return false;
             }
             $nowTime = time();
             $m = $nowTime - $queryTime; //慢300秒之内
-            if ( $m >= 0 && $m < 300 ){
+            if ($m >= 0 && $m < 300) {
                 return true;
             }
             $s = $queryTime - $nowTime;
-            if ( $s >= 0 && $s < 300 ){ //快300秒之内
+            if ($s >= 0 && $s < 300) { //快300秒之内
                 return true;
             }
-            $this->setError (9102, "服务器时间戳: {$nowTime}, 参数时间戳: {$queryTime}; 时间错误!");
+            $this->setError(9102, "服务器时间戳: {$nowTime}, 参数时间戳: {$queryTime}; 时间错误!");
             return false;
-        }catch (\Exception $e) {
-            $this->setError (9103, $e->getMessage() );
+        } catch (\Exception $e) {
+            $this->setError(9103, $e->getMessage());
             return false;
         }
     }
 
     //唯一码验证
-    private function doSignatureNonceCheck( $signatureNonce, $userNonceFunction = null ){
-        if (strlen($signatureNonce)< 10) {
+    private function doSignatureNonceCheck($signatureNonce, $userNonceFunction = null) {
+        if (strlen($signatureNonce) < 10) {
             $this->setError(9105, "SignatureNonce 长度必须大于等于10位!");
             return false;
         }
         if (!is_null($userNonceFunction)) {
-            if (! function_exists($userNonceFunction) ) {
+            if (!function_exists($userNonceFunction)) {
                 $this->setError(9110, "用户自定义 Nonce 函数不存在!");
                 return false;
             }
-            if ( call_user_func( $userNonceFunction, $signatureNonce ) ) { //用户自定义
+            if (call_user_func($userNonceFunction, $signatureNonce)) { //用户自定义
                 $this->setError(9106, "此 SignatureNonce 已被使用!");
                 return false;
             }
@@ -243,15 +243,15 @@ class LiSignature {
      * getSignatureString
      * 获取待签名字符串 调试用
      * @access public
-     * @since  1.0
      * @return string
-     **/
-    public function getSignatureString(){
+     * @since  1.0
+     */
+    public function getSignatureString() {
         return $this->signatureString;
     }
 
     //设置错误
-    private function setError( $code, $error ){
+    private function setError($code, $error) {
         $this->errorCode = $code;
         $this->errorString = $error;
     }
@@ -260,10 +260,10 @@ class LiSignature {
      * getErrorCode
      * 获取错误代码
      * @access public
-     * @since  1.0
      * @return int
-     **/
-    public function getErrorCode(){
+     * @since  1.0
+     */
+    public function getErrorCode() {
         return $this->errorCode;
     }
 
@@ -271,10 +271,10 @@ class LiSignature {
      * getErrorString
      * 获取错误提示
      * @access public
-     * @since  1.0
      * @return string
-     **/
-    public function getErrorString(){
+     * @since  1.0
+     */
+    public function getErrorString() {
         return $this->errorString;
     }
 

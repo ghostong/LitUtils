@@ -8,8 +8,8 @@ namespace Lit\Utils;
  * @author  litong
  * @since   1.0
  **/
-
-class LiEasyAuth {
+class LiEasyAuth
+{
 
     //单例缓存变量
     static private $instance;
@@ -22,13 +22,13 @@ class LiEasyAuth {
      * @param string $dbDir
      * @throws \Exception
      */
-    private function __construct($dbDir = ""){
-        if ( is_dir($dbDir) && is_writable($dbDir) ) {
+    private function __construct($dbDir = "") {
+        if (is_dir($dbDir) && is_writable($dbDir)) {
             $this->dataBaseDir = $dbDir;
-        }elseif(mkdir($dbDir,744,true)){
+        } elseif (mkdir($dbDir, 744, true)) {
             $this->dataBaseDir = $dbDir;
-        }else{
-            throw new \Exception("Data base dir not exits or not writable!",1);
+        } else {
+            throw new \Exception("Data base dir not exits or not writable!", 1);
         }
     }
 
@@ -39,38 +39,38 @@ class LiEasyAuth {
      * @return LiEasyAuth
      * @throws \Exception
      */
-    static public function getInstance($dbDir = ""){
-         if (!self::$instance instanceof self) {
-             self::$instance = new self($dbDir);
-         }
-         return self::$instance;
+    static public function getInstance($dbDir = "") {
+        if (!self::$instance instanceof self) {
+            self::$instance = new self($dbDir);
+        }
+        return self::$instance;
     }
 
     /**
      * addUser
      * 注册一个用户
      * @access public
-     * @param  string  $userName 用户名
-     * @param  string $passWord 密码
-     * @since  1.0
+     * @param string $userName 用户名
+     * @param string $passWord 密码
      * @return bool
-     **/
-    public function addUser( $userName, $passWord ){
-        return $this->setUserData($userName,$passWord);
+     * @since  1.0
+     */
+    public function addUser($userName, $passWord) {
+        return $this->setUserData($userName, $passWord);
     }
 
     /**
      * addUser
      * 用户名是否存在
      * @access public
-     * @param  string  $userName 用户名
-     * @since  1.0
+     * @param string $userName 用户名
      * @return bool
-     **/
-    public function userExists( $userName ) {
-        if (file_exists($this->userFile($userName))){
+     * @since  1.0
+     */
+    public function userExists($userName) {
+        if (file_exists($this->userFile($userName))) {
             return true;
-        }else{
+        } else {
             return false;
         }
     }
@@ -81,7 +81,7 @@ class LiEasyAuth {
      * @param $userName
      * @return bool|mixed
      */
-    public function getUserInfo($userName){
+    public function getUserInfo($userName) {
         return $this->getUserData($userName);
     }
 
@@ -89,14 +89,14 @@ class LiEasyAuth {
      * addUser
      * 删除一个用户
      * @access public
-     * @param  string  $userName 用户名
-     * @since  1.0
+     * @param string $userName 用户名
      * @return bool
-     **/
-    public function delUser( $userName ){
-        if ( $this->delUserData($userName) ){
+     * @since  1.0
+     */
+    public function delUser($userName) {
+        if ($this->delUserData($userName)) {
             return true;
-        }else{
+        } else {
             return false;
         }
     }
@@ -105,17 +105,17 @@ class LiEasyAuth {
      * addUser
      * 检查用户登录
      * @access public
-     * @param  string  $userName 用户名
-     * @param  string $passWord 密码
-     * @since  1.0
+     * @param string $userName 用户名
+     * @param string $passWord 密码
      * @return bool
-     **/
-    public function checkLogin( $userName, $passWord ){
+     * @since  1.0
+     */
+    public function checkLogin($userName, $passWord) {
         $userData = $this->getUserData($userName);
         $passWord = $this->mkPassWord($passWord);
         if (!empty($passWord) && $userData["passWord"] === $passWord) {
             return true;
-        }else{
+        } else {
             return false;
         }
     }
@@ -124,13 +124,13 @@ class LiEasyAuth {
      * hasUser
      * 检查是否用用户
      * @access public
-     * @since  1.0
      * @return bool
-     **/
-    public function hasUser(){
-        if($this->userDirIsEmpty()){
+     * @since  1.0
+     */
+    public function hasUser() {
+        if ($this->userDirIsEmpty()) {
             return false;
-        }else{
+        } else {
             return true;
         }
     }
@@ -141,8 +141,8 @@ class LiEasyAuth {
      * @param $userName
      * @return string
      */
-    private function userFile($userName ){
-        return $this->getDataBaseDir().DIRECTORY_SEPARATOR.md5($userName).".json";
+    private function userFile($userName) {
+        return $this->getDataBaseDir() . DIRECTORY_SEPARATOR . md5($userName) . ".json";
     }
 
     /**
@@ -151,15 +151,15 @@ class LiEasyAuth {
      * @param $userName
      * @return bool|mixed
      */
-    private function getUserData($userName ){
-        if($this->userExists($userName)){
+    private function getUserData($userName) {
+        if ($this->userExists($userName)) {
             $userJson = file_get_contents($this->userFile($userName));
-            if ($userJson){
-                return json_decode($userJson,true);
-            }else{
+            if ($userJson) {
+                return json_decode($userJson, true);
+            } else {
                 return false;
             }
-        }else{
+        } else {
             return false;
         }
     }
@@ -171,20 +171,20 @@ class LiEasyAuth {
      * @param $passWord
      * @return bool
      */
-    private function setUserData($userName, $passWord ){
+    private function setUserData($userName, $passWord) {
         if ($this->userExists($userName)) {
             return false;
         }
         $data = array(
-            "userName"=>$userName,
-            "passWord"=>$this->mkPassWord($passWord),
-            "registerTime"=>time(),
+            "userName" => $userName,
+            "passWord" => $this->mkPassWord($passWord),
+            "registerTime" => time(),
         );
         $userFile = $this->userFile($userName);
         $dataStr = json_encode($data);
-        if( file_put_contents($userFile,$dataStr) ){
+        if (file_put_contents($userFile, $dataStr)) {
             return true;
-        }else{
+        } else {
             return true;
         }
     }
@@ -195,11 +195,11 @@ class LiEasyAuth {
      * @param $userName
      * @return bool
      */
-    private function delUserData( $userName ){
+    private function delUserData($userName) {
         $userFile = $this->userFile($userName);
-        if( file_exists( $userFile )  && unlink($userFile)){
+        if (file_exists($userFile) && unlink($userFile)) {
             return true;
-        }else{
+        } else {
             return false;
         }
     }
@@ -208,10 +208,10 @@ class LiEasyAuth {
      * getDataBaseDir
      * 获取数据存储目录
      * @access public
-     * @since  1.0
      * @return string
-     **/
-    public function getDataBaseDir(){
+     * @since  1.0
+     */
+    public function getDataBaseDir() {
         return $this->dataBaseDir;
     }
 
@@ -219,10 +219,10 @@ class LiEasyAuth {
      * @param $passWord
      * @return string
      */
-    private function mkPassWord($passWord ){
+    private function mkPassWord($passWord) {
         if (is_string($passWord) && !empty($passWord)) {
-            return hash("sha256",md5($passWord."*3d00#98")."52@!223#");
-        }else{
+            return hash("sha256", md5($passWord . "*3d00#98") . "52@!223#");
+        } else {
             return "";
         }
     }
@@ -232,11 +232,11 @@ class LiEasyAuth {
      * 目录是否为空
      * @return bool
      */
-    private function userDirIsEmpty(){
+    private function userDirIsEmpty() {
         $fileList = scandir($this->getDataBaseDir());
-        if ($fileList && count($fileList) > 2){
+        if ($fileList && count($fileList) > 2) {
             return false;
-        }else{
+        } else {
             return true;
         }
     }

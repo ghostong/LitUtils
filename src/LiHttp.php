@@ -6,19 +6,19 @@ namespace Lit\Utils;
  * @author  litong
  * @since   1.0
  **/
-
-class LiHttp{
+class LiHttp
+{
 
     private $method = "";
     private $params = [];
     private $header = [];
-    private $timeout=30;
+    private $timeout = 30;
     private $curlOption = [];
     private $url = "";
     private $cookieFile = "";
     private $userAgent = "";
     private $savePath = "";
-    private $result = ['errno' => 0, 'msg' => "", 'info' => [], 'result' => "" ];
+    private $result = ['errno' => 0, 'msg' => "", 'info' => [], 'result' => ""];
     private $defUserAgent = [
         "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/39.0.2171.95 Safari/537.36 OPR/26.0.1656.60",
         "Opera/8.0 (Windows NT 5.1; U; en)",
@@ -39,7 +39,7 @@ class LiHttp{
      * @param $url
      * @return LiHttp
      */
-    public function get($url){
+    public function get($url) {
         $this->method = "GET";
         $this->url = $url;
         return $this;
@@ -50,7 +50,7 @@ class LiHttp{
      * @param $url
      * @return LiHttp
      */
-    public function post($url){
+    public function post($url) {
         $this->method = "POST";
         $this->url = $url;
         return $this;
@@ -61,7 +61,7 @@ class LiHttp{
      * @param $url
      * @return LiHttp
      */
-    public function delete($url){
+    public function delete($url) {
         $this->method = "DELETE";
         $this->url = $url;
         return $this;
@@ -72,7 +72,7 @@ class LiHttp{
      * @param $url
      * @return LiHttp
      */
-    public function put($url){
+    public function put($url) {
         $this->method = "PUT";
         $this->url = $url;
         return $this;
@@ -84,7 +84,7 @@ class LiHttp{
      * @param $json
      * @return LiHttp
      */
-    public function postJson( $url, $json ){
+    public function postJson($url, $json) {
         return $this->post($url)->setHeader(["Content-Type: application/json"])->setParam($json);
     }
 
@@ -93,7 +93,7 @@ class LiHttp{
      * @param $params
      * @return LiHttp
      */
-    public function setParam( $params = [] ){
+    public function setParam($params = []) {
         $this->params = $params;
         return $this;
     }
@@ -103,7 +103,7 @@ class LiHttp{
      * @param $header
      * @return LiHttp
      */
-    public function setHeader( $header = [] ){
+    public function setHeader($header = []) {
         $this->header = $header;
         return $this;
     }
@@ -113,7 +113,7 @@ class LiHttp{
      * @param $timeout
      * @return LiHttp
      */
-    public function setTimeout( $timeout ){
+    public function setTimeout($timeout) {
         $this->timeout = $timeout;
         return $this;
     }
@@ -123,8 +123,8 @@ class LiHttp{
      * @param $options
      * @return LiHttp
      */
-    public function setCurlOpt( $options ) {
-        $this->curlOption = array_merge($this->curlOption,$options);
+    public function setCurlOpt($options) {
+        $this->curlOption = array_merge($this->curlOption, $options);
         return $this;
     }
 
@@ -133,7 +133,7 @@ class LiHttp{
      * @param $cookieFile
      * @return LiHttp
      */
-    public function setCookieFile( $cookieFile ){
+    public function setCookieFile($cookieFile) {
         $this->cookieFile = $cookieFile;
         return $this;
     }
@@ -143,10 +143,10 @@ class LiHttp{
      * @param $userAgent
      * @return LiHttp
      */
-    public function setUserAgent($userAgent = "rand"){
-        if ($userAgent == "rand"){
+    public function setUserAgent($userAgent = "rand") {
+        if ($userAgent == "rand") {
             $this->userAgent = $this->defUserAgent[array_rand($this->defUserAgent, 1)];
-        }else{
+        } else {
             $this->userAgent = $userAgent;
         }
         return $this;
@@ -157,7 +157,7 @@ class LiHttp{
      * @param $savePath
      * @return LiHttp
      */
-    public function setSavePath( $savePath ){
+    public function setSavePath($savePath) {
         $this->savePath = $savePath;
         return $this;
     }
@@ -168,19 +168,19 @@ class LiHttp{
      * @param $msg
      * @param $info
      * @param $result
-     * @return Array
+     * @return array
      */
-    public function setResult( $errno, $msg, $info, $result ){
+    public function setResult($errno, $msg, $info, $result) {
         $this->result["errno"] = $errno;
-        $this->result["msg"]   = $msg;
-        $this->result["info"]  = $info;
+        $this->result["msg"] = $msg;
+        $this->result["info"] = $info;
         $this->result["result"] = $result;
-        return  $this->result;
+        return $this->result;
     }
 
     /**
      * send 执行发送请求
-     * @return Array 请求结果
+     * @return array 请求结果
      */
     public function send() {
         $ch = curl_init();
@@ -189,39 +189,39 @@ class LiHttp{
             $option[CURLOPT_SSL_VERIFYPEER] = false;
             $option[CURLOPT_SSL_VERIFYHOST] = 2;
         }
-        $option[CURLOPT_FOLLOWLOCATION]    = true;
+        $option[CURLOPT_FOLLOWLOCATION] = true;
         $option[CURLOPT_MAXREDIRS] = 5;
         if (is_array($this->params)) {
             $requestParams = http_build_query($this->params);
-        }else{
+        } else {
             $requestParams = $this->params;
         }
         switch ($this->method) {
             case 'POST':
-                $option[CURLOPT_POST]          = true;
-                $option[CURLOPT_POSTFIELDS]    = $requestParams;
-                $option[CURLOPT_URL]           = $this->url;
+                $option[CURLOPT_POST] = true;
+                $option[CURLOPT_POSTFIELDS] = $requestParams;
+                $option[CURLOPT_URL] = $this->url;
                 break;
             case 'PUT':
                 $option[CURLOPT_CUSTOMREQUEST] = 'PUT';
-                $option[CURLOPT_POSTFIELDS]    = $requestParams;
-                $option[CURLOPT_URL]           = $this->url;
+                $option[CURLOPT_POSTFIELDS] = $requestParams;
+                $option[CURLOPT_URL] = $this->url;
                 break;
             case 'DELETE':
                 $option[CURLOPT_CUSTOMREQUEST] = 'DELETE';
-                $option[CURLOPT_POSTFIELDS]    = $requestParams;
-                $option[CURLOPT_URL]           = $this->url;
+                $option[CURLOPT_POSTFIELDS] = $requestParams;
+                $option[CURLOPT_URL] = $this->url;
                 break;
             default:
-                $extStr             = (strpos($this->url, '?') !== false) ? '&' : '?';
-                $option[CURLOPT_URL]   = $this->url . ($requestParams ? ($extStr . $requestParams) : '');
+                $extStr = (strpos($this->url, '?') !== false) ? '&' : '?';
+                $option[CURLOPT_URL] = $this->url . ($requestParams ? ($extStr . $requestParams) : '');
                 break;
         }
         $option[CURLOPT_USERAGENT] = $this->userAgent;
         $option[CURLOPT_CONNECTTIMEOUT] = $this->timeout;
         $option[CURLOPT_TIMEOUT] = $this->timeout;
         $option[CURLOPT_RETURNTRANSFER] = true;
-        if ( $this->header ) {
+        if ($this->header) {
             $option[CURLOPT_HTTPHEADER] = $this->header;
         }
         if ($this->cookieFile) {
@@ -230,27 +230,27 @@ class LiHttp{
         }
         curl_setopt_array($ch, $option + $this->curlOption);
         $result = curl_exec($ch);
-        if ( curl_errno($ch) > 0 ) {
-            $return = $this->setResult( curl_errno($ch), curl_error($ch), curl_getinfo($ch), "" );
+        if (curl_errno($ch) > 0) {
+            $return = $this->setResult(curl_errno($ch), curl_error($ch), curl_getinfo($ch), "");
             curl_close($ch);
             return $return;
-        }else{
+        } else {
             $info = curl_getinfo($ch);
             curl_close($ch);
             if ($this->savePath) {
-                file_put_contents($this->savePath,$result);
-                return $this->setResult( 0, '', $info, $this->savePath );
-            }else{
-                return $this->setResult( 0, '', $info, $result );
+                file_put_contents($this->savePath, $result);
+                return $this->setResult(0, '', $info, $this->savePath);
+            } else {
+                return $this->setResult(0, '', $info, $result);
             }
         }
     }
 
     /**
      * download 执行下载请求
-     * @return Array 请求结果
+     * @return array 请求结果
      */
-    public function download(){
+    public function download() {
         $ch = curl_init();
         $option[CURLOPT_URL] = $this->url;
         if (substr($this->url, 0, 8) == 'https://') {
@@ -261,41 +261,41 @@ class LiHttp{
         if ($this->header) {
             $option[CURLOPT_HTTPHEADER] = $this->header;
         }
-        if ($this->timeout){
+        if ($this->timeout) {
             $option[CURLOPT_TIMEOUT] = $this->timeout;
         }
         $option[CURLOPT_RETURNTRANSFER] = 1;
         $option[CURLOPT_NOPROGRESS] = 0;
-        $option[CURLOPT_FOLLOWLOCATION] =  true;
+        $option[CURLOPT_FOLLOWLOCATION] = true;
         $option[CURLOPT_BUFFERSIZE] = 64000;
         if ($this->method == "POST") {
             $option[CURLOPT_POST] = true;
-        }else{
+        } else {
             $option[CURLOPT_POST] = false;
         }
-        if ( $this->params ) {
+        if ($this->params) {
             $option[CURLOPT_POSTFIELDS] = $this->params;
         }
-        if ( $this->savePath ) {
+        if ($this->savePath) {
             $fp = fopen($this->savePath, 'wb');
             $option[CURLOPT_FILE] = $fp;
         }
         curl_setopt_array($ch, $option + $this->curlOption);
-        $result  = curl_exec($ch);
-        $curlInfo   = curl_getinfo($ch);
+        $result = curl_exec($ch);
+        $curlInfo = curl_getinfo($ch);
         if (curl_errno($ch) || $curlInfo['http_code'] != 200) {
-            $return = $this->setResult( curl_errno($ch), curl_error($ch), curl_getinfo($ch), "" );
+            $return = $this->setResult(curl_errno($ch), curl_error($ch), curl_getinfo($ch), "");
             curl_close($ch);
             @unlink($this->savePath);
             return $return;
         } else {
             $info = curl_getinfo($ch);
             curl_close($ch);
-            if ( $this->savePath ) {
+            if ($this->savePath) {
                 isset($fp) && is_resource($fp) && fclose($fp);
-                return $this->setResult( 0, '', $info, $this->savePath );
-            }else{
-                return $this->setResult( 0, '', $info, $result );
+                return $this->setResult(0, '', $info, $this->savePath);
+            } else {
+                return $this->setResult(0, '', $info, $result);
             }
         }
     }

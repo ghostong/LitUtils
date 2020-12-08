@@ -10,29 +10,9 @@ LitUtils PHP 帮助文件.
     - 如果您有任何,请在git issure 中创建问题或者自由创建分支.
 
 ### 安装
-
-1. composer 安装
-```php
-#编辑composer.json文件
-- "require" : {
--     ...
--     "lit/utils": "dev-master"
-- }
-#安装后使用文档中的调用方法即可使用.
 ```
-
-2. 源码下载安装 
-```php
-//引入LitUtils代码
-- spl_autoload_register( 'liSplLoadUtils' );
-- spl_autoload_extensions( '.php' );
-- function liSplLoadUtils ( $ClassName ) {
--     $IncludePath = __DIR__.DIRECTORY_SEPARATOR.'src';
--     set_include_path( get_include_path().':'.$IncludePath );  #此处为代码包中litutils/src路径,必要时请手动修改
--     $ClassFile = end (explode('\\',$ClassName));
--     spl_autoload ($ClassFile);
-- }
-//安装后使用文档中的调用方法即可使用.
+    composer require lit/utils
+    #安装后使用文档中的调用方法即可使用.
 ```
 
 ### 使用方法
@@ -141,7 +121,7 @@ var_dump ( LiSundry::getWeight( $wd ) );
 var_dump ( LiSundry::isLocalIp('10.25.11.58') );
 
 #判断是否18位身份证号
-var_dump ( LiSundry::isIdNumber18('130602199001011111',1) );
+var_dump ( LiSundry::isIdNumber('130602199001011111',1) );
 
 #判断是否15位身份证号
 var_dump ( LiSundry::isIdNumber15('110100010923582',0) );
@@ -233,19 +213,4 @@ var_dump ( $sign->getErrorString() );
 
 #请求方式示例
 var_dump ( (new \Lit\Utils\LiHttp())->get($url)->send() );
-````
-
-####SMTP邮件发送
-````php
-$smtp = new \Lit\Utils\LiSmtp("aaa.bbb.com","25", "aaa@bbb.com","abcdef",true);
-
-$smtp->setDebug(true) // 是否debug
-    ->sendMail(
-    "a@b.com","b@b.com, c@b.com",
-    "title".date("Y-m-d H:i:s"),
-    "TXT-test",
-    "TXT",
-    "d@b.com,e@d.com",
-    "f@d.com"
-);
 ````

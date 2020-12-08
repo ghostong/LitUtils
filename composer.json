@@ -1,30 +1,35 @@
 {
-    "name": "lit/utils",
-    "description": "二次封装的一些常用 PHP 工具",
-    "authors": [
-        {
-            "name": "litong",
-            "email": "ghostong@126.com"
-        }
-    ],
-    "keywords": [
-        "litool",
-        "liarray",
-        "lidate",
-        "listring",
-        "lidebug",
-        "日期",
-        "数组",
-        "杂项"
-    ],
-    "require": {
-        "php": ">=5.4.0"
-    },
-    "minimum-stability": "dev",
-    "autoload": {
-        "files": [],
-        "psr-4": {
-            "Lit\\Utils\\": "src"
-        }
+  "name": "lit/utils",
+  "description": "二次封装的一些常用 PHP 工具",
+  "authors": [
+    {
+      "name": "litong",
+      "email": "ghostong@126.com"
     }
+  ],
+  "keywords": [
+    "litool",
+    "liarray",
+    "lidate",
+    "listring",
+    "lidebug",
+    "日期",
+    "数组",
+    "杂项"
+  ],
+  "require": {
+    "php": ">=5.4.0",
+    "ext-mbstring": "*",
+    "ext-libxml": "*",
+    "ext-simplexml": "*",
+    "ext-json": "*",
+    "ext-curl": "*"
+  },
+  "minimum-stability": "stable",
+  "autoload": {
+    "files": [],
+    "psr-4": {
+      "Lit\\Utils\\": "src"
+    }
+  }
 }

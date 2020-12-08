@@ -97,10 +97,8 @@ var_dump ( LiSundry::getWeight( $wd ) );
 var_dump ( LiSundry::isLocalIp('10.25.11.58') );
 
 #判断是否18位身份证号
-var_dump ( LiSundry::isIdNumber18('130602199001011111',1) );
+var_dump ( LiSundry::isIdNumber('130602199001011111',1) );
 
-#判断是否15位身份证号
-var_dump ( LiSundry::isIdNumber15('110100010923582',0) );
 
 ################################
 
@@ -188,17 +186,3 @@ var_dump ( $sign->getErrorString() );
 var_dump ( (new \Lit\Utils\LiHttp())->get($url)->send() );
 
 ################################
-
-#SMTP邮件发送
-
-$smtp = new \Lit\Utils\LiSmtp("aaa.bbb.com","25", "aaa@bbb.com","abcdef",true);
-
-$smtp->setDebug(true) // 是否debug
-    ->sendMail(
-    "a@b.com","b@b.com, c@b.com",
-    "title".date("Y-m-d H:i:s"),
-    "TXT-test",
-    "TXT",
-    "d@b.com,e@d.com",
-    "f@d.com"
-);
