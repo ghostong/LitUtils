@@ -11,8 +11,8 @@ LitUtils PHP 帮助文件.
 
 ### 安装
 ```
-    composer require lit/utils
-    #安装后使用文档中的调用方法即可使用.
+composer require lit/utils
+#安装后使用文档中的调用方法即可使用.
 ```
 
 ### 使用方法
