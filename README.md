@@ -3,6 +3,7 @@ LitUtils PHP
 LitUtils PHP 帮助文件.
 
 ### 写在前面
+
     - 此项目出生是为了"实现一些常用又不内置的PHP方法(函数)".
     - 部分代码前面加 "-" 是因为在没处理好代码缩进之前解决代码易读问题.个人感觉比加全角空格更合理.
     - LiInit::Class2Function() 会覆盖现有文件( 默认为 dirname(__DIR__).'/functions.php' ),使用时请注意备份旧文件.
@@ -10,6 +11,7 @@ LitUtils PHP 帮助文件.
     - 如果您有任何,请在git issure 中创建问题或者自由创建分支.
 
 ### 安装
+
 ```
 composer require lit/utils
 #安装后使用文档中的调用方法即可使用.
@@ -84,6 +86,7 @@ var_dump ( LiDate::todayRemainTime() );
 ````
 
 #### 数学函数部分
+
 ````php
 require(__DIR__.'/vendor/autoload.php');
 use  \Lit\Utils\LiMath;
@@ -99,6 +102,7 @@ var_dump ( LiMath::between(6,1,6) );
 ````
 
 #### 杂项部分
+
 ````php
 require(__DIR__.'/vendor/autoload.php');
 use  \Lit\Utils\LiSundry;
@@ -129,6 +133,7 @@ var_dump ( LiSundry::isIdNumber15('110100010923582',0) );
 ````
 
 #### 简单用户系统
+
     注意: 此系统只适用于简单身份认证,不适合高并发,大数据量,高安全性的用户系统
 
 ````php
@@ -164,6 +169,7 @@ var_dump ( $easyAuth->getDataBaseDir() );
 ````
 
 #### 接口HTTP访问签名验证
+
 ````php
 #服务端验证访问
 $sign = new \Lit\Utils\LiSignature();
@@ -213,4 +219,27 @@ var_dump ( $sign->getErrorString() );
 
 #请求方式示例
 var_dump ( (new \Lit\Utils\LiHttp())->get($url)->send() );
+````
+
+#### 带历史版本的文件操作文件
+
+````php
+try {
+    //创建[修改]文件并保留历史
+    $file = \Lit\Utils\LiVersionFile::put("./tmp", date("YmdHi") . '.txt', './version/', uniqid());
+    var_dump($file);
+
+    //删除指定版本的文件
+    $file = \Lit\Utils\LiVersionFile::deleteVersionFile("./version", '202012181009.txt.ver.2020121810093031802537');
+    var_dump($file);
+
+    //显示某文件历史记录
+    $list = \Lit\Utils\LiVersionFile::versionFileList('./version', '20201218093840.txt');
+    foreach ($list as $file) {
+        echo $file, "\n";
+    }
+} catch (Exception $e) {
+    var_dump($e->getCode(), $e->getMessage());
+}
+
 ````
