@@ -241,5 +241,21 @@ try {
 } catch (Exception $e) {
     var_dump($e->getCode(), $e->getMessage());
 }
+````
 
+#### HTTP请求
+
+````php
+$http = new \Lit\Utils\LiHttp();
+//发送一个GET请求
+$response = $http->setParam(["a" => 1])->get("http://www.google.com?b=2")->send();
+var_dump($response);
+
+//发送一个POST请求
+$response = $http->setParam(["a" => 1])->post("http://www.google.com?b=2")->send();
+var_dump($response);
+
+//发送一个文件上传
+$response = $http->setParam(["a" => 1])->postFile(["file" => "/Users/Desktop/comic.zip", "file2" => "/Users/Desktop/2.jpg"])->post("http://google.com")->send();
+var_dump($response);
 ````

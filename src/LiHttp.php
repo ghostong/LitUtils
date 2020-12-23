@@ -19,6 +19,7 @@ class LiHttp
     private $userAgent = "";
     private $savePath = "";
     private $result = ['errno' => 0, 'msg' => "", 'info' => [], 'result' => ""];
+    private $postFile = [];
     private $defUserAgent = [
         "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/39.0.2171.95 Safari/537.36 OPR/26.0.1656.60",
         "Opera/8.0 (Windows NT 5.1; U; en)",
@@ -53,6 +54,17 @@ class LiHttp
     public function post($url) {
         $this->method = "POST";
         $this->url = $url;
+        return $this;
+    }
+
+    /**
+     * 设置 POST文件
+     * @date 2020/12/23
+     * @param array $file
+     * @return LiHttp
+     */
+    public function postFile($file) {
+        $this->postFile = $file;
         return $this;
     }
 
@@ -191,10 +203,15 @@ class LiHttp
         }
         $option[CURLOPT_FOLLOWLOCATION] = true;
         $option[CURLOPT_MAXREDIRS] = 5;
-        if (is_array($this->params)) {
+        if (is_array($this->params) && empty($this->postFile)) {
             $requestParams = http_build_query($this->params);
         } else {
             $requestParams = $this->params;
+        }
+        if (!empty($this->postFile)) {
+            foreach ($this->postFile as $key => $val) {
+                $requestParams[$key] = new \CURLFile($val);
+            }
         }
         switch ($this->method) {
             case 'POST':
