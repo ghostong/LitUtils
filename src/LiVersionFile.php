@@ -96,7 +96,7 @@ class LiVersionFile
      */
     public static function writeFile($filePath, $content) {
         self::isWritable($filePath);
-        if (file_put_contents(self::latestFileName($filePath), $content)) {
+        if (false !== file_put_contents(self::latestFileName($filePath), $content)) {
             if (!rename(self::latestFileName($filePath), $filePath)) {
                 throw new \Exception(sprintf('rename %s to %S fail !!', self::latestFileName($filePath), $filePath), self::RENAME_FAIL_CODE);
             }
