@@ -52,7 +52,7 @@ class LiMapper
         if (isset($this->$name)) {
             return $this->$name;
         } else {
-            throw new \Exception("Attribute " . $name . " not exists", 100);
+            return null;
         }
     }
 
