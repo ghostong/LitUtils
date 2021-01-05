@@ -15,7 +15,7 @@ class LiMapper
      * @throws \Exception
      */
     public function __construct($data = []) {
-        if ($data) {
+        if (!empty($data)) {
             foreach ($data as $name => $value) {
                 $this->__set($name, $value);
             }
@@ -46,8 +46,6 @@ class LiMapper
         if (isset($this->$name)) {
             $this->$name = $value;
             $this->updateData[$name] = $value;
-        } else {
-            throw new \Exception("Attribute " . $name . " not exists", 100);
         }
     }
 
