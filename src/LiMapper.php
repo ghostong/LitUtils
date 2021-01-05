@@ -56,6 +56,10 @@ class LiMapper
         }
     }
 
+    public function __isset($name) {
+        return isset($this->$name);
+    }
+
     /**
      * 获取更新数据
      * @date 2021/1/5
