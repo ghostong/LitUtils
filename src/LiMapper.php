@@ -48,6 +48,14 @@ class LiMapper
         }
     }
 
+    public function __get($name) {
+        if (isset($this->$name)) {
+            return $this->$name;
+        } else {
+            throw new \Exception("Attribute " . $name . " not exists", 100);
+        }
+    }
+
     /**
      * 获取更新数据
      * @date 2021/1/5

@@ -25,4 +25,6 @@ $newMapper = new TestMapper(["a" => 10, "b" => "15"]);
 var_dump($newMapper->update());
 var_dump($newMapper->insert());
 
+var_dump($newMapper->b);
+
 
