@@ -12,7 +12,6 @@ class LiMapper
      * 构造函数, 通过参数创建Mapper
      * @date 2021/1/5
      * @param array $data 实例化属性
-     * @throws \Exception
      */
     public function __construct($data = []) {
         if (!empty($data)) {
