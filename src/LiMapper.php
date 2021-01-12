@@ -60,13 +60,21 @@ class LiMapper
         return isset($this->$name);
     }
 
+    public function update() {
+        return $this->updateData;
+    }
+
     /**
      * 获取更新数据
      * @date 2021/1/5
      * @return array
      */
-    public function update() {
-        return $this->updateData;
+    public function getUpdate() {
+        return $this->update();
+    }
+
+    public function insert() {
+        return $this->__toArray();
     }
 
     /**
@@ -74,8 +82,8 @@ class LiMapper
      * @date 2021/1/5
      * @return array
      */
-    public function insert() {
-        return $this->__toArray();
+    public function getInsert() {
+        return $this->insert();
     }
 
 }

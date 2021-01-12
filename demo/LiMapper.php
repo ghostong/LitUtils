@@ -17,13 +17,13 @@ class TestMapper extends \Lit\Utils\LiMapper
 $newMapper = new TestMapper();
 $newMapper->a = 30;
 $newMapper->d = 50;
-var_dump($newMapper->update());
-var_dump($newMapper->insert());
+var_dump($newMapper->getInsert());
+var_dump($newMapper->getUpdate());
 
 //通过参数实例化
 $newMapper = new TestMapper(["a" => 10, "b" => "15"]);
-var_dump($newMapper->update());
-var_dump($newMapper->insert());
+var_dump($newMapper->getInsert());
+var_dump($newMapper->getUpdate());
 
 var_dump($newMapper->b);
 
