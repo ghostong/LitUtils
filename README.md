@@ -125,9 +125,6 @@ var_dump ( LiSundry::isLocalIp('10.25.11.58') );
 #判断是否18位身份证号
 var_dump ( LiSundry::isIdNumber('130602199001011111',1) );
 
-#判断是否15位身份证号
-var_dump ( LiSundry::isIdNumber15('110100010923582',0) );
-
 ````
 
 #### 简单用户系统
