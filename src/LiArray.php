@@ -65,4 +65,17 @@ class LiArray
         return json_decode(json_encode($xmlString), true);
     }
 
+    /**
+     * getValues
+     * 获取一维数组指定的keys对应的值
+     * @access public
+     * @param array $array 待获取的数组
+     * @param array $keys 要提取的数组key
+     * @return array
+     * @since  1.0
+     */
+    public static function getValues($array, $keys) {
+        return array_intersect_key($array,array_fill_keys($keys,null));
+    }
+
 }
