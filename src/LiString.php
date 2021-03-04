@@ -197,4 +197,30 @@ class LiString
         return str_replace($search, $replace, $string);
     }
 
+    /**
+     * toUnderScoreCase
+     * 下划线转驼峰
+     * @access public
+     * @param string $str hello_my_name_is8a_h5_array
+     * @return string
+     * @since  1.0
+     */
+    public static function toCamelCase($str) {
+        return preg_replace_callback('/_+([0-9,a-z])/', function ($matches) {
+            return strtoupper($matches[1]);
+        }, $str);
+    }
+
+    /**
+     * toUnderScoreCase
+     * 驼峰转下划线
+     * @access public
+     * @param string $str HelloMyNameIs8aH5Array
+     * @return string
+     * @since  1.0
+     */
+    public static function toUnderScoreCase($str) {
+        return strtolower(preg_replace('/(?<=[a-z])([A-Z])/', '_$1', $str));
+    }
+
 }

@@ -58,6 +58,18 @@ var_dump ( $Encode );
 $Decode = LiString::strDecode($Encode);
 var_dump ( $Decode );
 
+#限制字符串的字符数量
+var_dump(LiString::strLimit('不a管b什么样的字符都可以了', 7));
+
+#替换字符串中的变量占位符
+var_dump(LiString::replaceStringVariable('我叫{$name}', array('name' => 'litool')));
+
+#下划线字符串转驼峰字符串
+var_dump(LiString::toCamelCase("hello_my_name_is8a_h5_array"));
+
+#驼峰字符串转下划线字符串
+var_dump(LiString::toUnderScoreCase("HelloMyNameIs8aH5Array"));
+
 ````
 
 #### 日期时间部分
