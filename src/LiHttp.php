@@ -116,7 +116,7 @@ class LiHttp
      * @return LiHttp
      */
     public function setHeader($header = []) {
-        $this->header = $header;
+        $this->header = array_unique(array_merge($this->header, $header));
         return $this;
     }
 

@@ -6,12 +6,17 @@ require(dirname(__DIR__) . '/vendor/autoload.php');
 
 #HTTP请求
 $http = new \Lit\Utils\LiHttp();
+
 //发送一个GET请求
 $response = $http->setParam(["a" => 1])->get("http://www.google.com?b=2")->send();
 var_dump($response);
 
 //发送一个POST请求
 $response = $http->setParam(["a" => 1])->post("http://www.google.com?b=2")->send();
+var_dump($response);
+
+//POST JSON
+$response = $http->postJson("http://www.google.com", "{}")->setHeader(["aa:11"])->send();
 var_dump($response);
 
 //发送一个文件上传
