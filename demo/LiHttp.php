@@ -22,3 +22,7 @@ var_dump($response);
 //发送一个文件上传
 $response = $http->setParam(["a" => 1])->postFile(["file" => "/Users/Desktop/comic.zip", "file2" => "/Users/Desktop/2.jpg"])->post("http://google.com")->send();
 var_dump($response);
+
+//发送一个文件下载
+$response = $http->get("https://www.google.com/aaa.jpg")->setSavePath("./aaa.jpg")->download();
+var_dump($response);
