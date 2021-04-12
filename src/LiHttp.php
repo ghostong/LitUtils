@@ -265,9 +265,10 @@ class LiHttp
 
     /**
      * download 执行下载请求
+     * @param bool $quiet 安静模式
      * @return array 请求结果
      */
-    public function download() {
+    public function download($quiet = false) {
         $ch = curl_init();
         $option[CURLOPT_URL] = $this->url;
         if (substr($this->url, 0, 8) == 'https://') {
@@ -282,7 +283,7 @@ class LiHttp
             $option[CURLOPT_TIMEOUT] = $this->timeout;
         }
         $option[CURLOPT_RETURNTRANSFER] = 1;
-        $option[CURLOPT_NOPROGRESS] = 0;
+        $option[CURLOPT_NOPROGRESS] = $quiet;
         $option[CURLOPT_FOLLOWLOCATION] = true;
         $option[CURLOPT_BUFFERSIZE] = 64000;
         if ($this->method == "POST") {

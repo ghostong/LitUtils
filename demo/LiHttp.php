@@ -24,5 +24,5 @@ $response = $http->setParam(["a" => 1])->postFile(["file" => "/Users/Desktop/com
 var_dump($response);
 
 //发送一个文件下载
-$response = $http->get("https://www.google.com/aaa.jpg")->setSavePath("./aaa.jpg")->download();
+$response = $http->get("https://www.google.com/aaa.jpg")->setSavePath("./aaa.jpg")->download( false );
 var_dump($response);
