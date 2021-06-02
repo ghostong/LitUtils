@@ -4,7 +4,7 @@ require(dirname(__DIR__) . '/vendor/autoload.php');
 
 ################################
 
-#带历史版本的文件操作文件
+//带历史版本的文件操作文件
 try {
     //创建[修改]文件并保留历史
     $file = \Lit\Utils\LiVersionFile::put("./tmp", date("YmdHi") . '.txt', './version/', uniqid());

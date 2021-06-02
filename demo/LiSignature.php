@@ -4,9 +4,9 @@ require(dirname(__DIR__) . '/vendor/autoload.php');
 
 ################################
 
-#接口HTTP访问签名验证
+//接口HTTP访问签名验证
 
-#服务端验证访问
+//服务端验证访问
 $sign = new \Lit\Utils\LiSignature();
 //自定义参与运算的 accessKeyId accessKeySecret
 $accessData["accessKeyId"] = "accessKeySecret";
@@ -28,7 +28,7 @@ function callBackFunction($signatureNonce) {
     return false;
 }
 
-#客户端访问构建
+//客户端访问构建
 //GET参数
 $sign->addGetParam("AccessKeyId", "accessKeyId");
 $sign->addGetParam("Version", "version");
@@ -42,14 +42,14 @@ $sign->addPostParam("bb", "bb");
 $sign->addPostParam("cc", "cc");
 var_dump($url = $sign->getQueryUrl("http://192.168.11.187:9000", "/testServer.php", "accessKeySecret"));
 
-#获取待签名字符串 调试用
+//获取待签名字符串 调试用
 var_dump($sign->getSignatureString());
 
-#获取错误代码
+//获取错误代码
 var_dump($sign->getErrorCode());
 
-#获取错误提示
+//获取错误提示
 var_dump($sign->getErrorString());
 
-#请求方式示例
+//请求方式示例
 var_dump((new \Lit\Utils\LiHttp())->get($url)->send());

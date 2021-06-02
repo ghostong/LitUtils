@@ -4,7 +4,7 @@ require(dirname(__DIR__) . '/vendor/autoload.php');
 
 ################################
 
-#HTTP请求
+//HTTP请求
 $http = new \Lit\Utils\LiHttp();
 
 //发送一个GET请求
