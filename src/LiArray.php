@@ -75,7 +75,26 @@ class LiArray
      * @since  1.0
      */
     public static function getValues($array, $keys) {
-        return array_intersect_key($array,array_fill_keys($keys,null));
+        return array_intersect_key($array, array_fill_keys($keys, null));
+    }
+
+    /**
+     * 通过一个数组去排序另外一个数组
+     * @date 2021/6/8
+     * @param array $array 要排序的数组
+     * @param array $sortArray 想要的顺序数组key
+     * @return array
+     * @author litong
+     */
+    public static function sortByArray($array, $sortArray) {
+        $newArray = [];
+        foreach ($sortArray as $value) {
+            if (isset($array[$value])) {
+                $newArray[$value] = $array[$value];
+                unset($array[$value]);
+            }
+        }
+        return $newArray + $array;
     }
 
 }
