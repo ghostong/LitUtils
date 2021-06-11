@@ -23,6 +23,9 @@ composer require lit/utils
 require(__DIR__.'/vendor/autoload.php');
 use  \Lit\Utils\LiArray;
 
+#汉字转阿拉伯数字
+var_dump(LiString::str2num('九千零五百一十三兆九千零三亿一千零二十七万零二佰五十'));
+
 #通过正则表达式匹配一维数组的值,返回正则表达式匹配部分
 var_dump ( LiArray::regexArray (['aa','bb','cc','ab','ac'],'/^a/') );
 
