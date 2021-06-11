@@ -223,4 +223,49 @@ class LiString
         return strtolower(preg_replace('/(?<=[a-z])([A-Z])/', '_$1', $str));
     }
 
+    /**
+     * 汉字转阿拉伯数字
+     * @param string $string 兆九千零三亿一千零二十七万零二佰五十
+     * @return int|null 900310270250 | null
+     */
+    public static function str2num($string){
+        $d = array(
+            "一" => 1, "二" => 2, "三" => 3, "四" => 4, "五" => 5, "六" => 6, "七" => 7, "八" => 8, "九" => 9,
+            "壹" => 1, "贰" => 2, "叁" => 3, "肆" => 4, "伍" => 5, "陆" => 6, "柒" => 7, "捌" => 8, "玖" => 9,
+            '零' => 0, '0' => 0, 'O' => 0, 'o' => 0,
+            '两' => 2
+        );
+
+        if (isset($d[$string])){
+            return intval($d[$string]);
+        }
+
+        $replace = ["仟" => "千", "佰" => "百", "拾" => "十", "万万" => "亿",];
+        $string = str_replace(array_keys($replace), $replace, $string);
+
+        $num = 0;
+        $delimiters = [
+            '兆' => 1000 * 1000 * 1000 * 1000,
+            '亿' => 100 * 1000 * 1000,
+            '万' => 10 * 1000,
+            '千' => 1000,
+            '百' => 100,
+            '十' => 10,
+            '零' => 0
+        ];
+
+        foreach ($delimiters as $delimiter => $value){
+            $unit = explode($delimiter, $string);
+            if (count($unit) > 1){
+                $num += self::str2num($unit[0] ? $unit[0] : '一') * $value;
+                $string = $unit[1] ? $unit[1] : '零';
+            }
+        }
+
+        if (isset($d[$string])){
+            return intval($num + $d[$string]);
+        } else {
+            return empty($string) ? $num : null;
+        }
+    }
 }
