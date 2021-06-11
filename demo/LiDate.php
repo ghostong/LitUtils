@@ -13,7 +13,7 @@ var_dump(LiDate::microTime());
 var_dump(LiDate::milliTime());
 
 //返回中文格式化的时间
-var_dump(LiDate::dateFormat('1494475359'));
+var_dump(LiDate::dateFormat(time() - mt_rand(1, 9999)));
 
 //返回下个月是几月
 var_dump(LiDate::nextMonth('2015-2-28'));

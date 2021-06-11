@@ -22,28 +22,121 @@ composer require lit/utils
 ````php
 require(__DIR__.'/vendor/autoload.php');
 use  \Lit\Utils\LiArray;
+````
 
-#汉字转阿拉伯数字
-var_dump(LiString::str2num('九千零五百一十三兆九千零三亿一千零二十七万零二佰五十'));
+##### 1. 通过正则表达式匹配一维数组的值,返回正则表达式匹配部分
 
-#通过正则表达式匹配一维数组的值,返回正则表达式匹配部分
+###### 调用
+
+````php
 var_dump ( LiArray::regexArray (['aa','bb','cc','ab','ac'],'/^a/') );
+````
 
-#归替换多维数中指定的字符串
+###### 返回
+
+````
+array(3) {
+  [0]=>
+  string(2) "aa"
+  [3]=>
+  string(2) "ab"
+  [4]=>
+  string(2) "ac"
+}
+````
+
+##### 2. 递归替换多维数中指定的字符串
+
+###### 调用
+
+````php
 var_dump (LiArray::arrayReplace('a','b',['aacd','aag','have','aa'=>['cba']]));
+````
 
-#标准的XML解析成数组
+###### 返回
+
+````
+array(4) {
+  [0]=>
+  string(4) "bbcd"
+  [1]=>
+  string(3) "bbg"
+  [2]=>
+  string(4) "hbve"
+  ["aa"]=>
+  array(1) {
+    [0]=>
+    string(3) "cbb"
+  }
+}
+````
+
+##### 3. 标准的XML解析成数组
+
+###### 调用
+
+````php
 $xml = '<?xml version="1.0" encoding="UTF-8"?> <note><to>Tove</to><from>Jani</from><heading>Reminder</heading></note>';
 var_dump (LiArray::xmlToArray($xml));
+````
 
-#获取一维数组指定的keys对应的值
+###### 返回
+
+````
+array(3) {
+  ["to"]=>
+  string(4) "Tove"
+  ["from"]=>
+  string(4) "Jani"
+  ["heading"]=>
+  string(8) "Reminder"
+}
+````
+
+##### 4. 获取一维数组指定的keys对应的值
+
+###### 调用
+
+````php
 var_dump(LiArray::getValues(["a" => 1, "b" => 2, "c" => 3, "d" => 4], ["a", "c"]));
+````
 
-#通过一个数组去排序另外一个数组
+###### 返回
+
+````
+array(2) {
+  ["a"]=>
+  int(1)
+  ["c"]=>
+  int(3)
+}
+````
+
+##### 5. 通过一个数组去排序另外一个数组
+
+###### 调用
+
+````php
 $a = ["key" => "key1", "val" => "val2", "good" => "good3",1=>"11",0]; //待排序的数组
 $b = ["good", "key",1,"val"]; //想要的顺序
 var_dump ( LiArray::sortByArray($a, $b) );
+````
 
+###### 返回
+
+````
+array(5) {
+  ["good"]=>
+  string(5) "good3"
+  ["key"]=>
+  string(4) "key1"
+  [1]=>
+  string(2) "11"
+  ["val"]=>
+  string(4) "val2"
+  [2]=>
+  int(0)
+}
 ````
 
 #### 字符串部分
@@ -51,33 +144,132 @@ var_dump ( LiArray::sortByArray($a, $b) );
 ````php
 require(__DIR__.'/vendor/autoload.php');
 use  \Lit\Utils\LiString;
+````
 
-#获取随机数字符串
+##### 1. 汉字转阿拉伯数字
+
+###### 调用
+
+````php
+var_dump( LiString::str2num('九千五百一十三兆九千零三亿一千零二十七万零二佰五十') );
+````
+
+###### 返回
+
+````
+int(9513900310270250)
+````
+
+##### 2. 获取随机数字符串
+
+###### 调用
+
+````php
 var_dump ( LiString::randStr(8,true,true,true,true) );
+````
 
-#返回 haystack 在首次 needle 出现之前的字符串
+###### 返回
+
+````
+string(8) "to6HG!w6"
+````
+
+##### 3. 返回 haystack 在首次 needle 出现之前的字符串
+
+###### 调用
+
+````php
 var_dump ( LiString::subStrTo('i can say my abc !',' my') );
+````
 
-#简单字符串可逆加密(加密)
-$Encode = LiString::strEncode('可逆运算');
-var_dump ( $Encode );
+###### 返回
 
-#简单字符串可逆加密(解密)
-$Decode = LiString::strDecode($Encode);
-var_dump ( $Decode );
+````
+string(9) "i can say"
+````
 
-#限制字符串的字符数量
+##### 4. 简单字符串可逆加密(加密)
+
+###### 调用
+
+````php
+var_dump ( LiString::strEncode('可逆运算') );
+````
+
+###### 返回
+
+````
+string(16) "Y6D+65K6L5i+L6TP"
+````
+
+##### 5. 简单字符串可逆加密(解密)
+
+###### 调用
+
+````php
+var_dump ( LiString::strDecode("Y6D+65K6L5i+L6TP") );
+````
+
+###### 返回
+
+````
+string(12) "可逆运算"
+````
+
+##### 6. 限制字符串的字符数量
+
+###### 调用
+
+````php
 var_dump(LiString::strLimit('不a管b什么样的字符都可以了', 7));
+````
 
-#替换字符串中的变量占位符
+###### 返回
+
+````
+string(11) "不a管b..."
+````
+
+##### 7. 替换字符串中的变量占位符
+
+###### 调用
+
+````php
 var_dump(LiString::replaceStringVariable('我叫{$name}', array('name' => 'litool')));
+````
 
-#下划线字符串转驼峰字符串
+###### 返回
+
+````
+string(12) "我叫litool"
+````
+
+##### 8. 下划线字符串转驼峰字符串
+
+###### 调用
+
+````php
 var_dump(LiString::toCamelCase("hello_my_name_is8a_h5_array"));
+````
 
-#驼峰字符串转下划线字符串
+###### 返回
+
+````
+string(22) "helloMyNameIs8aH5Array"
+````
+
+##### 9. 驼峰字符串转下划线字符串
+
+###### 调用
+
+````php
 var_dump(LiString::toUnderScoreCase("HelloMyNameIs8aH5Array"));
+````
 
+###### 返回
+
+````
+string(26) "hello_my_name_is8a_h5array"
 ````
 
 #### 日期时间部分
@@ -85,25 +277,90 @@ var_dump(LiString::toUnderScoreCase("HelloMyNameIs8aH5Array"));
 ````php
 require(__DIR__.'/vendor/autoload.php');
 use  \Lit\Utils\LiDate;
+````
 
-#返回当前时间以秒为单位的微秒数
+##### 1. 返回当前时间以秒为单位的微秒数
+
+###### 调用
+
+````php
 var_dump ( LiDate::microTime() );
+````
 
-#回当前时间以秒为单位的毫秒数
+###### 返回
+
+````
+string(17) "1623396847.630771"
+````
+
+##### 2. 回当前时间以秒为单位的毫秒数
+
+###### 调用
+
+````php
 var_dump ( LiDate::milliTime() );
+````
 
-#返回中文格式化的时间
-var_dump ( LiDate::dateFormat('1494475359') );
+###### 返回
 
-#返回下个月是几月
+````
+string(14) "1623396847.631"
+````
+
+##### 3. 返回中文格式化的时间
+
+###### 调用
+
+````php
+var_dump ( LiDate::dateFormat(time()-mt_rand(1,9999)) );
+````
+
+###### 返回
+
+````
+string(10) "1分钟前"
+````
+
+##### 4. 返回下个月是几月
+
+###### 调用
+
+````php
 var_dump ( LiDate::nextMonth('2015-2-28') );
+````
 
-#返回上个月是几月
+###### 返回
+
+````
+string(7) "2015-03"
+````
+
+##### 5. 返回上个月是几月
+
+###### 调用
+
+````php
 var_dump ( LiDate::lastMonth('2015-01-01') );
+````
 
-#返回今天还剩多少秒
+###### 返回
+
+````
+string(7) "2014-12"
+````
+
+##### 6. 返回今天还剩多少秒
+
+###### 调用
+
+````php
 var_dump ( LiDate::todayRemainTime() );
+````
 
+###### 返回
+
+````
+int(58922)
 ````
 
 #### 数学函数部分
