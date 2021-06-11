@@ -7,6 +7,9 @@ require(dirname(__DIR__) . '/vendor/autoload.php');
 
 use  \Lit\Utils\LiString;
 
+// 汉字转阿拉伯数字
+var_dump(LiString::str2num('九千零五百一十三兆九千零三亿一千零二十七万零二佰五十'));
+
 //获取随机数字符串
 var_dump(LiString::randStr(8, true, true, true, true));
 
@@ -32,4 +35,3 @@ var_dump(LiString::toCamelCase("hello_my_name_is8a_h5_array"));
 
 //驼峰字符串转下划线字符串
 var_dump(LiString::toUnderScoreCase("HelloMyNameIs8aH5Array"));
-

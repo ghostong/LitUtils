@@ -225,7 +225,7 @@ class LiString
 
     /**
      * 汉字转阿拉伯数字
-     * @param string $string 兆九千零三亿一千零二十七万零二佰五十
+     * @param string $string 九千零三亿一千零二十七万零二佰五十
      * @return int|null 900310270250 | null
      */
     public static function str2num($string){
