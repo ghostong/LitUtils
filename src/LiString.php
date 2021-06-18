@@ -228,7 +228,7 @@ class LiString
      * @param string $string 九千零三亿一千零二十七万零二佰五十
      * @return int|null 900310270250 | null
      */
-    public static function str2num($string){
+    public static function str2num($string) {
         $d = array(
             "一" => 1, "二" => 2, "三" => 3, "四" => 4, "五" => 5, "六" => 6, "七" => 7, "八" => 8, "九" => 9,
             "壹" => 1, "贰" => 2, "叁" => 3, "肆" => 4, "伍" => 5, "陆" => 6, "柒" => 7, "捌" => 8, "玖" => 9,
@@ -236,7 +236,7 @@ class LiString
             '两' => 2
         );
 
-        if (isset($d[$string])){
+        if (isset($d[$string])) {
             return intval($d[$string]);
         }
 
@@ -254,18 +254,34 @@ class LiString
             '零' => 0
         ];
 
-        foreach ($delimiters as $delimiter => $value){
+        foreach ($delimiters as $delimiter => $value) {
             $unit = explode($delimiter, $string);
-            if (count($unit) > 1){
+            if (count($unit) > 1) {
                 $num += self::str2num($unit[0] ? $unit[0] : '一') * $value;
                 $string = $unit[1] ? $unit[1] : '零';
             }
         }
 
-        if (isset($d[$string])){
+        if (isset($d[$string])) {
             return intval($num + $d[$string]);
         } else {
             return empty($string) ? $num : null;
         }
+    }
+
+    /**
+     *
+     * @date 2021/6/18
+     * @param $table
+     * @param $array
+     * @return string
+     * @author litong
+     */
+    public static function array2sql($table, $array) {
+        $keys = array_keys($array);
+        $values = array_map(function ($value) {
+            return addslashes($value);
+        }, $array);
+        return sprintf('insert into `%s` ( `%s` ) value ( "%s" )', $table, implode('`, `', $keys), implode('", "', $values));
     }
 }
