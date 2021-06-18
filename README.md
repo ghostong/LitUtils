@@ -171,10 +171,11 @@ var_dump(LiString::toUnderScoreCase("HelloMyNameIs8aH5Array"));
 //string(26) "hello_my_name_is8a_h5array"
 ````
 
-#### 10. 数组转原生SQL
+#### 10. 一维数组转原生SQL
 
 ````php
-var_dump(LiString::array2sql("`db`.`table1`", ["name" => "test", "id" => 12]));
+var_dump(LiString::array2sql(["name" => "test", "id" => 12],"table1", "database"));
+//string(71) "insert into `database`.`table1` ( `name`, `id` ) value ( "test", "12" )"
 ````
 
 ### 日期时间部分

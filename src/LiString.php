@@ -270,18 +270,20 @@ class LiString
     }
 
     /**
-     *
+     * 一维数组转原生SQL
      * @date 2021/6/18
-     * @param $table
-     * @param $array
+     * @param array $array 要生成SQL的数组
+     * @param string $table 表名
+     * @param string $database 库名
      * @return string
      * @author litong
      */
-    public static function array2sql($table, $array) {
+    public static function array2sql($array, $table, $database = null) {
+        $dt = ($database === null) ? $table : ($database . "`.`" . $table);
         $keys = array_keys($array);
         $values = array_map(function ($value) {
             return addslashes($value);
         }, $array);
-        return sprintf('insert into `%s` ( `%s` ) value ( "%s" )', $table, implode('`, `', $keys), implode('", "', $values));
+        return sprintf('insert into `%s` ( `%s` ) value ( "%s" )', $dt, implode('`, `', $keys), implode('", "', $values));
     }
 }

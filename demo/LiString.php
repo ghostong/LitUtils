@@ -36,5 +36,5 @@ var_dump(LiString::toCamelCase("hello_my_name_is8a_h5_array"));
 //驼峰字符串转下划线字符串
 var_dump(LiString::toUnderScoreCase("HelloMyNameIs8aH5Array"));
 
-//数组转原生SQL
-var_dump(LiString::array2sql("table1", ["name" => "test", "id" => 12]));
+//一维数组转原生SQL
+var_dump(LiString::array2sql(["name" => "test", "id" => 12],"table1", "database"));
