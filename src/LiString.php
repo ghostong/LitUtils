@@ -284,6 +284,6 @@ class LiString
         $values = array_map(function ($value) {
             return addslashes($value);
         }, $array);
-        return sprintf('insert into `%s` ( `%s` ) value ( "%s" )', $dt, implode('`, `', $keys), implode('", "', $values));
+        return sprintf('insert into `%s` ( `%s` ) values ( "%s" )', $dt, implode('`, `', $keys), implode('", "', $values));
     }
 }

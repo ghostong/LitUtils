@@ -175,7 +175,7 @@ var_dump(LiString::toUnderScoreCase("HelloMyNameIs8aH5Array"));
 
 ````php
 var_dump(LiString::array2sql(["name" => "test", "id" => 12],"table1", "database"));
-//string(71) "insert into `database`.`table1` ( `name`, `id` ) value ( "test", "12" )"
+//string(71) "insert into `database`.`table1` ( `name`, `id` ) values ( "test", "12" )"
 ````
 
 ### 日期时间部分
