@@ -286,4 +286,16 @@ class LiString
         }, $array);
         return sprintf('insert into `%s` ( `%s` ) values ( "%s" )', $dt, implode('`, `', $keys), implode('", "', $values));
     }
+
+    /**
+     * 从字符串中提取id
+     * @date 2021/7/15
+     * @param $string
+     * @return array
+     * @author litong
+     */
+    public static function getIdsByStr($string) {
+        preg_match_all('/[0-9]+/', $string, $matches);
+        return current($matches);
+    }
 }

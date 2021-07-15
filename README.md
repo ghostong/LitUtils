@@ -178,6 +178,23 @@ var_dump(LiString::array2sql(["name" => "test", "id" => 12],"table1", "database"
 //string(71) "insert into `database`.`table1` ( `name`, `id` ) values ( "test", "12" )"
 ````
 
+#### 11. 从字符串中提取ID
+````php
+var_dump(LiString::getIdsByStr("123\n9900,1231,4333分割889"));
+//array(5) {
+//  [0]=>
+//  string(3) "123"
+//  [1]=>
+//  string(4) "9900"
+//  [2]=>
+//  string(4) "1231"
+//  [3]=>
+//  string(4) "4333"
+//  [4]=>
+//  string(3) "889"
+//}
+````
+
 ### 日期时间部分
 
 ````php

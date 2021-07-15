@@ -7,6 +7,9 @@ require(dirname(__DIR__) . '/vendor/autoload.php');
 
 use  \Lit\Utils\LiString;
 
+//从字符串中提取ID
+var_dump(LiString::getIdsByStr("123\n9900,1231,4333分割889"));
+
 //汉字转阿拉伯数字
 var_dump(LiString::str2num('九千零五百一十三兆九千零三亿一千零二十七万零二佰五十'));
 
@@ -37,4 +40,4 @@ var_dump(LiString::toCamelCase("hello_my_name_is8a_h5_array"));
 var_dump(LiString::toUnderScoreCase("HelloMyNameIs8aH5Array"));
 
 //一维数组转原生SQL
-var_dump(LiString::array2sql(["name" => "test", "id" => 12],"table1", "database"));
+var_dump(LiString::array2sql(["name" => "test", "id" => 12], "table1", "database"));
