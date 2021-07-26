@@ -298,4 +298,42 @@ class LiString
         preg_match_all('/[0-9]+/', $string, $matches);
         return current($matches);
     }
+
+    /**
+     * 判断 UTF-8 字符是否包含乱码
+     * @date 2021/7/26
+     * @param $string
+     * @return bool
+     * @author litong
+     */
+    public static function hasMessyCodes($string) {
+        if (json_encode($string) !== null) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    /**
+     * GB18030(GBK|GB2312) 转 UTF-8
+     * @date 2021/7/26
+     * @param $string
+     * @return false|string|string[]|null
+     * @author litong
+     */
+    public static function gb2u($string) {
+        return mb_convert_encoding($string, "GB18030", "UTF-8");
+    }
+
+    /**
+     * UTF-8 转 GB18030(GBK|GB2312)
+     * @date 2021/7/26
+     * @param $string
+     * @return false|string|string[]|null
+     * @author litong
+     */
+    public static function u2gb($string) {
+        return mb_convert_encoding($string, "UTF-8", "GB18030");
+    }
+
 }

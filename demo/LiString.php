@@ -41,3 +41,12 @@ var_dump(LiString::toUnderScoreCase("HelloMyNameIs8aH5Array"));
 
 //一维数组转原生SQL
 var_dump(LiString::array2sql(["name" => "test", "id" => 12], "table1", "database"));
+
+//判断UTF-8字符串是否含有乱码
+var_dump(LiString::hasMessyCodes("是否含有乱码"));
+
+//GB18030 字符集转 UTF-8 字符集
+var_dump(LiString::gb2u("GB18030 Code"));
+
+//UTF-8 字符集转 GB18030 字符集
+var_dump(LiString::u2gb("GB18030 Code"));

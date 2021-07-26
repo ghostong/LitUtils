@@ -195,6 +195,24 @@ var_dump(LiString::getIdsByStr("123\n9900,1231,4333分割889"));
 //}
 ````
 
+#### 12. 判断UTF-8字符串是否含有乱码
+````php
+var_dump(LiString::hasMessyCodes("是否含有乱码"));
+//bool(false)
+````
+
+#### 13. GB18030 字符集转 UTF-8 字符集
+````php
+var_dump(LiString::gb2u("GB18030 Code"));
+//string(10) "UTF-8 Code"
+````
+
+#### 14. UTF-8 字符集转 GB18030 字符集
+````php
+var_dump(LiString::u2gb("UTF-8 Code"));
+//string(12) "GB18030 Code"
+````
+
 ### 日期时间部分
 
 ````php
