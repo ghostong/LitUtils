@@ -307,11 +307,13 @@ class LiString
      * @author litong
      */
     public static function hasMessyCodes($string) {
-        if (json_encode($string) !== null) {
-            return false;
-        } else {
+        if (json_encode($string) === null) {
             return true;
         }
+        if (mb_convert_encoding($string, "UTF-8", "UTF-8") !== $string) {
+            return true;
+        }
+        return false;
     }
 
     /**
