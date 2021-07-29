@@ -307,7 +307,7 @@ class LiString
      * @author litong
      */
     public static function hasMessyCodes($string) {
-        if (json_encode($string) === null) {
+        if (json_encode($string) === false) {
             return true;
         }
         if (mb_convert_encoding($string, "UTF-8", "UTF-8") !== $string) {
