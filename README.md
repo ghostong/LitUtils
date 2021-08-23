@@ -102,6 +102,29 @@ var_dump ( LiArray::sortByArray($a, $b) );
 //}
 ````
 
+#### 6. 别名一维数组的键名
+
+````php
+var_dump(LiArray::keyAlias(["_id" => 1, "_name" => "测试"], ["_id" => "id", "_name" => "name"]));
+//array(2) {
+//  ["id"]=>
+//  int(1)
+//  ["name"]=>
+//  string(6) "测试"
+//}
+````
+
+#### 7. 根据二维数组的键名分组
+
+````php
+$array = [
+    ["name" => "小美", "group_id" => "2"], ["name" => "小帅", "group_id" => "1"],
+    ["name" => "阿呆", "group_id" => "2"], ["name" => "阿花", "group_id" => "1"],
+    ["name" => "烧饼", "group_name" => "3"],
+];
+var_dump(LiArray::groupByKey($array, "group_id", "other_group"));
+````
+
 ### 字符串部分
 
 ````php
@@ -179,6 +202,7 @@ var_dump(LiString::array2sql(["name" => "test", "id" => 12],"table1", "database"
 ````
 
 #### 11. 从字符串中提取ID
+
 ````php
 var_dump(LiString::getIdsByStr("123\n9900,1231,4333分割889"));
 //array(5) {
@@ -196,18 +220,21 @@ var_dump(LiString::getIdsByStr("123\n9900,1231,4333分割889"));
 ````
 
 #### 12. 判断UTF-8字符串是否含有乱码
+
 ````php
 var_dump(LiString::hasMessyCodes("是否含有乱码"));
 //bool(false)
 ````
 
 #### 13. GB18030 字符集转 UTF-8 字符集
+
 ````php
 var_dump(LiString::gb2u("GB18030 Code"));
 //string(10) "UTF-8 Code"
 ````
 
 #### 14. UTF-8 字符集转 GB18030 字符集
+
 ````php
 var_dump(LiString::u2gb("UTF-8 Code"));
 //string(12) "GB18030 Code"

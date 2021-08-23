@@ -97,4 +97,38 @@ class LiArray
         return $newArray + $array;
     }
 
+    /**
+     * 别名一维数组的键名
+     * @date 2021/8/23
+     * @param array $array 原始数组
+     * @param array $alias 别名数组
+     * @return array
+     * @author litong
+     */
+    public static function keyAlias($array, $alias) {
+        foreach ($alias as $key => $value) {
+            if (isset($array[$key])) {
+                $array[$value] = $array[$key];
+                unset($array[$key]);
+            }
+        }
+        return $array;
+    }
+
+    /**
+     * 根据二维数组的键名分组
+     * @date 2021/8/23
+     * @param array $array 要分组的数据
+     * @param string $key 二维数组的key
+     * @param string $notExistsAlias 二维数组的key
+     * @return array
+     * @author litong
+     */
+    public static function groupByKey($array, $key, $notExistsAlias = "") {
+        $return = [];
+        foreach ($array as $value) {
+            $return[isset($value[$key]) ? $value[$key] : $notExistsAlias][] = $value;
+        }
+        return $return;
+    }
 }

@@ -23,3 +23,16 @@ var_dump(LiArray::getValues(["a" => 1, "b" => 2, "c" => 3, "d" => 4], ["a", "c"]
 $a = ["key" => "key1", "val" => "val2", "good" => "good3", 1 => "11", 0]; //待排序的数组
 $b = ["good", "key", 1, "val"]; //想要的顺序
 var_dump(LiArray::sortByArray($a, $b));
+
+//别名一维数组的键名
+var_dump(LiArray::keyAlias(["_id" => 1, "_name" => "测试"], ["_id" => "id", "_name" => "name"]));
+
+//根据二维数组的键名分组
+$array = [
+    ["name" => "小美", "group_id" => "2"],
+    ["name" => "小帅", "group_id" => "1"],
+    ["name" => "阿呆", "group_id" => "2"],
+    ["name" => "阿花", "group_id" => "1"],
+    ["name" => "烧饼", "group_name" => "3"],
+];
+var_dump(LiArray::groupByKey($array, "group_id", "other_group"));
