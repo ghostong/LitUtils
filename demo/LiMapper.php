@@ -4,7 +4,13 @@ require(dirname(__DIR__) . '/vendor/autoload.php');
 
 ################################
 
-//数据映射
+/**
+ * 查询映射器
+ * @property $a
+ * @property $b
+ * @property $c
+ * @property $d
+ */
 class TestMapper extends \Lit\Utils\LiMapper
 {
     protected $a = 1;

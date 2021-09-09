@@ -42,14 +42,14 @@ class LiMapper
     }
 
     public function __set($name, $value) {
-        if (isset($this->$name)) {
+        if (property_exists($this, $name)) {
             $this->$name = $value;
             $this->updateData[$name] = $value;
         }
     }
 
     public function __get($name) {
-        if (isset($this->$name)) {
+        if (property_exists($this, $name)) {
             return $this->$name;
         } else {
             return null;
@@ -60,8 +60,18 @@ class LiMapper
         return isset($this->$name);
     }
 
+    /**
+     * @deprecated use getUpdate
+     */
     public function update() {
         return $this->updateData;
+    }
+
+    /**
+     * @deprecated use getInsert
+     */
+    public function insert() {
+        return $this->__toArray();
     }
 
     /**
@@ -70,11 +80,7 @@ class LiMapper
      * @return array
      */
     public function getUpdate() {
-        return $this->update();
-    }
-
-    public function insert() {
-        return $this->__toArray();
+        return $this->updateData;
     }
 
     /**
@@ -83,7 +89,7 @@ class LiMapper
      * @return array
      */
     public function getInsert() {
-        return $this->insert();
+        return $this->__toArray();
     }
 
 }
