@@ -288,6 +288,23 @@ class LiString
     }
 
     /**
+     * 构建 insert sql: on duplicate key 后半部分字符串
+     * @date 2021/9/17
+     * @param array $fields 要更新部分字段
+     * @param array $excludeFields 要排除更新部分字段
+     * @return string
+     * @author litong
+     */
+    public static function array2DuplicateKeySql($fields, $excludeFields) {
+        $fields = array_diff($fields, $excludeFields);
+        $result = "";
+        foreach ($fields as $field) {
+            $result .= sprintf("%s=VALUES(%s),", $field, $field);
+        }
+        return trim($result, ",");
+    }
+
+    /**
      * 从字符串中提取id
      * @date 2021/7/15
      * @param $string

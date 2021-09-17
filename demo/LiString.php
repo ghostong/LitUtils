@@ -39,8 +39,11 @@ var_dump(LiString::toCamelCase("hello_my_name_is8a_h5_array"));
 //驼峰字符串转下划线字符串
 var_dump(LiString::toUnderScoreCase("HelloMyNameIs8aH5Array"));
 
-//一维数组转原生SQL
+//一维数组转原生 insert SQL
 var_dump(LiString::array2sql(["name" => "test", "id" => 12], "table1", "database"));
+
+//构建 insert sql: on duplicate key 后半部分字符串
+var_dump(LiString::array2DuplicateKeySql(["field1", "field2", "field3", "field4"], ["field3", "field5"]));
 
 //判断UTF-8字符串是否含有乱码
 var_dump(LiString::hasMessyCodes("是否含有乱码"));
@@ -50,3 +53,4 @@ var_dump(LiString::gb2u("GB18030 Code"));
 
 //UTF-8 字符集转 GB18030 字符集
 var_dump(LiString::u2gb("GB18030 Code"));
+

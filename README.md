@@ -194,14 +194,22 @@ var_dump(LiString::toUnderScoreCase("HelloMyNameIs8aH5Array"));
 //string(26) "hello_my_name_is8a_h5array"
 ````
 
-#### 10. 一维数组转原生SQL
+#### 10. 一维数组转原生insert SQL
 
 ````php
 var_dump(LiString::array2sql(["name" => "test", "id" => 12],"table1", "database"));
 //string(71) "insert into `database`.`table1` ( `name`, `id` ) values ( "test", "12" )"
 ````
 
-#### 11. 从字符串中提取ID
+#### 11. 构建 insert sql: on duplicate key 后半部分字符串
+
+````php
+//构建 insert sql: on duplicate key 后半部分字符串
+var_dump(LiString::array2DuplicateKeySql(["field1", "field2", "field3", "field4"], ["field3", "field5"]));
+//string(65) "field1=VALUES(field1),field2=VALUES(field2),field4=VALUES(field4)"
+````
+
+#### 12. 从字符串中提取ID
 
 ````php
 var_dump(LiString::getIdsByStr("123\n9900,1231,4333分割889"));
@@ -219,21 +227,21 @@ var_dump(LiString::getIdsByStr("123\n9900,1231,4333分割889"));
 //}
 ````
 
-#### 12. 判断UTF-8字符串是否含有乱码
+#### 13. 判断UTF-8字符串是否含有乱码
 
 ````php
 var_dump(LiString::hasMessyCodes("是否含有乱码"));
 //bool(false)
 ````
 
-#### 13. GB18030 字符集转 UTF-8 字符集
+#### 14. GB18030 字符集转 UTF-8 字符集
 
 ````php
 var_dump(LiString::gb2u("GB18030 Code"));
 //string(10) "UTF-8 Code"
 ````
 
-#### 14. UTF-8 字符集转 GB18030 字符集
+#### 15. UTF-8 字符集转 GB18030 字符集
 
 ````php
 var_dump(LiString::u2gb("UTF-8 Code"));
