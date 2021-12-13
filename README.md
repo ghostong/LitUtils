@@ -125,6 +125,16 @@ $array = [
 var_dump(LiArray::groupByKey($array, "group_id", "other_group"));
 ````
 
+#### 8. 从数组中获取一个值,并赋予默认值或删除
+````php
+$data = ["a" => 1, "b" => 2, "c" => 3];
+var_dump(LiArray::get($data, "a")); //获取值
+var_dump(LiArray::get($data, "d",0)); //获取不到增加默认值
+var_dump($data); //查看数组
+var_dump(LiArray::get($data, "b",0,true)); //获取到值后 删除原数据中的数据
+var_dump($data);
+````
+
 ### 字符串部分
 
 ````php

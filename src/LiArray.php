@@ -131,4 +131,22 @@ class LiArray
         }
         return $return;
     }
+
+    /**
+     * 从数组中获取一个值,并赋予默认值或删除
+     * @date 2021/12/13
+     * @param array $array 原始数组
+     * @param mixed $key 要获取的数组key
+     * @param null $default 未获取到时的默认值
+     * @param bool $unset 获取后是否删除
+     * @return mixed|null
+     * @author litong
+     */
+    public static function get(&$array, $key, $default = null, $unset = false) {
+        $return = isset($array[$key]) ? $array[$key] : $default;
+        if (true === $unset) {
+            unset($array[$key]);
+        }
+        return $return;
+    }
 }
