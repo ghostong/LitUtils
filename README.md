@@ -258,6 +258,16 @@ var_dump(LiString::u2gb("UTF-8 Code"));
 //string(12) "GB18030 Code"
 ````
 
+#### 16. 一维数组转成CSV单行字符串
+
+````php
+$array = ["name"=>"小狮子","id"=>1122,"address"=>"China Xi'an \n \r \"Chang an\""];
+echo LiString::toCsvString($array);
+//"小狮子","1122","China Xi'an 
+// 
+// ""Chang an"""
+````
+
 ### 日期时间部分
 
 ````php

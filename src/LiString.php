@@ -355,4 +355,20 @@ class LiString
         return mb_convert_encoding($string, "UTF-8", "GB18030");
     }
 
+    /**
+     * 一维数组转成CSV单行字符串
+     * @date 2022/1/19
+     * @param string[] $array
+     * @return string
+     * @author litong
+     */
+    public static function toCsvString($array) {
+        $array = array_map(function ($value) {
+            $value = str_replace(["\r\n", "\n\r", "\r", "\n"], "\n", $value);
+            $value = str_replace('"', '""', $value);
+            return '"' . $value . '"';
+        }, $array);
+        return implode(",", $array);
+    }
+
 }

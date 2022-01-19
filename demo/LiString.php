@@ -54,3 +54,6 @@ var_dump(LiString::gb2u("GB18030 Code"));
 //UTF-8 字符集转 GB18030 字符集
 var_dump(LiString::u2gb("GB18030 Code"));
 
+//一维数组转成CSV单行字符串
+$array = ["name"=>"小狮子","id"=>1122,"address"=>"China Xi'an \n \r \"Chang an\""];
+echo LiString::toCsvString($array);
