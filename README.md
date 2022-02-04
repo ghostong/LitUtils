@@ -126,6 +126,7 @@ var_dump(LiArray::groupByKey($array, "group_id", "other_group"));
 ````
 
 #### 8. 从数组中获取一个值,并赋予默认值或删除
+
 ````php
 $data = ["a" => 1, "b" => 2, "c" => 3];
 var_dump(LiArray::get($data, "a")); //获取值
@@ -780,4 +781,26 @@ var_dump(LiTransit::rm("b"));
 
 ````php
 var_dump(LiTransit::getAll());
+````
+
+### 错误传递器
+
+````php
+class BaseClass
+{
+    use \Lit\Utils\LiErrMsg;
+
+    public function test() {
+        $this->setCodeMsg(1, "测试错误");
+        $this->setCode(1);
+        $this->setMsg("测试错误");
+    }
+
+}
+
+$baseClass = new BaseClass();
+$baseClass->test();
+var_dump($baseClass->getCodeMsg());
+var_dump($baseClass->getCode());
+var_dump($baseClass->getMsg());
 ````
