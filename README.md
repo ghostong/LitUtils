@@ -269,6 +269,21 @@ echo LiString::toCsvString($array);
 // ""Chang an"""
 ````
 
+### 逻辑运算
+
+    增强型逻辑运算函数
+
+````php
+use  \Lit\Utils\LiStructures;
+````
+
+#### 1. 选择偶数形参 强制类型转换true 的下一个形参的值
+
+````php
+var_dump(LiStructures::trueNext(false, true, false, 2, true, 1));
+//int(1)
+````
+
 ### 日期时间部分
 
 ````php
