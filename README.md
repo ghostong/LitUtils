@@ -277,7 +277,7 @@ echo LiString::toCsvString($array);
 use  \Lit\Utils\LiStructures;
 ````
 
-#### 1. 选择偶数形参 强制类型转换true 的下一个形参的值
+#### 1. 选择偶数形参(参数下标从0开始) 强制类型转换bool值 的下一个形参的值
 
 ````php
 var_dump(LiStructures::trueNext(false, true, false, 2, true, 1));

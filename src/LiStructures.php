@@ -6,7 +6,7 @@ class LiStructures
 {
 
     /**
-     * 选择偶数形参 强制类型转换true 的下一个形参的值
+     * 选择偶数形参(参数下标从0开始) 强制类型转换bool值 的下一个形参的值
      * @date 2022/3/1
      * @param mixed ...$args
      * @return mixed|null
