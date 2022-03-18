@@ -6,6 +6,7 @@ use  \Lit\Utils\LiSelector;
 
 /**
  * 查询构造器
+ * @deprecated 不建议使用
  * @property TestSelector $book_id
  * @property TestSelector $book_name
  * @property TestSelector $status
@@ -24,6 +25,7 @@ class TestSelector extends LiSelector
 $liSelector = new TestSelector();
 $liSelector->book_id->notEqual(2);
 $liSelector->book_name->equal("str");
+$liSelector->book_name->like("str");
 //$liSelector->status->lessThan(20);
 //$liSelector->status->greaterEqual(0);
 //$liSelector->age->between(10, 20);

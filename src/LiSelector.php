@@ -2,12 +2,17 @@
 
 namespace Lit\Utils;
 
+/**
+ * @author litong
+ * @deprecated 不建议使用
+ * @date 2022/3/19
+ */
 class LiSelector
 {
     private $tmpField = null;
     private $conditionData = [];
     private $sqlData = [];
-    private $operatorCollection = ["=", "!=", ">", "<", ">=", "<=", "in", "not in"];
+    private $operatorCollection = ["=", "!=", ">", "<", ">=", "<=", "in", "not in", "like"];
 
     /**
      * 构造函数, 通过参数创建一个查询参数
@@ -157,6 +162,17 @@ class LiSelector
      */
     public function notIn($value) {
         $this->setCondition($this->tmpField, "not in", $value);
+    }
+
+    /**
+     * like 操作
+     * @date 2022/3/19
+     * @param $value
+     * @return void
+     * @author litong
+     */
+    public function like($value) {
+        $this->setCondition($this->tmpField, "like", $value);
     }
 
     /**
