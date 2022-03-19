@@ -23,8 +23,9 @@ class TestSelector extends LiSelector
 
 //构建查询器
 $liSelector = new TestSelector();
+$liSelector->book_id->isNull();
 $liSelector->book_id->notEqual(2);
-$liSelector->book_name->equal("str");
+$liSelector->book_name->equal(null);
 $liSelector->book_name->like("str");
 //$liSelector->status->lessThan(20);
 //$liSelector->status->greaterEqual(0);

@@ -12,7 +12,7 @@ class LiSelector
     private $tmpField = null;
     private $conditionData = [];
     private $sqlData = [];
-    private $operatorCollection = ["=", "!=", ">", "<", ">=", "<=", "in", "not in", "like"];
+    private $operatorCollection = ["=", "!=", ">", "<", ">=", "<=", "in", "not in", "like", "is"];
 
     /**
      * 构造函数, 通过参数创建一个查询参数
@@ -38,6 +38,9 @@ class LiSelector
      * @author litong
      */
     private function setCondition($field, $operator, $value) {
+        if (is_null($value)) {
+            return;
+        }
         if (!in_array($operator, $this->operatorCollection)) {
             throw new \Exception();
         }
@@ -58,7 +61,11 @@ class LiSelector
             $value = array_map("addslashes", $value);
             $this->sqlData[] = "`" . $field . "` " . $operator . " (\"" . implode("\",\"", $value) . "\")";
         } else {
-            $this->sqlData[] = "`" . $field . "` " . $operator . " \"" . $value . "\"";
+            if ("null" === $value) {
+                $this->sqlData[] = "`" . $field . "` " . $operator . " " . $value . "";
+            } else {
+                $this->sqlData[] = "`" . $field . "` " . $operator . " \"" . $value . "\"";
+            }
         }
     }
 
@@ -173,6 +180,16 @@ class LiSelector
      */
     public function like($value) {
         $this->setCondition($this->tmpField, "like", $value);
+    }
+
+    /**
+     * in null 操作
+     * @date 2022/3/19
+     * @return void
+     * @author litong
+     */
+    public function isNull() {
+        $this->setCondition($this->tmpField, "is", "null");
     }
 
     /**
