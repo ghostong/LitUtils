@@ -130,10 +130,28 @@ var_dump(LiArray::groupByKey($array, "group_id", "other_group"));
 ````php
 $data = ["a" => 1, "b" => 2, "c" => 3];
 var_dump(LiArray::get($data, "a")); //获取值
+//1
 var_dump(LiArray::get($data, "d",0)); //获取不到增加默认值
+//0
 var_dump($data); //查看数组
 var_dump(LiArray::get($data, "b",0,true)); //获取到值后 删除原数据中的数据
 var_dump($data);
+````
+
+#### 9. 一维数组转二维数组
+
+````php
+//一维数组[key=>value,key=>value] 转二维数组 [["keyName"=>"key","valueName"=>"value"]]
+$data = [1 => "name1", 2 => "name2", 3 => "name3"];
+var_dump(LiArray::kv2td($data, "id", "name"));
+//array(3) {
+//  [0]=>
+//  array(2) {
+//    ["id"]=>
+//    int(1)
+//    ["name"]=>
+//    string(5) "name1"
+//  } ...
 ````
 
 ### 字符串部分
