@@ -149,4 +149,19 @@ class LiArray
         }
         return $return;
     }
+
+    /**
+     * 一维数组[key=>value,key=>value] 转二维数组 [["keyName"=>"key","valueName"=>"value"]]
+     * @date 2022/3/23
+     * @param array $array 一维数组
+     * @param int $keyName 二维数组 第一个value名称
+     * @param int $valueName 二维数组 第二个value名称
+     * @return array|array[]
+     * @author litong
+     */
+    public static function kv2td($array, $keyName = 0, $valueName = 1) {
+        return array_map(function ($value, $key) use ($keyName, $valueName) {
+            return [$keyName => $key, $valueName => $value];
+        }, $array, array_keys($array));
+    }
 }
