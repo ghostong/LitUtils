@@ -6,6 +6,7 @@ namespace Lit\Utils;
 class LiFileCache
 {
     private static $cachePath = null;
+    private static $isInit = null;
 
     /**
      * 初始化缓存结构
@@ -16,8 +17,11 @@ class LiFileCache
      * @author litong
      */
     public static function init($cachePath) {
-        self::$cachePath = $cachePath;
-        self::checkCachePath();
+        if (self::$isInit === null) {
+            self::$cachePath = $cachePath;
+            self::checkCachePath();
+            self::$isInit = true;
+        }
     }
 
     /**
