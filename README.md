@@ -902,3 +902,38 @@ var_dump(testConst::getComment(testConst::REFUSE));
 var_dump(testConst::getComment(testConst::WAIT));
 //string(9) "待审核"
 ```
+
+### 文件缓存
+
+#### 1. 初始化
+
+````
+use  \Lit\Utils\LiFileCache;
+
+#指定缓存保存目录
+LiFileCache::init("/tmp");
+````
+
+#### 2. 设置缓存
+
+````
+LiFileCache::set("abc", [1, 2, 3], 10);
+````
+
+#### 3. 获取缓存
+
+````
+var_dump(LiFileCache::get("abc"));
+````
+
+#### 4. 删除缓存
+
+````
+var_dump(LiFileCache::del("abc"));
+````
+
+#### 5. 判断缓存是否存在
+
+````
+var_dump(LiFileCache::exists("bbc"));
+````
