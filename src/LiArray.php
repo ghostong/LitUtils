@@ -79,6 +79,7 @@ class LiArray
     }
 
     /**
+     * sortByArray
      * 通过一个数组去排序另外一个数组
      * @date 2021/6/8
      * @param array $array 要排序的数组

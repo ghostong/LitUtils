@@ -6,7 +6,6 @@ use  \Lit\Utils\LiSelector;
 
 /**
  * 查询构造器
- * @deprecated 不建议使用
  * @property TestSelector $book_id
  * @property TestSelector $book_name
  * @property TestSelector $status

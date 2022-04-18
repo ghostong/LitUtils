@@ -2,11 +2,7 @@
 
 namespace Lit\Utils;
 
-/**
- * @author litong
- * @deprecated 不建议使用
- * @date 2022/3/19
- */
+
 class LiSelector
 {
     private $tmpField = null;
