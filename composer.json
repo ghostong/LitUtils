@@ -10,14 +10,18 @@
   ],
   "keywords": [
     "litool",
+    "liutils",
     "liarray",
     "lidate",
     "listring",
     "lidebug",
+    "limath",
+    "liconst",
     "日期",
     "数组",
     "杂项",
-    "中文数字转阿拉伯数字",
+    "阿拉伯数字",
+    "汉语数字",
     "随机字符串",
     "驼峰",
     "来源IP",
@@ -26,6 +30,7 @@
     "签名",
     "进制转换",
     "映射器",
+    "常量定义",
     "http"
   ],
   "require": {

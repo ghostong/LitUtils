@@ -7,17 +7,16 @@ require(dirname(__DIR__) . '/vendor/autoload.php');
 //接口HTTP访问签名验证
 
 //服务端验证访问
-$sign = new \Lit\Utils\LiSignature();
 //自定义参与运算的 accessKeyId accessKeySecret
 $accessData["accessKeyId"] = "accessKeySecret";
 $accessData["accessKeyId2"] = "accessKeySecret2";
 $accessData["accessKeyId3"] = "accessKeySecret4";
 //获取其他参数
+$accessKeySecret = $accessData[$_GET["AccessKeyId"]];
+
+$sign = new \Lit\Utils\LiSignature();
 $urlPath = "/api/aaa";
-$get = $_GET;
-$post = $_POST;
-$accessKeySecret = $accessData[$get["AccessKeyId"]];
-var_dump($sign->checkSignature($urlPath, $accessKeySecret, $get, $post, 'callBackFunction'));
+var_dump($sign->checkSignature($urlPath, $accessKeySecret, $_GET, $_POST, 'callBackFunction'));
 var_dump($sign->getSignatureString());
 var_dump($sign->getErrorString());
 

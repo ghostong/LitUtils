@@ -33,6 +33,6 @@ composer require lit/utils
 4. [数据映射](doc/LiMapper.md)
 5. [查询映射](doc/LiSelector.md)
 6. [进程内缓存](doc/LiTransit.md)
-7. [进程内缓存](doc/LiErrMsg.md)
+7. [类错误信息](doc/LiErrMsg.md)
 8. [常量定义插件](doc/LiConst.md)
 9. [文件缓存](doc/LiFileCache.md)
