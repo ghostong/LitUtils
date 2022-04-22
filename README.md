@@ -23,7 +23,8 @@ composer require lit/utils
 3. [逻辑运算](doc/LiStructures.md)
 4. [日期时间](doc/LiDate.md)
 5. [数学函数](doc/LiMath.md)
-6. [杂项](doc/LiSundry.md)
+6. [文件类型](doc/LiFileType.md)
+7. [杂项](doc/LiSundry.md)
 
 ### 工具
 

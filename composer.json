@@ -39,7 +39,8 @@
     "ext-libxml": "*",
     "ext-simplexml": "*",
     "ext-json": "*",
-    "ext-curl": "*"
+    "ext-curl": "*",
+    "ext-fileinfo": "*"
   },
   "minimum-stability": "stable",
   "autoload": {
