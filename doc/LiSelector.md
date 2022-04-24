@@ -4,6 +4,23 @@
 
 ````php
 use  \Lit\Utils\LiSelector;
+
+/**
+ * 查询构造器
+ * @property TestSelector $book_id
+ * @property TestSelector $book_name
+ * @property TestSelector $status
+ * @property TestSelector $age
+ */
+class TestSelector extends LiSelector
+{
+    protected $book_id;
+    protected $book_name;
+    protected $status;
+    protected $age;
+
+}
+
 ````
 
 #### 2. 构建查询器
