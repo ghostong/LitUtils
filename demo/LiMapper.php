@@ -5,7 +5,7 @@ require(dirname(__DIR__) . '/vendor/autoload.php');
 ################################
 
 /**
- * 查询映射器
+ * 数据映射
  * @property $a
  * @property $b
  * @property $c

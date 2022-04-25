@@ -5,8 +5,8 @@ namespace Lit\Utils;
 
 trait LiErrMsg
 {
-    protected $code = 0;
-    protected $msg = "";
+    protected static $code = 0;
+    protected static $msg = "";
 
     /**
      * 获取错误码
@@ -14,8 +14,8 @@ trait LiErrMsg
      * @return int
      * @author litong
      */
-    public function getCode() {
-        return $this->code;
+    public static function getCode() {
+        return self::$code;
     }
 
     /**
@@ -24,8 +24,8 @@ trait LiErrMsg
      * @param int $code
      * @author litong
      */
-    protected function setCode($code) {
-        $this->code = $code;
+    protected static function setCode($code) {
+        self::$code = $code;
     }
 
     /**
@@ -34,8 +34,8 @@ trait LiErrMsg
      * @return string
      * @author litong
      */
-    public function getMsg() {
-        return $this->msg;
+    public static function getMsg() {
+        return self::$msg;
     }
 
     /**
@@ -44,8 +44,8 @@ trait LiErrMsg
      * @param string $msg
      * @author litong
      */
-    protected function setMsg($msg) {
-        $this->msg = $msg;
+    protected static function setMsg($msg) {
+        self::$msg = $msg;
     }
 
     /**
@@ -54,8 +54,8 @@ trait LiErrMsg
      * @return array
      * @author litong
      */
-    public function getCodeMsg() {
-        return ['code' => $this->getCode(), 'msg' => $this->getMsg()];
+    public static function getCodeMsg() {
+        return ['code' => self::getCode(), 'msg' => self::getMsg()];
     }
 
     /**
@@ -65,9 +65,9 @@ trait LiErrMsg
      * @param string $msg
      * @author litong
      */
-    protected function setCodeMsg($code, $msg) {
-        $this->setCode($code);
-        $this->setMsg($msg);
+    protected static function setCodeMsg($code, $msg) {
+        self::setCode($code);
+        self::setMsg($msg);
     }
 
 }

@@ -7,9 +7,12 @@ class BaseClass
     use \Lit\Utils\LiErrMsg;
 
     public function test() {
-        $this->setCodeMsg(1, "测试错误");
         $this->setCode(1);
-        $this->setMsg("测试错误");
+        $this->setMsg("测试错误 test1");
+    }
+
+    public static function test2() {
+        self::setCodeMsg(2, "测试错误 test2");
     }
 
 }
@@ -17,5 +20,7 @@ class BaseClass
 $baseClass = new BaseClass();
 $baseClass->test();
 var_dump($baseClass->getCodeMsg());
+
+$baseClass->test2();
 var_dump($baseClass->getCode());
 var_dump($baseClass->getMsg());
