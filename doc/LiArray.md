@@ -135,3 +135,15 @@ var_dump(LiArray::kv2td($data, "id", "name"));
 //    string(5) "name1"
 //  } ...
 ````
+
+#### 10. 查找二维数组中, 指定键匹配指定值的第一个元素
+````php
+$array = [["a"=>1,"b"=>3],["a"=>2,"b"=>3]];
+var_dump ( LiArray::ifValueIs($array,"a",2) );
+//array(2) {
+//  ["a"]=>
+//  int(2)
+//  ["b"]=>
+//  int(3)
+//}
+````

@@ -165,4 +165,22 @@ class LiArray
             return [$keyName => $key, $valueName => $value];
         }, $array, array_keys($array));
     }
+
+    /**
+     * 查找二维数组中, 指定键匹配指定值的第一个元素
+     * @date 2022/5/26
+     * @param array $array 被查找的数组
+     * @param mixed $key 被查找二维数组的Key
+     * @param mixed $search 被查找的值
+     * @return mixed|null
+     * @author litong
+     */
+    public static function ifValueIs($array, $key, $search) {
+        foreach ($array as $value) {
+            if (isset($value[$key]) && $value[$key] == $search) {
+                return $value;
+            }
+        }
+        return null;
+    }
 }
