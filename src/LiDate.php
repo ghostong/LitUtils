@@ -135,11 +135,33 @@ class LiDate
      * todayRemainTime
      * 返回今天还剩多少秒
      * @access public
-     * @return false|int
+     * @return int
      * @since  1.0
      */
     public static function todayRemainTime() {
         return strtotime(date('Y-m-d') . ' 24:00:00') - time();
+    }
+
+    /**
+     * monthFirstDay
+     * 返回本月的第一天
+     * @access public
+     * @return string
+     * @since  1.0
+     */
+    public static function monthFirstDay($date = '', $format = 'Y-m-d') {
+        return date($format, strtotime(date("Y-m-01", strtotime($date))));
+    }
+
+    /**
+     * monthLastDay
+     * 返回本月的最后一天
+     * @access public
+     * @return string
+     * @since  1.0
+     */
+    public static function monthLastDay($date = '', $format = 'Y-m-d') {
+        return date($format, strtotime(date("Y-m-t", strtotime($date))));
     }
 
 }

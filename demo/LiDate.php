@@ -29,3 +29,9 @@ var_dump(LiDate::lastMonth('2015-01-01'));
 
 //返回今天还剩多少秒
 var_dump(LiDate::todayRemainTime());
+
+//返回本月的第一天
+var_dump(LiDate::monthFirstDay("2022-01-07 15:20:30"));
+
+//返回本月的最后一天
+var_dump(LiDate::monthLastDay("2020-02-07 14:15:16"));

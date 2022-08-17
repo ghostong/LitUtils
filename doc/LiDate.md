@@ -58,3 +58,16 @@ var_dump ( LiDate::lastMonth('2015-01-01') );
 var_dump ( LiDate::todayRemainTime() );
 //int(58922)
 ````
+
+
+#### 9. 返回本月的第一天
+````php
+var_dump(LiDate::monthFirstDay("2022-01-07 15:20:30"));
+//string(10) "2022-01-01"
+````
+
+#### 10. 返回本月的最后一天
+````php
+var_dump(LiDate::monthLastDay("2020-02-07 14:15:16"));
+//string(10) "2020-02-29"
+````
