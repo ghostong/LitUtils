@@ -317,4 +317,20 @@ class LiHttp
             }
         }
     }
+
+    public function getErrNo() {
+        return $this->result["errno"];
+    }
+
+    public function getErrMsg() {
+        return $this->result["msg"];
+    }
+
+    public function getHttpCode() {
+        return $this->result["info"]["http_code"];
+    }
+
+    public function getHttpResult() {
+        return $this->result["result"];
+    }
 }

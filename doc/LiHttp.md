@@ -38,3 +38,19 @@ var_dump($response);
 $response = $http->get("https://www.google.com/aaa.jpg")->setSavePath("./aaa.jpg")->download(false);
 var_dump($response);
 ````
+
+#### 6. 获取请求结果
+
+````
+var_dump($http->getErrNo()); //获取错误码
+//int(x)
+
+var_dump($http->getErrMsg()); //获取错误信息
+//string(x) "some error or empty"
+
+var_dump($http->getHttpCode()); //获取http状态码
+//int(xxx)
+
+var_dump($http->getHttpResult()); //获取返回值
+//string(xx)
+````
