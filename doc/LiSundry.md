@@ -29,10 +29,35 @@ var_dump ( LiSundry::getWeight( $wd ) );
 //string(15) "我是35%概率"
 ````
 
-#### 4. 判断是否私网IP
+#### 4. 判断IP
 
 ````php
+//同 isPrivateIp
 var_dump ( LiSundry::isLocalIp('10.25.11.58') );
+//bool(true)
+
+//是否IP
+var_dump(LiSundry::isIp("8.8.8.8"));
+//bool(true)
+
+//是否IPV4
+var_dump(LiSundry::isIpV4("8.8.8.8"));
+//bool(true)
+
+//是否IP6
+var_dump(LiSundry::isIpV6("FF00::"));
+//bool(true)
+
+//是否内网IP
+var_dump(LiSundry::isPrivateIp("127.0.0.1"));
+//bool(true)
+
+//是否内网IPV4
+var_dump(LiSundry::isPrivateIpV4("9.0.0.1"));
+//bool(false)
+
+//是否内网IPV6
+var_dump(LiSundry::isPrivateIpV6("::"));
 //bool(true)
 ````
 
@@ -40,5 +65,12 @@ var_dump ( LiSundry::isLocalIp('10.25.11.58') );
 
 ````php
 var_dump ( LiSundry::isIdNumber('130602199001011111',1) );
+//bool(true)
+````
+
+#### 6. 是否邮箱
+
+````php
+var_dump(LiSundry::isEmail("a@b.com"));
 //bool(true)
 ````

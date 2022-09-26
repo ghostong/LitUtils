@@ -94,21 +94,7 @@ class LiSundry
      * @since  1.0
      */
     public static function isLocalIp($ip) {
-        $longIp = ip2long($ip);
-        $ipArr = array(
-            array('s' => '10.0.0.0', 'e' => '10.255.255.255'),
-            array('s' => '127.0.0.0', 'e' => '127.255.255.255'),
-            array('s' => '172.16.0.0', 'e' => '172.31.255.255'),
-            array('s' => '192.168.0.0', 'e' => '192.168.255.255')
-        );
-        $isLocalIp = false;
-        foreach ($ipArr as $val) {
-            if ($longIp >= ip2long($val['s']) && $longIp <= ip2long($val['e'])) {
-                $isLocalIp = true;
-                break;
-            }
-        }
-        return $isLocalIp;
+        return self::isPrivateIpV4($ip);
     }
 
     /**
@@ -154,4 +140,69 @@ class LiSundry
         }
         return true;
     }
+
+    /**
+     * 是否IP
+     * @param string $ip ip地址
+     * @return bool
+     */
+    public static function isIp($ip) {
+        return self::isIpV4($ip) || self::isIpV6($ip);
+    }
+
+    /**
+     * 是否IPV4
+     * @param string $ip ip地址
+     * @return bool
+     */
+    public static function isIpV4($ip) {
+        return !is_null(filter_var($ip, FILTER_VALIDATE_IP, FILTER_FLAG_IPV4 | FILTER_NULL_ON_FAILURE));
+    }
+
+    /**
+     * 是否IPV6
+     * @param string $ip ip地址
+     * @return bool
+     */
+    public static function isIpV6($ip) {
+        return !is_null(filter_var($ip, FILTER_VALIDATE_IP, FILTER_FLAG_IPV6 | FILTER_NULL_ON_FAILURE));
+    }
+
+    /**
+     * 是否内网IP
+     * @param string $ip ip地址
+     * @return bool
+     */
+    public static function isPrivateIp($ip) {
+        return self::isPrivateIpV4($ip) || self::isPrivateIpV6($ip);
+    }
+
+    /**
+     * 是否内网IPV4
+     * @param string $ip ip地址
+     * @return bool
+     */
+    public static function isPrivateIpV4($ip) {
+        return self::isIpV4($ip) && is_null(filter_var($ip, FILTER_VALIDATE_IP, FILTER_FLAG_IPV4 | FILTER_FLAG_NO_PRIV_RANGE | FILTER_FLAG_NO_RES_RANGE | FILTER_NULL_ON_FAILURE));
+    }
+
+    /**
+     * 是否内网IPV6
+     * @param string $ip ip地址
+     * @return bool
+     */
+    public static function isPrivateIpV6($ip) {
+        return self::isIpV6($ip) && is_null(filter_var($ip, FILTER_VALIDATE_IP, FILTER_FLAG_IPV6 | FILTER_FLAG_NO_PRIV_RANGE | FILTER_FLAG_NO_RES_RANGE | FILTER_NULL_ON_FAILURE));
+    }
+
+    /**
+     * 是否邮箱
+     * @param string $email 邮箱地址
+     * @return bool
+     */
+    public static function isEmail($email) {
+        return !is_null(filter_var($email, FILTER_VALIDATE_EMAIL, FILTER_NULL_ON_FAILURE));
+    }
+
+
 }
