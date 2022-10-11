@@ -46,3 +46,6 @@ var_dump(LiSundry::isPrivateIpV6("::"));
 
 //是否邮箱
 var_dump(LiSundry::isEmail("a@b.com"));
+
+//发送下载header
+LiSundry::downLoadHeader("压缩包.zip", "application/zip", "UTF-8", true);

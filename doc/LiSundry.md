@@ -74,3 +74,10 @@ var_dump ( LiSundry::isIdNumber('130602199001011111',1) );
 var_dump(LiSundry::isEmail("a@b.com"));
 //bool(true)
 ````
+
+#### 7. 下载header
+
+````php
+var_dump (LiSundry::downLoadHeader("压缩包.zip", "application/zip", "UTF-8", true));
+//发送header并返回所使用header数组
+````
