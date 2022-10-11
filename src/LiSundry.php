@@ -204,5 +204,33 @@ class LiSundry
         return !is_null(filter_var($email, FILTER_VALIDATE_EMAIL, FILTER_NULL_ON_FAILURE));
     }
 
+    /**
+     * 下载 header
+     * @param string $fileName 文件名称
+     * @param string $contentType 下载类型
+     * @param string $charset 字符集
+     * @param bool $send 是否自动发送
+     * @doc 常用 Content-Type
+     *      逗号分隔值: text/comma-separated-values
+     *      ZIP压缩包: application/zip
+     * @return array
+     */
+    public static function downLoadHeader($fileName, $contentType, $charset = "UTF-8", $send = false) {
+        $headers[] = "Pragma: no-cache";
+        $headers[] = "Expires: 0";
+        $headers[] = "Cache-Control: no-store, no-cache, must-revalidate,  pre-check=0, post-check=0, max-age=0";
+        $headers[] = "Content-Transfer-Encoding: binary";
+        $headers[] = "Content-Type: {$contentType}; charset={$charset}";
+        $headers[] = "Content-Disposition: attachment; filename={$fileName}";
+        $headers[] = "Access-Control-Expose-Headers: Download-Filename";
+        $fileName = rawurlencode($fileName);
+        $headers[] = "Download-Filename: {$fileName}";
+        if ($send) {
+            foreach ($headers as $header) {
+                header($header);
+            }
+        }
+        return $headers;
+    }
 
 }
