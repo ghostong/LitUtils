@@ -30,7 +30,7 @@ $liSelector->book_name->like("str");
 //$liSelector->status->greaterEqual(0);
 //$liSelector->age->between(10, 20);
 //$liSelector->age->in(["1", "2", "3"]);
-var_dump($liSelector->getCondition());
+var_dump($liSelector->getCondition('alias'));
 var_dump($liSelector->getSql());
 
 //通过数组构建查询器

@@ -46,23 +46,26 @@ class LiSelector
         if (property_exists($this, $field)) {
             $this->conditionData[] = [$field, $operator, $value];
             $this->tmpField = null;
-            $this->setSql($field, $operator, $value);
         } else {
             //nothing
         }
     }
 
-    private function setSql($field, $operator, $value) {
+    private function setSql($alias, $field, $operator, $value) {
+        if ($alias) {
+            $alias = $alias . "`.`";
+        }
         if (is_array($value)) {
             $value = array_map("addslashes", $value);
             $this->sqlData[] = "`" . $field . "` " . $operator . " (\"" . implode("\",\"", $value) . "\")";
         } else {
             if ("null" === $value) {
-                $this->sqlData[] = "`" . $field . "` " . $operator . " " . $value . "";
+                $this->sqlData[] = "`" . $alias . $field . "` " . $operator . " " . $value . "";
             } else {
-                $this->sqlData[] = "`" . $field . "` " . $operator . " \"" . $value . "\"";
+                $this->sqlData[] = "`" . $alias . $field . "` " . $operator . " \"" . $value . "\"";
             }
         }
+        return $sqlData;
     }
 
     /**
@@ -191,20 +194,32 @@ class LiSelector
     /**
      * 获取条件数组
      * @date 2021/8/31
+     * @param string $alias
      * @return array
      * @author litong
      */
-    public function getCondition() {
-        return $this->conditionData;
+    public function getCondition($alias = '') {
+        if ($alias) {
+            return array_map(function ($c) use ($alias) {
+                $c[0] = $alias . '.' . $c[0];
+                return $c;
+            }, $this->conditionData);
+        } else {
+            return $this->conditionData;
+        }
     }
 
     /**
      * 获取SQL数组
      * @date 2021/8/31
+     * @param string $alias
      * @return array
      * @author litong
      */
-    public function getSql() {
+    public function getSql($alias = '') {
+        foreach ($this->conditionData as $value) {
+            $this->setSql($alias, $value[0], $value[1], $value[2]);
+        }
         return $this->sqlData;
     }
 
