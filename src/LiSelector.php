@@ -65,7 +65,6 @@ class LiSelector
                 $this->sqlData[] = "`" . $alias . $field . "` " . $operator . " \"" . $value . "\"";
             }
         }
-        return $sqlData;
     }
 
     /**
