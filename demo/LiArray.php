@@ -50,6 +50,12 @@ $data = [1 => "name1", 2 => "name2", 3 => "name3"];
 var_dump(LiArray::kv2td($data, "id", "name"));
 
 //查找二维数组中, 指定键匹配指定值的第一个元素
-$array = [["a"=>1,"b"=>3],["a"=>2,"b"=>3]];
-var_dump ( LiArray::ifValueIs($array,"a",2) );
+$array = [["a" => 1, "b" => 3], ["a" => 2, "b" => 3]];
+var_dump(LiArray::ifValueIs($array, "a", 2));
+
+//数字key下划线转驼峰
+var_dump(LiArray::keyToCamelCase(["hello_world" => 123, "docker_hub" => 456]));
+
+//数组key驼峰转下划线
+var_dump(LiArray::keyToUnderScoreCase(["helloWorld" => 123, "dockerHub" => 456]));
 

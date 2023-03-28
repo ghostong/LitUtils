@@ -183,4 +183,30 @@ class LiArray
         }
         return null;
     }
+
+    /**
+     * 数字key下划线转驼峰
+     * @date 2023/3/28
+     * @param $array
+     * @return array
+     * @author litong
+     */
+    public static function keyToCamelCase($array) {
+        return array_combine(array_map(function ($key) {
+            return LiString::toCamelCase($key);
+        }, array_keys($array)), $array);
+    }
+
+    /**
+     * 数组key驼峰转下划线
+     * @date 2023/3/28
+     * @param $array
+     * @return array
+     * @author litong
+     */
+    public static function keyToUnderScoreCase($array) {
+        return array_combine(array_map(function ($key) {
+            return LiString::toUnderScoreCase($key);
+        }, array_keys($array)), $array);
+    }
 }
