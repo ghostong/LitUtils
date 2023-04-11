@@ -10,6 +10,11 @@ require(dirname(__DIR__) . '/vendor/autoload.php');
  * @property $b
  * @property $c
  * @property $d
+ * @deprecated 此包已经不在维护, 新版本已经合并入 lit/parameter v2 版本
+ * 注意: v2版本不前兼容
+ * github https://github.com/ghostong/LitParameter
+ * packagist https://packagist.org/packages/lit/parameter
+ * composer require lit/parameter
  */
 class TestMapper extends \Lit\Utils\LiMapper
 {
