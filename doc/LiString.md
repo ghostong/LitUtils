@@ -130,3 +130,11 @@ echo LiString::toCsvString($array);
 // 
 // ""Chang an"""
 ````
+
+
+#### 17. 生成uuid v4
+````php
+//生成uuid v4
+var_dump (LiString::uuidV4());
+//string(36) "e5e7009f-2a77-4031-8ea6-b70488c2594a"
+````

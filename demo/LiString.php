@@ -7,6 +7,9 @@ require(dirname(__DIR__) . '/vendor/autoload.php');
 
 use  \Lit\Utils\LiString;
 
+//生成uuid v4
+var_dump (LiString::uuidV4());
+
 //从字符串中提取ID
 var_dump(LiString::getIdsByStr("123\n9900,1231,4333分割889"));
 
