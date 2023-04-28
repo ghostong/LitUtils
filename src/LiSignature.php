@@ -199,10 +199,11 @@ class LiSignature
     //时间验证算法
     private function doTimeCheck($queryTime) {
         try {
-            if (!is_numeric($queryTime) || strlen($queryTime) != 10) {
-                $this->setError(9104, "Timestamp 必须为10位时间戳!");
+            if (!is_numeric($queryTime) || !in_array(strlen($queryTime), [10, 13])) {
+                $this->setError(9104, "Timestamp 必须为10位或13位!");
                 return false;
             }
+            $queryTime = strlen($queryTime) == 13 ? substr($queryTime, 0, 10) : $queryTime;
             $nowTime = time();
             $m = $nowTime - $queryTime; //慢300秒之内
             if ($m >= 0 && $m < 300) {
