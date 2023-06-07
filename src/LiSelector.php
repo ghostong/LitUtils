@@ -222,6 +222,22 @@ class LiSelector
         return $this->sqlData;
     }
 
+    /**
+     * 获取所有where条件
+     * @date 2023/6/7
+     * @param string $alias
+     * @param string $logic
+     * @return string
+     * @author litong
+     */
+    public function getWhere($alias = '', $logic = 'and') {
+        $where = implode(" {$logic} ", $this->getSql($alias));
+        if (!empty($where)) {
+            $where = " {$logic} " . $where;
+        }
+        return $where;
+    }
+
     public function __get($name) {
         $this->tmpField = $name;
         return $this;
