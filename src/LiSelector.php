@@ -43,12 +43,8 @@ class LiSelector
         if (null === $field) {
             throw new \Exception();
         }
-        if (property_exists($this, $field)) {
-            $this->conditionData[] = [$field, $operator, $value];
-            $this->tmpField = null;
-        } else {
-            //nothing
-        }
+        $this->conditionData[] = [$field, $operator, $value];
+        $this->tmpField = null;
     }
 
     private function setSql($alias, $field, $operator, $value) {
