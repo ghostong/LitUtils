@@ -71,3 +71,9 @@ var_dump(LiDate::monthFirstDay("2022-01-07 15:20:30"));
 var_dump(LiDate::monthLastDay("2020-02-07 14:15:16"));
 //string(10) "2020-02-29"
 ````
+
+#### 11. 重新格式化时间
+````php
+var_dump ( LiDate::reFormat(" 2023-06-07T16:00:00.000Z","Y-m-d") );
+//string(19) "2023-06-07"
+````

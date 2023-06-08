@@ -164,4 +164,14 @@ class LiDate
         return date($format, strtotime(date("Y-m-t", strtotime($date))));
     }
 
+    /**
+     * reFormat
+     * 重新格式化时间
+     * @access public
+     * @return string
+     * @since  1.0
+     */
+    public static function reFormat($date, $format = 'Y-m-d H:i:s') {
+        return date($format, strtotime($date));
+    }
 }

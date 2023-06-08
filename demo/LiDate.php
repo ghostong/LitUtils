@@ -35,3 +35,6 @@ var_dump(LiDate::monthFirstDay("2022-01-07 15:20:30"));
 
 //返回本月的最后一天
 var_dump(LiDate::monthLastDay("2020-02-07 14:15:16"));
+
+//重新格式化时间
+var_dump ( LiDate::reFormat(" 2023-06-07T16:00:00.000Z") );
