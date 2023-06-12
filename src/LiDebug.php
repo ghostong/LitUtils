@@ -11,7 +11,7 @@ class LiDebug
      * @param $log
      * @return void
      */
-    public static function anchor($log) {
+    public static function anchor($log = "") {
         $trace = debug_backtrace(false, 2);
         self::$dataCache[] = [
             "file" => $trace[0]["file"],
