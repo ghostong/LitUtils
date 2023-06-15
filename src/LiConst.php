@@ -16,6 +16,17 @@ class LiConst
     }
 
     /**
+     * 获取所有常量的值
+     * @date 2023/6/15
+     * @return array
+     * @throws \Exception
+     * @author litong
+     */
+    public static function getValues() {
+        return array_keys(self::toArray());
+    }
+
+    /**
      * 获取常量的描述
      * @date 2022/3/22
      * @param $constKey

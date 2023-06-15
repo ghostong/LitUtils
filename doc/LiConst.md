@@ -29,7 +29,22 @@ var_dump(testConst::toArray());
 //}
 ```
 
-#### 2. 获取常量描述
+
+#### 2. 获取常量值的数组
+
+```php
+var_dump(testConst::getValues());
+//array(3) {
+//  [0]=>
+//  int(1)
+//  [1]=>
+//  int(2)
+//  [2]=>
+//  int(3)
+//}
+```
+
+#### 3. 获取常量描述
 
 ```php
 var_dump(testConst::getComment(1)); 
