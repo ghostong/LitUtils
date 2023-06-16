@@ -337,7 +337,7 @@ class LiString
      * GB18030(GBK|GB2312) 转 UTF-8
      * @date 2021/7/26
      * @param $string
-     * @return false|string|string[]|null
+     * @return string
      * @author litong
      */
     public static function gb2u($string) {
@@ -348,7 +348,7 @@ class LiString
      * UTF-8 转 GB18030(GBK|GB2312)
      * @date 2021/7/26
      * @param $string
-     * @return false|string|string[]|null
+     * @return string
      * @author litong
      */
     public static function u2gb($string) {

@@ -2,13 +2,15 @@
 
 namespace Lit\Utils;
 
+use DirectoryIterator;
+
 class LiFileOperator
 {
     /**
      * 列出目录中所有的文件
      * @date 2023/4/25
-     * @param $dir
-     * @param bool $recursive
+     * @param string $dir 目录
+     * @param bool $recursive 是否递归
      * @return array
      * @author litong
      */
@@ -32,8 +34,8 @@ class LiFileOperator
     /**
      * 列出目录中所有的目录
      * @date 2023/4/25
-     * @param $dir
-     * @param bool $recursive
+     * @param string $dir 目录
+     * @param bool $recursive 是否递归
      * @return array
      * @author litong
      */
@@ -57,5 +59,37 @@ class LiFileOperator
             }
         }
         return $dirs;
+    }
+
+    /**
+     * 目录结构转换为数组结构
+     * @date 2023/6/16
+     * @param string $dir 目录
+     * @return array
+     * @author litong
+     */
+    public static function dirToArray($dir) {
+        $result = [];
+        $iterator = new DirectoryIterator($dir);
+        foreach ($iterator as $entry) {
+            if ($entry->isDot()) {
+                continue;
+            }
+            $path = $entry->getPathname();
+            if ($entry->isDir()) {
+                $subdirectory = self::dirToArray($path);
+                $result[] = [
+                    'type' => 'dir',
+                    'name' => $entry->getFilename(),
+                    'children' => $subdirectory
+                ];
+            } else {
+                $result[] = [
+                    'type' => 'file',
+                    'name' => $entry->getFilename()
+                ];
+            }
+        }
+        return $result;
     }
 }
