@@ -341,7 +341,7 @@ class LiString
      * @author litong
      */
     public static function gb2u($string) {
-        return mb_convert_encoding($string, "GB18030", "UTF-8");
+        return mb_convert_encoding($string, "UTF-8", "GB18030");
     }
 
     /**
@@ -352,7 +352,7 @@ class LiString
      * @author litong
      */
     public static function u2gb($string) {
-        return mb_convert_encoding($string, "UTF-8", "GB18030");
+        return mb_convert_encoding($string, "GB18030", "UTF-8");
     }
 
     /**
@@ -377,7 +377,7 @@ class LiString
      * @return string
      * @author litong
      */
-    public static function  uuidV4() {
+    public static function uuidV4() {
         $data = openssl_random_pseudo_bytes(16);
         $data[6] = chr(ord($data[6]) & 0x0f | 0x40);
         $data[8] = chr(ord($data[8]) & 0x3f | 0x80);
