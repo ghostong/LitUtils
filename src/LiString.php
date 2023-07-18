@@ -288,7 +288,7 @@ class LiString
     }
 
     /**
-     * 构建 insert sql: on duplicate key 后半部分字符串
+     * 构建 insert sql: on duplicate key update 后半部分字符串
      * @date 2021/9/17
      * @param array $fields 要更新部分字段
      * @param array $excludeFields 要排除更新部分字段
