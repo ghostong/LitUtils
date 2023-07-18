@@ -383,4 +383,19 @@ class LiString
         $data[8] = chr(ord($data[8]) & 0x3f | 0x80);
         return vsprintf('%s%s-%s-%s-%s-%s%s%s', str_split(bin2hex($data), 4));
     }
+
+    /**
+     * 是否 MySQL 唯一键冲突错误
+     * @date 2023/7/18
+     * @param $message
+     * @return bool
+     * @author litong
+     */
+    public static function isSqlDuplicateEntryMsg($message) {
+        if (false !== stripos($message, "Duplicate entry") && false !== stripos($message, "for key")) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 }

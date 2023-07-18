@@ -131,10 +131,16 @@ echo LiString::toCsvString($array);
 // ""Chang an"""
 ````
 
-
 #### 17. 生成uuid v4
+
 ````php
-//生成uuid v4
 var_dump (LiString::uuidV4());
 //string(36) "e5e7009f-2a77-4031-8ea6-b70488c2594a"
+````
+
+#### 18. 判断是否 MySQL 唯一键冲突错误
+
+````php
+var_dump(LiString::isSqlDuplicateEntryMsg("Duplicate entry '513-1-3-1.1.1.1' for key 'unique_key'"));
+//bool(true)
 ````

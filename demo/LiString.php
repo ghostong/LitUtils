@@ -6,9 +6,11 @@ require(dirname(__DIR__) . '/vendor/autoload.php');
 ################################
 
 use  \Lit\Utils\LiString;
+//判断是否 MySQL 唯一键冲突错误
+var_dump(LiString::isSqlDuplicateEntryMsg("Duplicate entry '513-1-3-1.1.1.1' for key 'unique_key'"));
 
 //生成uuid v4
-var_dump (LiString::uuidV4());
+var_dump(LiString::uuidV4());
 
 //从字符串中提取ID
 var_dump(LiString::getIdsByStr("123\n9900,1231,4333分割889"));
@@ -58,5 +60,5 @@ var_dump(LiString::gb2u("GB18030 Code"));
 var_dump(LiString::u2gb("GB18030 Code"));
 
 //一维数组转成CSV单行字符串
-$array = ["name"=>"小狮子","id"=>1122,"address"=>"China Xi'an \n \r \"Chang an\""];
+$array = ["name" => "小狮子", "id" => 1122, "address" => "China Xi'an \n \r \"Chang an\""];
 echo LiString::toCsvString($array);
