@@ -39,3 +39,4 @@ composer require lit/utils
 9. [文件缓存](doc/LiFileCache.md)
 10. [文件监听](doc/LiFileListen.md)
 11. [文件操作](doc/LiFileOperator.md)
+12. [简单日志](doc/LiLogs.md)
