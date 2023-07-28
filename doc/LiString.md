@@ -144,3 +144,11 @@ var_dump (LiString::uuidV4());
 var_dump(LiString::isSqlDuplicateEntryMsg("Duplicate entry '513-1-3-1.1.1.1' for key 'unique_key'"));
 //bool(true)
 ````
+
+#### 19. 判断是否 MySQL 唯一键冲突错误
+
+````php
+//是否md5字符串
+var_dump(LiString::isMd5String('01234567890123456789012345678901'));
+//bool(true)
+````

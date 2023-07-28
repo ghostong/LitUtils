@@ -398,4 +398,19 @@ class LiString
             return false;
         }
     }
+
+    /**
+     * 是否md5字符串
+     * @date 2023/7/28
+     * @param $string
+     * @return bool
+     * @author litong
+     */
+    public static function isMd5String($string) {
+        if (preg_match('/^[a-f0-9]{32}$/', $string)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 }
