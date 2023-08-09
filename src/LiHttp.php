@@ -112,7 +112,7 @@ class LiHttp
 
     /**
      * setHeader 设置HTTP请求header
-     * @param $header
+     * @param array $header ["Content-Type: application/json", "Content-Type: application/x-www-form-urlencoded"]
      * @return LiHttp
      */
     public function setHeader($header = []) {
@@ -182,7 +182,7 @@ class LiHttp
      * @param $result
      * @return array
      */
-    public function setResult($errno, $msg, $info, $result) {
+    protected function setResult($errno, $msg, $info, $result) {
         $this->result["errno"] = $errno;
         $this->result["msg"] = $msg;
         $this->result["info"] = $info;
