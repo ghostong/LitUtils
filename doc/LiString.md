@@ -145,7 +145,7 @@ var_dump(LiString::isSqlDuplicateEntryMsg("Duplicate entry '513-1-3-1.1.1.1' for
 //bool(true)
 ````
 
-#### 19. 判断是否 MySQL 唯一键冲突错误
+#### 19. 是否md5字符串
 
 ````php
 //是否md5字符串
