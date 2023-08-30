@@ -44,6 +44,6 @@ var_dump ( \Lit\Utils\LiLogs::getStage() );
 
 #### 7. 贮存日志写入到文件
 
+````php
 \Lit\Utils\LiLogs::toFile("./aaa/aaa.log",['A' => 'd1', 'B' => 'd2', 'C' => 'd3']);
-
 ````
