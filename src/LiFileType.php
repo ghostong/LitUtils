@@ -73,4 +73,18 @@ class LiFileType
             return "";
         }
     }
+
+    /**
+     * 获取文件名或者url中的文件扩展名
+     * @date 2023/11/10
+     * @param $fileOrUrl
+     * @return string
+     * @author litong
+     */
+    public static function getFileExtension($fileOrUrl) {
+        if (in_array(substr(strtolower($fileOrUrl), 0, 7), ["http://", "https:/"])) {
+            $fileOrUrl = parse_url($fileOrUrl, PHP_URL_PATH);
+        }
+        return pathinfo($fileOrUrl, PATHINFO_EXTENSION);
+    }
 }

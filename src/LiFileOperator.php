@@ -92,4 +92,30 @@ class LiFileOperator
         }
         return $result;
     }
+
+    /**
+     * 获取一个临时文件存储目录
+     * @date 2023/11/10
+     * @return false|string
+     * @author litong
+     */
+    public static function getTmpFileName() {
+        return tempnam(sys_get_temp_dir(), "php_tmp_");
+    }
+
+    /**
+     * 文件写入临时文件
+     * @date 2023/11/10
+     * @param $data
+     * @return string
+     * @author litong
+     */
+    public static function writeToTpmFile($data) {
+        if ($tmpName = self::getTmpFileName()) {
+            file_put_contents($tmpName, $data);
+            return $tmpName;
+        } else {
+            return "";
+        }
+    }
 }

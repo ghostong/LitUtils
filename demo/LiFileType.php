@@ -6,6 +6,10 @@ require(dirname(__DIR__) . '/vendor/autoload.php');
 
 use  \Lit\Utils\LiFileType;
 
+//获取文件名或者url中的文件扩展名
+var_dump(LiFileType::getFileExtension("./a.php.cc"));
+var_dump(LiFileType::getFileExtension("https://www.php.net/manual/a.html?aaa=bbb&ccc=ddd"));
+
 //判断文件是否文件
 var_dump(LiFileType::isFile("./a.jpg"));
 

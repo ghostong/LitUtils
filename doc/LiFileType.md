@@ -33,3 +33,10 @@ var_dump(LiFileType::isAudio("./a.mp3"));
 ````php
 var_dump(LiFileType::isText("./a.php"));
 ````
+
+#### 获取文件名或url中的文件扩展名
+
+````php
+var_dump(LiFileType::getFileExtension("./a.php.cc"));
+var_dump(LiFileType::getFileExtension("https://www.php.net/manual/a.html?aaa=bbb&ccc=ddd"));
+````
