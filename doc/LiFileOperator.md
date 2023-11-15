@@ -31,5 +31,5 @@ var_dump(LiFileOperator::getTmpFileName());
 #### 文件写入临时文件
 
 ````php
-var_dump(LiFileOperator::writeToTpmFile(111222));
+var_dump(LiFileOperator::writeToTmpFile(111222));
 ````
