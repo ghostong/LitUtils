@@ -110,12 +110,19 @@ class LiFileOperator
      * @return string
      * @author litong
      */
-    public static function writeToTpmFile($data) {
+    public static function writeToTmpFile($data) {
         if ($tmpName = self::getTmpFileName()) {
             file_put_contents($tmpName, $data);
             return $tmpName;
         } else {
             return "";
         }
+    }
+
+    /**
+     * @deprecated
+     */
+    public static function writeToTpmFile($data) {
+        return self::writeToTmpFile($data);
     }
 }
