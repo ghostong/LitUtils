@@ -117,9 +117,10 @@ class LiSignature
     }
 
     //检查参数
-    private function checkParam() {
+    private function checkParam($getParam = null) {
+        $getParam = $getParam ?: $this->httpGetParam;
         foreach ($this->checkParam as $param) {
-            if (!isset($this->httpGetParam[$param])) {
+            if (!isset($getParam[$param])) {
                 $this->setError(9100, "参数 " . $param . " 为必填参数");
                 return false;
             }
@@ -170,7 +171,7 @@ class LiSignature
      * @since  1.0
      */
     public function checkSignature($urlPath, $accessKeySecret, $get, $post, $userNonceFunction = null) {
-        if (!$this->checkParam()) {
+        if (!$this->checkParam($get)) {
             return false;
         }
         if (!isset($get["Signature"])) {
