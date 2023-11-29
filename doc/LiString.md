@@ -152,3 +152,20 @@ var_dump(LiString::isSqlDuplicateEntryMsg("Duplicate entry '513-1-3-1.1.1.1' for
 var_dump(LiString::isMd5String('01234567890123456789012345678901'));
 //bool(true)
 ````
+
+#### 20. 使用数组分割字符串
+
+````php
+//使用数组分割字符串
+var_dump(LiString::explodeByArray([',', '.', '_ '], "what,is.you_ name"));
+//array(4) {
+//  [0]=>
+//  string(4) "what"
+//  [1]=>
+//  string(2) "is"
+//  [2]=>
+//  string(3) "you"
+//  [3]=>
+//  string(4) "name"
+//}
+````

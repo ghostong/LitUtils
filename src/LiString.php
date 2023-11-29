@@ -413,4 +413,19 @@ class LiString
             return false;
         }
     }
+
+    /**
+     * 使用数组分割字符串
+     * @date 2023/11/29
+     * @param $delimiterArray
+     * @param $string
+     * @param null $limit
+     * @return false|string[]
+     * @author litong
+     */
+    public static function explodeByArray($delimiterArray, $string, $limit = PHP_INT_MAX) {
+        $tmpUuid = '[' . self::uuidV4() . ']';
+        $replaceString = str_replace($delimiterArray, $tmpUuid, $string);
+        return explode($tmpUuid, $replaceString, $limit);
+    }
 }

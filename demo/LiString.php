@@ -7,6 +7,9 @@ require(dirname(__DIR__) . '/vendor/autoload.php');
 
 use  \Lit\Utils\LiString;
 
+//使用数组分割字符串
+var_dump(LiString::explodeByArray([',', '.', '_ '], "what,is.you_ name"));
+
 //是否md5字符串
 var_dump(LiString::isMd5String('01234567890123456789012345678901'));
 
