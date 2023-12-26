@@ -11,7 +11,7 @@ class LiFileOperator
      * @date 2023/4/25
      * @param string $dir 目录
      * @param bool $recursive 是否递归
-     * @return array
+     * @return \Generator
      * @author litong
      */
     public static function listFiles($dir, $recursive = false) {
@@ -22,13 +22,11 @@ class LiFileOperator
         } else {
             $iterator = new \DirectoryIterator($dir);
         }
-        $files = [];
         foreach ($iterator as $file) {
             if ($file->isFile()) {
-                $files[] = $file->getPathname();
+                yield $file->getPathname();
             }
         }
-        return $files;
     }
 
     /**
@@ -36,29 +34,27 @@ class LiFileOperator
      * @date 2023/4/25
      * @param string $dir 目录
      * @param bool $recursive 是否递归
-     * @return array
+     * @return \Generator
      * @author litong
      */
     public static function listDirs($dir, $recursive = false) {
-        $dirs = [];
         if ($recursive) {
             $iterator = new \RecursiveIteratorIterator(
                 new \RecursiveDirectoryIterator($dir, \FilesystemIterator::CURRENT_AS_SELF)
             );
             foreach ($iterator as $dir) {
                 if ($dir->isDot() && substr($dir->getPathname(), -2) == '..') {
-                    $dirs[] = dirname($dir->getPathname());
+                    yield dirname($dir->getPathname());
                 }
             }
         } else {
             $iterator = new \DirectoryIterator($dir);
             foreach ($iterator as $dir) {
                 if ($dir->isDir() && !$dir->isDot()) {
-                    $dirs[] = $dir->getPathname();
+                    yield $dir->getPathname();
                 }
             }
         }
-        return $dirs;
     }
 
     /**
@@ -124,5 +120,44 @@ class LiFileOperator
      */
     public static function writeToTpmFile($data) {
         return self::writeToTmpFile($data);
+    }
+
+    /**
+     * 列出符合时间条件的文件
+     * @date 2023/12/26
+     * @param $dir
+     * @param string $timeType atime|ctime|mtime
+     * @param null|callable $callback
+     * @return void
+     * @author litong
+     */
+    const ATIME = 'atime';
+    const CTIME = 'ctime';
+    const MTIME = 'mtime';
+
+    public static function listFilesByTime($dir, $timeType, $callback = null) {
+        $iterator = new \DirectoryIterator($dir);
+        $return = [];
+        foreach ($iterator as $file) {
+            if ($file->isFile()) {
+                switch ($timeType) {
+                    case  self::ATIME:
+                        $fileTime = $file->getATime();
+                        break;
+                    case self::MTIME:
+                        $fileTime = $file->getMTime();
+                        break;
+                    default:
+                        $fileTime = $file->getCTime();
+                        break;
+                }
+                if (is_callable($callback)) {
+                    call_user_func($callback, $fileTime, $file->getFilename());
+                } else {
+                    $return[] = ['file_time' => $fileTime, 'real_path' => $file->getFilename()];
+                }
+            }
+        }
+        return $return;
     }
 }

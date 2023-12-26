@@ -33,3 +33,18 @@ var_dump(LiFileOperator::getTmpFileName());
 ````php
 var_dump(LiFileOperator::writeToTmpFile(111222));
 ````
+
+#### 列出文件的时间并作用到回调函数
+
+````php
+LiFileOperator::listFilesByTime(dirname(__DIR__), LiFileOperator::CTIME, function ($fileTime, $filename) {
+    var_dump($fileTime, $filename);
+});
+````
+
+#### 列出文件的时间
+
+````php
+$listFiles = LiFileOperator::listFilesByTime(dirname(__DIR__), LiFileOperator::CTIME);
+var_dump($listFiles);
+````
