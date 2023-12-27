@@ -52,7 +52,9 @@
   },
   "minimum-stability": "stable",
   "autoload": {
-    "files": [],
+    "files": [
+      "LitUtilsHelper.php"
+    ],
     "psr-4": {
       "Lit\\Utils\\": "src"
     }
