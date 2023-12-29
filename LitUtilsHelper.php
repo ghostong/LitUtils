@@ -49,3 +49,9 @@ if (!function_exists('liDatetime')) {
         return date("Y-m-d H:i:s");
     }
 }
+
+if (!function_exists('liEcho')) {
+    function liEcho(...$logs) {
+        call_user_func_array(['Lit\Utils\LiLogs', 'echoSsv'], $logs);
+    }
+}
