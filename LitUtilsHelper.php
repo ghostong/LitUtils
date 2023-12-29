@@ -31,3 +31,21 @@ if (!function_exists('liHttpDownload')) {
         return $httpPost;
     }
 }
+
+if (!function_exists('liDate')) {
+    function liDate() {
+        return date("Y-m-d");
+    }
+}
+
+if (!function_exists('liTime')) {
+    function liTime() {
+        return date("H:i:s");
+    }
+}
+
+if (!function_exists('liDatetime')) {
+    function liDatetime() {
+        return date("Y-m-d H:i:s");
+    }
+}

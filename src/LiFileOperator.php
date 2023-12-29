@@ -122,19 +122,20 @@ class LiFileOperator
         return self::writeToTmpFile($data);
     }
 
+
+    const ATIME = 'atime';
+    const CTIME = 'ctime';
+    const MTIME = 'mtime';
+
     /**
      * 列出符合时间条件的文件
      * @date 2023/12/26
      * @param $dir
      * @param string $timeType atime|ctime|mtime
      * @param null|callable $callback
-     * @return void
+     * @return array
      * @author litong
      */
-    const ATIME = 'atime';
-    const CTIME = 'ctime';
-    const MTIME = 'mtime';
-
     public static function listFilesByTime($dir, $timeType, $callback = null) {
         $iterator = new \DirectoryIterator($dir);
         $return = [];
