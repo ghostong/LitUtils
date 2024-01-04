@@ -12,7 +12,7 @@ class LiDebug
      * @return void
      */
     public static function anchor($log = "") {
-        $trace = debug_backtrace(false, 2);
+        $trace = debug_backtrace(false, 1);
         self::$dataCache[] = [
             "file" => $trace[0]["file"],
             "line" => $trace[0]["line"],
