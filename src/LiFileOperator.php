@@ -123,9 +123,9 @@ class LiFileOperator
     }
 
 
-    const ATIME = 'atime';
-    const CTIME = 'ctime';
-    const MTIME = 'mtime';
+    const ATIME = 'atime'; //最后访问时间
+    const CTIME = 'ctime'; //文件状态最后改变时间
+    const MTIME = 'mtime'; //最后修改时间
 
     /**
      * 列出符合时间条件的文件
