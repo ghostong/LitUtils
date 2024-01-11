@@ -6,8 +6,8 @@ require(dirname(__DIR__) . '/vendor/autoload.php');
 
 
 //列出文件的时间并作用到回调函数
-LiFileOperator::listFilesByTime(dirname(__DIR__), LiFileOperator::CTIME, function ($fileTime, $filename) {
-    var_dump($fileTime, $filename);
+LiFileOperator::listFilesByTime(dirname(__DIR__), LiFileOperator::CTIME, function ($fileTime, $realpath) {
+    var_dump($fileTime, $realpath);
 });
 
 //列出文件的时间

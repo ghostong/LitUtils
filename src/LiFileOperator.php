@@ -153,9 +153,9 @@ class LiFileOperator
                         break;
                 }
                 if (is_callable($callback)) {
-                    call_user_func($callback, $fileTime, $file->getFilename());
+                    call_user_func($callback, $fileTime, $file->getRealPath());
                 } else {
-                    $return[] = ['file_time' => $fileTime, 'real_path' => $file->getFilename()];
+                    $return[] = ['file_time' => $fileTime, 'real_path' => $file->getRealPath()];
                 }
             }
         }
