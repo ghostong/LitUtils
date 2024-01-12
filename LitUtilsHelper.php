@@ -69,11 +69,12 @@ if (!function_exists('liDate')) {
     /**
      * 快速日期
      * @date 2024/1/4
+     * @param null|string|int $ts
      * @return string
      * @author litong
      */
-    function liDate() {
-        return date("Y-m-d");
+    function liDate($ts = null) {
+        return date("Y-m-d", $ts ?: time());
     }
 }
 
@@ -81,11 +82,12 @@ if (!function_exists('liTime')) {
     /**
      * 快速时间
      * @date 2024/1/4
+     * @param null|string|int $ts
      * @return string
      * @author litong
      */
-    function liTime() {
-        return date("H:i:s");
+    function liTime($ts = null) {
+        return date("H:i:s", $ts ?: time());
     }
 }
 
@@ -93,11 +95,12 @@ if (!function_exists('liDatetime')) {
     /**
      * 快速时间日期
      * @date 2024/1/4
+     * @param null|string|int $ts
      * @return string
      * @author litong
      */
-    function liDatetime() {
-        return date("Y-m-d H:i:s");
+    function liDatetime($ts = null) {
+        return date("Y-m-d H:i:s", $ts ?: time());
     }
 }
 
