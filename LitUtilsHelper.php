@@ -112,7 +112,7 @@ if (!function_exists('liEcho')) {
      * @author litong
      */
     function liEcho(...$logs) {
-        call_user_func_array(['Lit\Utils\LiLogs', 'echoSsv'], $logs);
+        call_user_func_array(['\Lit\Utils\LiLogs', 'echoSsv'], $logs);
     }
 }
 
