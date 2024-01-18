@@ -132,3 +132,20 @@ if (!function_exists('liDump')) {
         }
     }
 }
+
+
+if (!function_exists('liDumpException')) {
+    /**
+     * 快速 打印 Exception
+     * @date 2024/1/4
+     * @param Exception $exception
+     * @return void
+     * @author litong
+     */
+    function liDumpException($exception) {
+        echo '[ File: ', $exception->getFile(), ':', $exception->getLine(), " ]\n";
+        echo '[ Code: ', $exception->getCode(), ', Message: ', $exception->getMessage(), " ]\n";
+        echo $exception->getTraceAsString(), "\n";
+        echo "-------------------- [", liDatetime(), "] --------------------\n";
+    }
+}
