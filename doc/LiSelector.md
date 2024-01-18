@@ -41,7 +41,7 @@ var_dump($liSelector->getCondition()); //获取构建条件
 //    [0]=>
 //    string(7) "book_id"
 //    [1]=>
-//    string(2) "!="
+//    string(2) "<>"
 //    [2]=>
 //    int(2)
 //  }
@@ -58,7 +58,7 @@ var_dump($liSelector->getCondition()); //获取构建条件
 var_dump($liSelector->getSql()); //获取构建条件生成的SQL
 //array(2) {
 //  [0]=>
-//  string(16) "`book_id` != "2""
+//  string(16) "`book_id` <> "2""
 //  [1]=>
 //  string(19) "`book_name` = "str""
 //}

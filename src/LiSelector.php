@@ -8,7 +8,7 @@ class LiSelector
     private $tmpField = null;
     private $conditionData = [];
     private $sqlData = [];
-    private $operatorCollection = ["=", "!=", ">", "<", ">=", "<=", "in", "not in", "like", "is"];
+    private $operatorCollection = ["=", "<>", ">", "<", ">=", "<=", "in", "not in", "like", "is"];
 
     /**
      * 构造函数, 通过参数创建一个查询参数
@@ -82,7 +82,7 @@ class LiSelector
      * @author litong
      */
     public function notEqual($value) {
-        $this->setCondition($this->tmpField, "!=", $value);
+        $this->setCondition($this->tmpField, "<>", $value);
     }
 
     /**
