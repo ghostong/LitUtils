@@ -234,6 +234,10 @@ class LiSundry
     }
 
 
+    /**
+     * 获取所有headers
+     * @return array
+     */
     public static function getAllHeaders() {
         if (function_exists('getallheaders')) {
             return getallheaders();
@@ -267,6 +271,21 @@ class LiSundry
             }
             return $headers;
         }
+    }
+
+
+    /**
+     * 随机一个颜色
+     * @return string
+     */
+    public static function randomColor() {
+        $r = dechex(rand(0, 255));
+        $g = dechex(rand(0, 255));
+        $b = dechex(rand(0, 255));
+        if (strlen($r) == 1) $r = '0' . $r;
+        if (strlen($g) == 1) $g = '0' . $g;
+        if (strlen($b) == 1) $b = '0' . $b;
+        return '#' . $r . $g . $b;
     }
 
 }
