@@ -70,4 +70,15 @@ trait LiErrMsg
         self::setMsg($msg);
     }
 
+    /**
+     * 设置错误信息
+     * @date 2024/3/6
+     * @param array $codeMsg
+     * @author litong
+     */
+    protected static function setCodeMsgByArray($codeMsg) {
+        self::setCode($codeMsg['code']);
+        self::setMsg($codeMsg['msg']);
+    }
+
 }
