@@ -74,11 +74,15 @@ trait LiErrMsg
      * 设置错误信息
      * @date 2024/3/6
      * @param array $codeMsg
+     * @return null
      * @author litong
      */
-    protected static function setCodeMsgByArray($codeMsg) {
-        self::setCode($codeMsg['code']);
-        self::setMsg($codeMsg['msg']);
+    protected static function setCodeMsgByArray(array $codeMsg) {
+        if ($codeMsg['code'] > 0) {
+            self::setCode($codeMsg['code']);
+            self::setMsg($codeMsg['msg']);
+        }
+        return null;
     }
 
 }
