@@ -29,14 +29,23 @@ class LiConst
     /**
      * 获取常量的描述
      * @date 2022/3/22
-     * @param $constKey
+     * @param string $constKey
+     * @param array $formatValues
      * @return string|null
      * @throws \Exception
      * @author litong
      */
-    public static function getComment($constKey) {
+    public static function getComment($constKey, $formatValues = []) {
         $constants = self::reflection();
-        return isset($constants[$constKey]) ? $constants[$constKey] : null;
+        if (isset($constants[$constKey])) {
+            if (!empty($formatValues)) {
+                return vsprintf($constants[$constKey], $formatValues);
+            } else {
+                return $constants[$constKey];
+            }
+        } else {
+            return null;
+        }
     }
 
     /**
