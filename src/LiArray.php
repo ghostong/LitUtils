@@ -99,6 +99,33 @@ class LiArray
     }
 
     /**
+     * sortByValue
+     * 按照数组的值去排序一个二维数组
+     * @date 2024/4/8
+     * @param $array
+     * @param $sortKey
+     * @param $sortArray
+     * @return array
+     * @author litong
+     */
+    public static function sortByValue($array, $sortKey, $sortArray) {
+        $result = array();
+        foreach ($sortArray as $value) {
+            foreach ($array as $key => $subArr) {
+                if ($subArr[$sortKey] === $value) {
+                    $result[] = $subArr;
+                    unset($array[$key]);
+                    break;
+                }
+            }
+        }
+        foreach ($array as $remainingItem) {
+            $result[] = $remainingItem;
+        }
+        return $result;
+    }
+
+    /**
      * 别名一维数组的键名
      * @date 2021/8/23
      * @param array $array 原始数组

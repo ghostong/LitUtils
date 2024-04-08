@@ -6,6 +6,7 @@ require(dirname(__DIR__) . '/vendor/autoload.php');
 
 use  \Lit\Utils\LiArray;
 
+
 //通过正则表达式匹配一维数组的值,返回正则表达式匹配部分
 var_dump(LiArray::regexArray(['aa', 'bb', 'cc', 'ab', 'ac'], '/^a/'));
 
@@ -23,6 +24,17 @@ var_dump(LiArray::getValues(["a" => 1, "b" => 2, "c" => 3, "d" => 4], ["a", "c"]
 $a = ["key" => "key1", "val" => "val2", "good" => "good3", 1 => "11", 0]; //待排序的数组
 $b = ["good", "key", 1, "val"]; //想要的顺序
 var_dump(LiArray::sortByArray($a, $b));
+
+//按照数组的值去排序一个二维数组
+$a = [
+    ['k' => 10],
+    ['k' => 5],
+    ['k' => 3],
+    ['k' => 9],
+    ['k' => 1],
+];
+$b = [3, 1, 5];
+var_dump(LiArray::sortByValue($a, 'k', $b));
 
 //别名一维数组的键名
 var_dump(LiArray::keyAlias(["_id" => 1, "_name" => "测试"], ["_id" => "id", "_name" => "name"]));
