@@ -169,3 +169,10 @@ var_dump(LiString::explodeByArray([',', '.', '_ '], "what,is.you_ name"));
 //  string(4) "name"
 //}
 ````
+
+#### 21. 去除字符串首尾处的指定字符串
+
+````php
+var_dump(LiString::trim("好吧,你说你的心里到底装的什么?", ['好吧,', '的什么?']));
+//string(27) "你说你的心里到底装"
+````

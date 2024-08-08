@@ -428,4 +428,28 @@ class LiString
         $replaceString = str_replace($delimiterArray, $tmpUuid, $string);
         return explode($tmpUuid, $replaceString, $limit);
     }
+
+    /**
+     * 去除字符串首尾处的指定字符串
+     * @date 2024/8/8
+     * @param $string
+     * @param array $charArray
+     * @return string
+     * @author litong
+     */
+    public static function trim($string, $charArray = []) {
+        foreach ($charArray as $chat) {
+            $length = strlen($chat);
+            $start = 0;
+            $end = null;
+            if (substr($string, 0, $length) === $chat) {
+                $start = $length;
+            }
+            if (substr($string, -$length) === $chat) {
+                $end = -$length;
+            }
+            $string = substr($string, $start, $end);
+        }
+        return $string;
+    }
 }
