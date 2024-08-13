@@ -452,4 +452,25 @@ class LiString
         }
         return $string;
     }
+
+    /**
+     * url 拼接参数
+     * @date 2024/8/13
+     * @return string
+     * @author litong
+     */
+    public static function urlAppendParams($url, $params) {
+        $parsedUrl = parse_url($url);
+        $queryString = isset($parsedUrl['query']) ? $parsedUrl['query'] : '';
+        $urlQuery = [];
+        parse_str($queryString, $urlQuery);
+        $urlQuery = array_merge($urlQuery, $params);
+        $queryString = http_build_query($urlQuery);
+        $scheme = isset($parsedUrl['scheme']) ? $parsedUrl['scheme'] . '://' : '';
+        $host = isset($parsedUrl['host']) ? $parsedUrl['host'] : '';
+        $port = isset($parsedUrl['port']) ? ':' . $parsedUrl['port'] : '';
+        $path = isset($parsedUrl['path']) ? $parsedUrl['path'] : '';
+        $fragment = isset($parsedUrl['fragment']) ? '#' . $parsedUrl['fragment'] : '';
+        return $scheme . $host . $port . $path . '?' . $queryString . $fragment;
+    }
 }

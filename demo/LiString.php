@@ -72,3 +72,7 @@ var_dump(LiString::u2gb("GB18030 Code"));
 //一维数组转成CSV单行字符串
 $array = ["name" => "小狮子", "id" => 1122, "address" => "China Xi'an \n \r \"Chang an\""];
 echo LiString::toCsvString($array);
+
+//url 拼接参数
+$url = 'https://www.baidu.com:112?a=1&b=2';
+var_dump ( LiString::urlAppendParams($url, ['aa' => 1, 'ba' => 2]) );

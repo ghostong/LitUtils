@@ -176,3 +176,11 @@ var_dump(LiString::explodeByArray([',', '.', '_ '], "what,is.you_ name"));
 var_dump(LiString::trim("好吧,你说你的心里到底装的什么?", ['好吧,', '的什么?']));
 //string(27) "你说你的心里到底装"
 ````
+
+#### 22. url 拼接参数
+
+````php
+$url = 'https://www.baidu.com:112?a=1&b=2';
+var_dump ( LiString::urlAppendParams($url, ['aa' => 1, 'ba' => 2]) );
+//string(43) "https://www.baidu.com:112?a=1&b=2&aa=1&ba=2"
+````
