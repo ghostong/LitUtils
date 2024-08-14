@@ -448,7 +448,11 @@ class LiString
             if (substr($string, -$length) === $chat) {
                 $end = -$length;
             }
-            $string = substr($string, $start, $end);
+            if ($end === null) {
+                $string = substr($string, $start);
+            } else {
+                $string = substr($string, $start, $end);
+            }
         }
         return $string;
     }
