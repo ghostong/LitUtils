@@ -184,3 +184,17 @@ $url = 'https://www.baidu.com:112?a=1&b=2';
 var_dump ( LiString::urlAppendParams($url, ['aa' => 1, 'ba' => 2]) );
 //string(43) "https://www.baidu.com:112?a=1&b=2&aa=1&ba=2"
 ````
+
+#### 23. 通过长度按行拆分多字节文本 (不超过切分长度, 除非一行就超过长度)
+
+````php
+$text = "傍晚，\n天色昏暗，\n乌云压顶。\n厉司琛紧紧抓着叶繁，\n狂奔在热带雨林中，\n他浑身是血，\n只是抓着她胳膊的手异常牢固。";
+$data = LiString::charSplitByMbLen($text, 20);
+foreach ($data as $value) {
+    echo '[' . mb_strlen($value) . ']' . str_replace("\n", "_", $value) . "_" . "\n";
+}
+//[15]傍晚，_天色昏暗，_乌云压顶。_
+//[10]厉司琛紧紧抓着叶繁，_
+//[16]狂奔在热带雨林中，_他浑身是血，_
+//[14]只是抓着她胳膊的手异常牢固。_
+````

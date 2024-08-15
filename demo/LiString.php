@@ -7,6 +7,13 @@ require(dirname(__DIR__) . '/vendor/autoload.php');
 
 use  \Lit\Utils\LiString;
 
+//通过长度按行拆分多字节文本 (不超过切分长度, 除非一行就超过长度)
+$text = "傍晚，\n天色昏暗，\n乌云压顶。\n厉司琛紧紧抓着叶繁，\n狂奔在热带雨林中，\n他浑身是血，\n只是抓着她胳膊的手异常牢固。";
+$data = LiString::charSplitByMbLen($text, 20);
+foreach ($data as $value) {
+    echo '[' . mb_strlen($value) . ']' . str_replace("\n", "_", $value) . "_" . "\n";
+}
+
 //去除字符串首尾处的指定字符串
 var_dump(LiString::trim("好吧,你说你的心里到底装的什么?", ['好吧,', '的什么?']));
 
@@ -60,7 +67,7 @@ var_dump(LiString::array2sql(["name" => "test", "id" => 12], "table1", "database
 //构建 insert sql: on duplicate key 后半部分字符串
 var_dump(LiString::array2DuplicateKeySql(["field1", "field2", "field3", "field4"], ["field3", "field5"]));
 
-//判断UTF-8字符串是否含有乱码
+//判断 UTF-8 字符串是否含有乱码
 var_dump(LiString::hasMessyCodes("是否含有乱码"));
 
 //GB18030 字符集转 UTF-8 字符集
@@ -75,4 +82,4 @@ echo LiString::toCsvString($array);
 
 //url 拼接参数
 $url = 'https://www.baidu.com:112?a=1&b=2';
-var_dump ( LiString::urlAppendParams($url, ['aa' => 1, 'ba' => 2]) );
+var_dump(LiString::urlAppendParams($url, ['aa' => 1, 'ba' => 2]));

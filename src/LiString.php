@@ -477,4 +477,32 @@ class LiString
         $fragment = isset($parsedUrl['fragment']) ? '#' . $parsedUrl['fragment'] : '';
         return $scheme . $host . $port . $path . '?' . $queryString . $fragment;
     }
+
+    /**
+     * 通过长度按行拆分多字节文本 (不超过切分长度, 除非一行就超过长度)
+     * @date 2024/8/15
+     * @param $text
+     * @param $length
+     * @return array
+     * @author litong
+     */
+    public static function charSplitByMbLen($text, $length) {
+        $expTxt = explode("\n", $text);
+        $tmpTxt = "";
+        $texts = [];
+        foreach ($expTxt as $item) {
+            $item = trim($item);
+            if (mb_strlen($tmpTxt) + mb_strlen($item) + 1 < $length) {
+                $tmpTxt .= $item . "\n";
+            } else {
+                $texts[] = $tmpTxt;
+                $tmpTxt = $item . "\n";
+            }
+        }
+        if (mb_strlen(trim($tmpTxt)) > 0) {
+            $texts[] = $tmpTxt;
+        }
+        return array_values(array_filter(array_map("trim", $texts)));
+    }
+
 }
