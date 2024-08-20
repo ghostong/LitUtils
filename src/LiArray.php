@@ -71,11 +71,18 @@ class LiArray
      * @access public
      * @param array $array 待获取的数组
      * @param array $keys 要提取的数组key
+     * @param array $excludes 要排除的数组key
      * @return array
      * @since  1.0
      */
-    public static function getValues($array, $keys) {
-        return array_intersect_key($array, array_fill_keys($keys, null));
+    public static function getValues($array, $keys = [], $excludes = []) {
+        if (!empty($keys)) {
+            $array = array_intersect_key($array, array_fill_keys($keys, null));
+        }
+        if (!empty($excludes)) {
+            $array = array_diff_key($array, array_fill_keys($excludes, null));
+        }
+        return $array;
     }
 
     /**

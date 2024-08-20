@@ -6,7 +6,6 @@ require(dirname(__DIR__) . '/vendor/autoload.php');
 
 use  \Lit\Utils\LiArray;
 
-
 //通过正则表达式匹配一维数组的值,返回正则表达式匹配部分
 var_dump(LiArray::regexArray(['aa', 'bb', 'cc', 'ab', 'ac'], '/^a/'));
 
@@ -18,7 +17,7 @@ $xml = '<?xml version="1.0" encoding="UTF-8"?> <note><to>Tove</to><from>Jani</fr
 var_dump(LiArray::xmlToArray($xml));
 
 //获取一维数组指定的keys对应的值
-var_dump(LiArray::getValues(["a" => 1, "b" => 2, "c" => 3, "d" => 4], ["a", "c"]));
+var_dump(LiArray::getValues(["a" => 1, "b" => 2, "c" => 3, "d" => 4], ["a", "c", "d"], ["d"]));
 
 //通过一个数组去排序另外一个数组
 $a = ["key" => "key1", "val" => "val2", "good" => "good3", 1 => "11", 0]; //待排序的数组

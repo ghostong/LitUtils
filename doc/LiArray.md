@@ -55,7 +55,7 @@ var_dump (LiArray::xmlToArray($xml));
 #### 4. 获取一维数组指定的keys对应的值
 
 ````php
-var_dump(LiArray::getValues(["a" => 1, "b" => 2, "c" => 3, "d" => 4], ["a", "c"]));
+var_dump(LiArray::getValues(["a" => 1, "b" => 2, "c" => 3, "d" => 4], ["a", "c", "d"], ["d"]));
 //array(2) {
 //  ["a"]=>
 //  int(1)
@@ -175,6 +175,7 @@ var_dump(LiArray::keyToUnderScoreCase(["helloWorld" => 123, "dockerHub" => 456])
 ````
 
 #### 13. 按照数组的值去排序一个二维数组
+
 ````php
 $a = [
     ['k' => 10],
