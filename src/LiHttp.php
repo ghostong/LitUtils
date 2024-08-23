@@ -112,10 +112,19 @@ class LiHttp
 
     /**
      * setHeader 设置HTTP请求header
-     * @param array $header ["Content-Type: application/json", "Content-Type: application/x-www-form-urlencoded"]
+     * @param array $header
+     *    仅值   ["Content-Type: application/json", "Content-Type: application/x-www-form-urlencoded"]
+     *    键值对 ["Content-Type" => "application/json", "Content-Type"=>"application/x-www-form-urlencoded"]
      * @return LiHttp
      */
     public function setHeader($header = []) {
+        $header = array_map(function ($value, $key) {
+            if (is_int($key)) {
+                return $value;
+            } else {
+                return $key . ": " . $value;
+            }
+        }, $header, array_keys($header));
         $this->header = array_unique(array_merge($this->header, $header));
         return $this;
     }
