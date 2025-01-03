@@ -83,3 +83,6 @@ echo LiString::toCsvString($array);
 //url 拼接参数
 $url = 'https://www.baidu.com:112?a=1&b=2';
 var_dump(LiString::urlAppendParams($url, ['aa' => 1, 'ba' => 2]));
+
+//字符串 $a 是否包含 $b, 不区分大小写
+var_dump(LiString::contain('你好', '好'));

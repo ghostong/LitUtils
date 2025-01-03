@@ -505,4 +505,16 @@ class LiString
         return array_values(array_filter(array_map("trim", $texts)));
     }
 
+    /**
+     * 字符串 $a 是否包含 $b, 不区分大小写
+     * @date 2025/1/3
+     * @param $a
+     * @param $b
+     * @return bool
+     * @author litong
+     */
+    public static function contain($a, $b) {
+        return stripos($a, $b) !== false;
+    }
+
 }
