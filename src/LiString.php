@@ -517,4 +517,35 @@ class LiString
         return stripos($a, $b) !== false;
     }
 
+    /**
+     * 20种语言"你好"
+     * @date 2025/1/17
+     * @return string[]
+     * @author litong
+     */
+    public static function hello() {
+        return [
+            "zh" => "你好", // 中文
+            "es" => "Hola", // 西班牙语
+            "en" => "Hello", // 英语
+            "hi" => "नमस्ते", // 印地语
+            "ar" => "مرحبا", // 阿拉伯语
+            "bn" => "নমস্কার", // 孟加拉语
+            "pt" => "Olá", // 葡萄牙语
+            "ru" => "Привет", // 俄语
+            "ja" => "こんにちは", // 日语
+            "de" => "Hallo", // 德语
+            "jv" => "Halo", // 爪哇语
+            "ko" => "안녕하세요", // 韩语
+            "fr" => "Bonjour", // 法语
+            "te" => "నమస్తే", // 泰卢固语
+            "mr" => "नमस्कार", // 马拉地语
+            "ta" => "வணக்கம்", // 泰米尔语
+            "tr" => "Merhaba", // 土耳其语
+            "vi" => "Xin chào", // 越南语
+            "ur" => "سلام", // 乌尔都语
+            "it" => "Ciao", // 意大利语
+        ];
+    }
+
 }

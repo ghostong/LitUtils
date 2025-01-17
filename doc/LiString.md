@@ -205,3 +205,18 @@ foreach ($data as $value) {
 var_dump(LiString::contain('你好', '好1'));
 bool(false)
 ````
+
+#### 25. 20种语言"你好"
+
+````php
+var_dump ( LiString::hello() ); 
+//array(20) {
+//  ["zh"]=>
+//  string(6) "你好"
+//  ["es"]=>
+//  string(4) "Hola"
+//  ["en"]=>
+//  string(5) "Hello"
+//  ...
+//}
+````
