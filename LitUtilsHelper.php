@@ -5,12 +5,17 @@ if (!function_exists('liHttpGet')) {
      * 快速HttpGet请求
      * @date 2024/1/4
      * @param $url
+     * @param array $header
+     * @param int $timeout
      * @return \Lit\Utils\LiHttp
      * @author litong
      */
-    function liHttpGet($url) {
+    function liHttpGet($url, $header = [], $timeout = 30) {
         $httpGet = new \Lit\Utils\LiHttp();
-        $httpGet->get($url)->send();
+        $httpGet = $httpGet->get($url);
+        $httpGet->setHeader($header);
+        $httpGet->setTimeout($timeout);
+        $httpGet->send();
         return $httpGet;
     }
 }
@@ -22,12 +27,18 @@ if (!function_exists('liHttpPost')) {
      * @date 2024/1/4
      * @param $url
      * @param array $params
+     * @param array $header
+     * @param int $timeout
      * @return \Lit\Utils\LiHttp
      * @author litong
      */
-    function liHttpPost($url, $params = []) {
+    function liHttpPost($url, $params = [], $header = [], $timeout = 30) {
         $httpPost = new \Lit\Utils\LiHttp();
-        $httpPost->post($url)->setParam($params)->send();
+        $httpPost->post($url);
+        $httpPost->setParam($params);
+        $httpPost->setHeader($header);
+        $httpPost->setTimeout($timeout);
+        $httpPost->send();
         return $httpPost;
     }
 }
@@ -39,12 +50,17 @@ if (!function_exists('liHttpPostJson')) {
      * @date 2024/1/4
      * @param $url
      * @param $json
+     * @param array $header
+     * @param int $timeout
      * @return \Lit\Utils\LiHttp
      * @author litong
      */
-    function liHttpPostJson($url, $json) {
+    function liHttpPostJson($url, $json, $header = [], $timeout = 30) {
         $httpPost = new \Lit\Utils\LiHttp();
-        $httpPost->postJson($url, $json)->send();
+        $httpPost->postJson($url, $json);
+        $httpPost->setHeader($header);
+        $httpPost->setTimeout($timeout);
+        $httpPost->send();
         return $httpPost;
     }
 }
