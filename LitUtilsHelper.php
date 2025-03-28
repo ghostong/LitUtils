@@ -12,10 +12,10 @@ if (!function_exists('liHttpGet')) {
      */
     function liHttpGet($url, $header = [], $timeout = 30) {
         $httpGet = new \Lit\Utils\LiHttp();
-        $httpGet = $httpGet->get($url);
-        $httpGet->setHeader($header);
-        $httpGet->setTimeout($timeout);
-        $httpGet->send();
+        $httpGet->get($url)
+            ->setHeader($header)
+            ->setTimeout($timeout)
+            ->send();
         return $httpGet;
     }
 }
@@ -34,11 +34,11 @@ if (!function_exists('liHttpPost')) {
      */
     function liHttpPost($url, $params = [], $header = [], $timeout = 30) {
         $httpPost = new \Lit\Utils\LiHttp();
-        $httpPost->post($url);
-        $httpPost->setParam($params);
-        $httpPost->setHeader($header);
-        $httpPost->setTimeout($timeout);
-        $httpPost->send();
+        $httpPost->post($url)
+            ->setParam($params)
+            ->setHeader($header)
+            ->setTimeout($timeout)
+            ->send();
         return $httpPost;
     }
 }
@@ -57,10 +57,10 @@ if (!function_exists('liHttpPostJson')) {
      */
     function liHttpPostJson($url, $json, $header = [], $timeout = 30) {
         $httpPost = new \Lit\Utils\LiHttp();
-        $httpPost->postJson($url, $json);
-        $httpPost->setHeader($header);
-        $httpPost->setTimeout($timeout);
-        $httpPost->send();
+        $httpPost->postJson($url, $json)
+            ->setHeader($header)
+            ->setTimeout($timeout)
+            ->send();
         return $httpPost;
     }
 }
