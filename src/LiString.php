@@ -438,6 +438,9 @@ class LiString
      * @author litong
      */
     public static function trim($string, $charArray = []) {
+        usort($charArray, function ($a, $b) {
+            return mb_strlen($b) - mb_strlen($a);
+        });
         foreach ($charArray as $chat) {
             $length = strlen($chat);
             $start = 0;
