@@ -146,6 +146,8 @@ class LiDate
      * monthFirstDay
      * 返回本月的第一天
      * @access public
+     * @param string $date
+     * @param string $format
      * @return string
      * @since  1.0
      */
@@ -157,6 +159,8 @@ class LiDate
      * monthLastDay
      * 返回本月的最后一天
      * @access public
+     * @param string $date
+     * @param string $format
      * @return string
      * @since  1.0
      */
@@ -168,6 +172,8 @@ class LiDate
      * reFormat
      * 重新格式化时间
      * @access public
+     * @param string $date
+     * @param string $format
      * @return string
      * @since  1.0
      */
@@ -179,6 +185,8 @@ class LiDate
      * validateFormat
      * 验证时间格式
      * @access public
+     * @param string $date
+     * @param string $format
      * @return boolean
      * @since  1.0
      */
