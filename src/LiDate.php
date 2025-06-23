@@ -174,4 +174,16 @@ class LiDate
     public static function reFormat($date, $format = 'Y-m-d H:i:s') {
         return date($format, strtotime($date));
     }
+
+    /**
+     * validateFormat
+     * 验证时间格式
+     * @access public
+     * @return boolean
+     * @since  1.0
+     */
+    public static function validateFormat($date, $format = 'Y-m-d H:i:s'){
+        $dtObj = date_create_from_format($format, $date);
+        return $dtObj && date_format($dtObj, $format) === $date;
+    }
 }

@@ -6,6 +6,10 @@ require(dirname(__DIR__) . '/vendor/autoload.php');
 
 use  \Lit\Utils\LiDate;
 
+
+//验证日期是否满足指定格式
+var_dump(LiDate::validateFormat('2025-05-21 07:01','Y-m-d H:i'));
+
 //返回当前时间以秒为单位的微秒数
 var_dump(LiDate::microTime());
 
