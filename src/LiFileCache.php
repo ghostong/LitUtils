@@ -33,6 +33,9 @@ class LiFileCache
      */
     public static function get($key) {
         $key = self::mkKeyPath($key);
+        if (!is_file($key)) {
+            return null;
+        }
         $data = @file_get_contents($key);
         if (empty($data)) {
             return null;
