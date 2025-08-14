@@ -18,7 +18,8 @@ class LiArray
      * @return array
      * @since  1.0
      */
-    public static function regexArray($array = array(), $regex = '') {
+    public static function regexArray($array = array(), $regex = '')
+    {
         if (empty($array) || !is_array($array) || empty($regex)) {
             return $array;
         }
@@ -37,7 +38,8 @@ class LiArray
      * @return array
      * @since  1.0
      */
-    public static function arrayReplace($search, $replace, $array) {
+    public static function arrayReplace($search, $replace, $array)
+    {
         if (empty($search) || empty($replace) || empty($array)) {
             return $array;
         }
@@ -59,7 +61,8 @@ class LiArray
      * @return array
      * @since  1.0
      */
-    public static function xmlToArray($xml) {
+    public static function xmlToArray($xml)
+    {
         libxml_disable_entity_loader(true);
         $xmlString = simplexml_load_string($xml, 'SimpleXMLElement', LIBXML_NOCDATA);
         return json_decode(json_encode($xmlString), true);
@@ -75,7 +78,8 @@ class LiArray
      * @return array
      * @since  1.0
      */
-    public static function getValues($array, $keys = [], $excludes = []) {
+    public static function getValues($array, $keys = [], $excludes = [])
+    {
         if (!empty($keys)) {
             $array = array_intersect_key($array, array_fill_keys($keys, null));
         }
@@ -94,7 +98,8 @@ class LiArray
      * @return array
      * @author litong
      */
-    public static function sortByArray($array, $sortArray) {
+    public static function sortByArray($array, $sortArray)
+    {
         $newArray = [];
         foreach ($sortArray as $value) {
             if (isset($array[$value])) {
@@ -115,7 +120,8 @@ class LiArray
      * @return array
      * @author litong
      */
-    public static function sortByValue($array, $sortKey, $sortArray) {
+    public static function sortByValue($array, $sortKey, $sortArray)
+    {
         $result = array();
         foreach ($sortArray as $value) {
             foreach ($array as $key => $subArr) {
@@ -140,11 +146,14 @@ class LiArray
      * @return array
      * @author litong
      */
-    public static function keyAlias($array, $alias) {
+    public static function keyAlias($array, $alias)
+    {
         foreach ($alias as $key => $value) {
             if (isset($array[$key])) {
                 $array[$value] = $array[$key];
-                unset($array[$key]);
+                if ($value != $key) {
+                    unset($array[$key]);
+                }
             }
         }
         return $array;
@@ -159,7 +168,8 @@ class LiArray
      * @return array
      * @author litong
      */
-    public static function groupByKey($array, $key, $notExistsAlias = "") {
+    public static function groupByKey($array, $key, $notExistsAlias = "")
+    {
         $return = [];
         foreach ($array as $value) {
             $return[isset($value[$key]) ? $value[$key] : $notExistsAlias][] = $value;
@@ -177,7 +187,8 @@ class LiArray
      * @return mixed|null
      * @author litong
      */
-    public static function get(&$array, $key, $default = null, $unset = false) {
+    public static function get(&$array, $key, $default = null, $unset = false)
+    {
         $return = isset($array[$key]) ? $array[$key] : $default;
         if (true === $unset) {
             unset($array[$key]);
@@ -194,7 +205,8 @@ class LiArray
      * @return array|array[]
      * @author litong
      */
-    public static function kv2td($array, $keyName = 0, $valueName = 1) {
+    public static function kv2td($array, $keyName = 0, $valueName = 1)
+    {
         return array_map(function ($value, $key) use ($keyName, $valueName) {
             return [$keyName => $key, $valueName => $value];
         }, $array, array_keys($array));
@@ -209,7 +221,8 @@ class LiArray
      * @return mixed|null
      * @author litong
      */
-    public static function ifValueIs($array, $key, $search) {
+    public static function ifValueIs($array, $key, $search)
+    {
         foreach ($array as $value) {
             if (isset($value[$key]) && $value[$key] == $search) {
                 return $value;
@@ -225,7 +238,8 @@ class LiArray
      * @return array
      * @author litong
      */
-    public static function keyToCamelCase($array) {
+    public static function keyToCamelCase($array)
+    {
         return array_combine(array_map(function ($key) {
             return LiString::toCamelCase($key);
         }, array_keys($array)), $array);
@@ -238,7 +252,8 @@ class LiArray
      * @return array
      * @author litong
      */
-    public static function keyToUnderScoreCase($array) {
+    public static function keyToUnderScoreCase($array)
+    {
         return array_combine(array_map(function ($key) {
             return LiString::toUnderScoreCase($key);
         }, array_keys($array)), $array);
