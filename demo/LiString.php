@@ -73,6 +73,9 @@ var_dump(LiString::hasMessyCodes("是否含有乱码"));
 //GB18030 字符集转 UTF-8 字符集
 var_dump(LiString::gb2u("GB18030 Code"));
 
+//GB18030, GBK, BIG5 转 UTF-8
+var_dump(LiString::toUtf8("GBK Code"));
+
 //UTF-8 字符集转 GB18030 字符集
 var_dump(LiString::u2gb("GB18030 Code"));
 
@@ -88,4 +91,4 @@ var_dump(LiString::urlAppendParams($url, ['aa' => 1, 'ba' => 2]));
 var_dump(LiString::contain('你好', '好'));
 
 //多语言 你好
-var_dump ( LiString::hello() );
+var_dump(LiString::hello());

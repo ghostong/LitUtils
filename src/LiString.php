@@ -22,7 +22,8 @@ class LiString
      * @return string
      **@since  1.0
      */
-    public static function randStr($len = 8, $number = true, $letter = false, $capitals = false, $symbols = false) {
+    public static function randStr($len = 8, $number = true, $letter = false, $capitals = false, $symbols = false)
+    {
         $NumArr = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
         $LetArr = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
         $CapArr = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
@@ -58,7 +59,8 @@ class LiString
      * @return string
      **@since  1.0
      */
-    public static function subStrTo($haystack, $needle) {
+    public static function subStrTo($haystack, $needle)
+    {
         if (empty($haystack) || empty($needle)) {
             return $haystack;
         }
@@ -80,7 +82,8 @@ class LiString
      * @param $needleEnd
      * @return string
      */
-    public static function subStr($haystack, $needleStart, $needleEnd = "") {
+    public static function subStr($haystack, $needleStart, $needleEnd = "")
+    {
         if (empty($haystack) || empty($needleStart)) {
             return $haystack;
         }
@@ -105,7 +108,8 @@ class LiString
      * @return string
      **@since  1.0
      */
-    public static function strEncode($str) {
+    public static function strEncode($str)
+    {
         if (strlen($str) == 0) {
             return '';
         }
@@ -135,7 +139,8 @@ class LiString
      * @return string
      **@since  1.0
      */
-    public static function strDecode($str) {
+    public static function strDecode($str)
+    {
         if (strlen($str) == 0) {
             return '';
         }
@@ -167,7 +172,8 @@ class LiString
      * @return string
      **@since  1.0
      */
-    public static function strLimit($value, $limit = 100, $end = '...') {
+    public static function strLimit($value, $limit = 100, $end = '...')
+    {
         if (mb_strwidth($value, 'UTF-8') <= $limit) {
             return $value;
         }
@@ -187,7 +193,8 @@ class LiString
      *     $varArr = ["name"=>"litool","other"=>"haha"];
      *     self::replaceStringVariable($string,$varArr);
      **/
-    public static function replaceStringVariable($string, $varArr) {
+    public static function replaceStringVariable($string, $varArr)
+    {
         $search = [];
         $replace = [];
         foreach ($varArr as $key => $val) {
@@ -205,7 +212,8 @@ class LiString
      * @return string
      * @since  1.0
      */
-    public static function toCamelCase($str) {
+    public static function toCamelCase($str)
+    {
         return preg_replace_callback('/_+([0-9,a-z])/', function ($matches) {
             return strtoupper($matches[1]);
         }, $str);
@@ -219,7 +227,8 @@ class LiString
      * @return string
      * @since  1.0
      */
-    public static function toUnderScoreCase($str) {
+    public static function toUnderScoreCase($str)
+    {
         return strtolower(preg_replace('/(?<=[a-z])([A-Z])/', '_$1', $str));
     }
 
@@ -228,7 +237,8 @@ class LiString
      * @param string $string 九千零三亿一千零二十七万零二佰五十
      * @return int|null 900310270250 | null
      */
-    public static function str2num($string) {
+    public static function str2num($string)
+    {
         $d = array(
             "一" => 1, "二" => 2, "三" => 3, "四" => 4, "五" => 5, "六" => 6, "七" => 7, "八" => 8, "九" => 9,
             "壹" => 1, "贰" => 2, "叁" => 3, "肆" => 4, "伍" => 5, "陆" => 6, "柒" => 7, "捌" => 8, "玖" => 9,
@@ -278,7 +288,8 @@ class LiString
      * @return string
      * @author litong
      */
-    public static function array2sql($array, $table, $database = null) {
+    public static function array2sql($array, $table, $database = null)
+    {
         $dt = ($database === null) ? $table : ($database . "`.`" . $table);
         $keys = array_keys($array);
         $values = array_map(function ($value) {
@@ -295,7 +306,8 @@ class LiString
      * @return string
      * @author litong
      */
-    public static function array2DuplicateKeySql($fields, $excludeFields) {
+    public static function array2DuplicateKeySql($fields, $excludeFields)
+    {
         $fields = array_diff($fields, $excludeFields);
         $result = "";
         foreach ($fields as $field) {
@@ -311,7 +323,8 @@ class LiString
      * @return array
      * @author litong
      */
-    public static function getIdsByStr($string) {
+    public static function getIdsByStr($string)
+    {
         preg_match_all('/[0-9]+/', $string, $matches);
         return current($matches);
     }
@@ -323,7 +336,8 @@ class LiString
      * @return bool
      * @author litong
      */
-    public static function hasMessyCodes($string) {
+    public static function hasMessyCodes($string)
+    {
         if (json_encode($string) === false) {
             return true;
         }
@@ -340,8 +354,23 @@ class LiString
      * @return string
      * @author litong
      */
-    public static function gb2u($string) {
+    public static function gb2u($string)
+    {
         return mb_convert_encoding($string, "UTF-8", "GB18030");
+    }
+
+    /**
+     * 自动语言转UTF-8
+     * @param $string
+     * @return string
+     */
+    public static function toUtf8($string)
+    {
+        $encoding = mb_detect_encoding($string, ['UTF-8', 'GB18030', 'GBK', 'BIG5'], true);
+        if ($encoding !== false && $encoding !== 'UTF-8') {
+            return mb_convert_encoding($string, 'UTF-8', $encoding);
+        }
+        return $string;
     }
 
     /**
@@ -351,7 +380,8 @@ class LiString
      * @return string
      * @author litong
      */
-    public static function u2gb($string) {
+    public static function u2gb($string)
+    {
         return mb_convert_encoding($string, "GB18030", "UTF-8");
     }
 
@@ -362,7 +392,8 @@ class LiString
      * @return string
      * @author litong
      */
-    public static function toCsvString($array) {
+    public static function toCsvString($array)
+    {
         $array = array_map(function ($value) {
             $value = str_replace(["\r\n", "\n\r", "\r", "\n"], "\n", $value);
             $value = str_replace('"', '""', $value);
@@ -377,7 +408,8 @@ class LiString
      * @return string
      * @author litong
      */
-    public static function uuidV4() {
+    public static function uuidV4()
+    {
         $data = openssl_random_pseudo_bytes(16);
         $data[6] = chr(ord($data[6]) & 0x0f | 0x40);
         $data[8] = chr(ord($data[8]) & 0x3f | 0x80);
@@ -391,7 +423,8 @@ class LiString
      * @return bool
      * @author litong
      */
-    public static function isSqlDuplicateEntryMsg($message) {
+    public static function isSqlDuplicateEntryMsg($message)
+    {
         if (false !== stripos($message, "Duplicate entry") && false !== stripos($message, "for key")) {
             return true;
         } else {
@@ -406,7 +439,8 @@ class LiString
      * @return bool
      * @author litong
      */
-    public static function isMd5String($string) {
+    public static function isMd5String($string)
+    {
         if (preg_match('/^[a-f0-9]{32}$/', $string)) {
             return true;
         } else {
@@ -423,7 +457,8 @@ class LiString
      * @return false|string[]
      * @author litong
      */
-    public static function explodeByArray($delimiterArray, $string, $limit = PHP_INT_MAX) {
+    public static function explodeByArray($delimiterArray, $string, $limit = PHP_INT_MAX)
+    {
         $tmpUuid = '[' . self::uuidV4() . ']';
         $replaceString = str_replace($delimiterArray, $tmpUuid, $string);
         return explode($tmpUuid, $replaceString, $limit);
@@ -437,7 +472,8 @@ class LiString
      * @return string
      * @author litong
      */
-    public static function trim($string, $charArray = []) {
+    public static function trim($string, $charArray = [])
+    {
         usort($charArray, function ($a, $b) {
             return mb_strlen($b) - mb_strlen($a);
         });
@@ -466,7 +502,8 @@ class LiString
      * @return string
      * @author litong
      */
-    public static function urlAppendParams($url, $params) {
+    public static function urlAppendParams($url, $params)
+    {
         $parsedUrl = parse_url($url);
         $queryString = isset($parsedUrl['query']) ? $parsedUrl['query'] : '';
         $urlQuery = [];
@@ -489,7 +526,8 @@ class LiString
      * @return array
      * @author litong
      */
-    public static function charSplitByMbLen($text, $length) {
+    public static function charSplitByMbLen($text, $length)
+    {
         $expTxt = explode("\n", $text);
         $tmpTxt = "";
         $texts = [];
@@ -516,7 +554,8 @@ class LiString
      * @return bool
      * @author litong
      */
-    public static function contain($a, $b) {
+    public static function contain($a, $b)
+    {
         return stripos($a, $b) !== false;
     }
 
@@ -526,7 +565,8 @@ class LiString
      * @return string[]
      * @author litong
      */
-    public static function hello() {
+    public static function hello()
+    {
         return [
             "zh" => "你好", // 中文
             "es" => "Hola", // 西班牙语
