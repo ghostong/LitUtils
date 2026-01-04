@@ -11,7 +11,8 @@ class LiConst
      * @throws \Exception
      * @author litong
      */
-    public static function toArray() {
+    public static function toArray()
+    {
         return self::reflection();
     }
 
@@ -22,7 +23,8 @@ class LiConst
      * @throws \Exception
      * @author litong
      */
-    public static function getValues() {
+    public static function getValues()
+    {
         return array_keys(self::toArray());
     }
 
@@ -35,7 +37,8 @@ class LiConst
      * @throws \Exception
      * @author litong
      */
-    public static function getComment($constKey, $formatValues = []) {
+    public static function getComment($constKey, $formatValues = [])
+    {
         $constants = self::reflection();
         if (isset($constants[$constKey])) {
             if (!empty($formatValues)) {
@@ -49,13 +52,51 @@ class LiConst
     }
 
     /**
+     * 常量名字符串转常量值
+     * @date 2026/1/4
+     * @param $const
+     * @return string|null
+     * @author litong
+     */
+    public static function constToValue($const)
+    {
+        $rc = new \ReflectionClass(new static());
+        $constants = $rc->getConstants();
+        if (isset($constants[$const])) {
+            return $constants[$const];
+        } else {
+            return null;
+        }
+    }
+
+    /**
+     * 串常量值转常量名字符
+     * @date 2026/1/4
+     * @param $value
+     * @return string|null
+     * @author litong
+     */
+    public static function valueToConst($value)
+    {
+        $rc = new \ReflectionClass(new static());
+        $constants = $rc->getConstants();
+        $constants = array_flip($constants);
+        if (isset($constants[$value])) {
+            return $constants[$value];
+        } else {
+            return null;
+        }
+    }
+
+    /**
      * 反射常量对象
      * @date 2022/3/22
      * @return array
      * @throws \Exception
      * @author litong
      */
-    private static function reflection() {
+    private static function reflection()
+    {
         $rc = new \ReflectionClass(new static());
         $constants = $rc->getConstants();
         if (count(array_unique($constants)) !== count($constants)) {
