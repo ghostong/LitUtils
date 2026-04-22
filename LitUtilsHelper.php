@@ -10,7 +10,8 @@ if (!function_exists('liHttpGet')) {
      * @return \Lit\Utils\LiHttp
      * @author litong
      */
-    function liHttpGet($url, $header = [], $timeout = 30) {
+    function liHttpGet($url, $header = [], $timeout = 30)
+    {
         $httpGet = new \Lit\Utils\LiHttp();
         $httpGet->get($url)
             ->setHeader($header)
@@ -32,7 +33,8 @@ if (!function_exists('liHttpPost')) {
      * @return \Lit\Utils\LiHttp
      * @author litong
      */
-    function liHttpPost($url, $params = [], $header = [], $timeout = 30) {
+    function liHttpPost($url, $params = [], $header = [], $timeout = 30)
+    {
         $httpPost = new \Lit\Utils\LiHttp();
         $httpPost->post($url)
             ->setParam($params)
@@ -55,7 +57,8 @@ if (!function_exists('liHttpPostJson')) {
      * @return \Lit\Utils\LiHttp
      * @author litong
      */
-    function liHttpPostJson($url, $json, $header = [], $timeout = 30) {
+    function liHttpPostJson($url, $json, $header = [], $timeout = 30)
+    {
         $httpPost = new \Lit\Utils\LiHttp();
         $httpPost->postJson($url, $json)
             ->setHeader($header)
@@ -74,7 +77,8 @@ if (!function_exists('liHttpDownload')) {
      * @return \Lit\Utils\LiHttp
      * @author litong
      */
-    function liHttpDownload($url, $savePath) {
+    function liHttpDownload($url, $savePath)
+    {
         $httpPost = new \Lit\Utils\LiHttp();;
         $httpPost->get($url)->setSavePath($savePath)->download(true);
         return $httpPost;
@@ -89,7 +93,8 @@ if (!function_exists('liDate')) {
      * @return string
      * @author litong
      */
-    function liDate($ts = null) {
+    function liDate($ts = null)
+    {
         return date("Y-m-d", $ts ?: time());
     }
 }
@@ -102,7 +107,8 @@ if (!function_exists('liTime')) {
      * @return string
      * @author litong
      */
-    function liTime($ts = null) {
+    function liTime($ts = null)
+    {
         return date("H:i:s", $ts ?: time());
     }
 }
@@ -115,7 +121,8 @@ if (!function_exists('liDatetime')) {
      * @return string
      * @author litong
      */
-    function liDatetime($ts = null) {
+    function liDatetime($ts = null)
+    {
         return date("Y-m-d H:i:s", $ts ?: time());
     }
 }
@@ -127,7 +134,8 @@ if (!function_exists('liEcho')) {
      * @return void
      * @author litong
      */
-    function liEcho(...$logs) {
+    function liEcho(...$logs)
+    {
         call_user_func_array(['\Lit\Utils\LiLogs', 'echoSsv'], $logs);
     }
 }
@@ -139,12 +147,31 @@ if (!function_exists('liDump')) {
      * @return void
      * @author litong
      */
-    function liDump(...$logs) {
+    function liDump(...$logs)
+    {
         $trace = current(debug_backtrace(false, 1));
         if ($trace) {
             echo "\n---------- {$trace['file']}:{$trace['line']} start ----------\n";
             var_dump($logs);
             echo "\n---------- {$trace['file']}:{$trace['line']} end ----------\n\n";
+        }
+    }
+}
+
+
+if (!function_exists('liDebug')) {
+    /**
+     * 快速Debug打印
+     * @date 2024/1/4
+     * @return void
+     * @author litong
+     */
+    function liDebug(...$logs)
+    {
+        $trace = current(debug_backtrace(false, 1));
+        if ($trace) {
+            $logsFormat = json_encode($logs, JSON_UNESCAPED_UNICODE | JSON_PRESERVE_ZERO_FRACTION);
+            echo "{$trace['file']}:{$trace['line']} {$logsFormat}\n";
         }
     }
 }
@@ -158,7 +185,8 @@ if (!function_exists('liDumpException')) {
      * @return void
      * @author litong
      */
-    function liDumpException($exception) {
+    function liDumpException($exception)
+    {
         echo '[ File: ', $exception->getFile(), ':', $exception->getLine(), " ]\n";
         echo '[ Code: ', $exception->getCode(), ', Message: ', $exception->getMessage(), " ]\n";
         echo $exception->getTraceAsString(), "\n";

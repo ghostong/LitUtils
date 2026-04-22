@@ -14,7 +14,8 @@ class LiFileOperator
      * @return \Generator
      * @author litong
      */
-    public static function listFiles($dir, $recursive = false) {
+    public static function listFiles($dir, $recursive = false)
+    {
         if ($recursive) {
             $iterator = new \RecursiveIteratorIterator(
                 new \RecursiveDirectoryIterator($dir, \FilesystemIterator::SKIP_DOTS)
@@ -37,7 +38,8 @@ class LiFileOperator
      * @return \Generator
      * @author litong
      */
-    public static function listDirs($dir, $recursive = false) {
+    public static function listDirs($dir, $recursive = false)
+    {
         if ($recursive) {
             $iterator = new \RecursiveIteratorIterator(
                 new \RecursiveDirectoryIterator($dir, \FilesystemIterator::CURRENT_AS_SELF)
@@ -64,7 +66,8 @@ class LiFileOperator
      * @return array
      * @author litong
      */
-    public static function dirToArray($dir) {
+    public static function dirToArray($dir)
+    {
         $result = [];
         $iterator = new DirectoryIterator($dir);
         foreach ($iterator as $entry) {
@@ -95,8 +98,10 @@ class LiFileOperator
      * @return false|string
      * @author litong
      */
-    public static function getTmpFileName() {
-        return tempnam(sys_get_temp_dir(), "php_tmp_");
+    public static function getTmpFileName($ext = '')
+    {
+        $ext = trim($ext, " \t\n\r\0\x0B.");
+        return tempnam(sys_get_temp_dir(), "php_tmp_") . ($ext ? '.' . $ext : '');
     }
 
     /**
@@ -106,8 +111,9 @@ class LiFileOperator
      * @return string
      * @author litong
      */
-    public static function writeToTmpFile($data) {
-        if ($tmpName = self::getTmpFileName()) {
+    public static function writeToTmpFile($data, $ext = '')
+    {
+        if ($tmpName = self::getTmpFileName($ext)) {
             file_put_contents($tmpName, $data);
             return $tmpName;
         } else {
@@ -118,7 +124,8 @@ class LiFileOperator
     /**
      * @deprecated
      */
-    public static function writeToTpmFile($data) {
+    public static function writeToTpmFile($data)
+    {
         return self::writeToTmpFile($data);
     }
 
@@ -136,7 +143,8 @@ class LiFileOperator
      * @return array
      * @author litong
      */
-    public static function listFilesByTime($dir, $timeType, $callback = null) {
+    public static function listFilesByTime($dir, $timeType, $callback = null)
+    {
         $iterator = new \DirectoryIterator($dir);
         $return = [];
         foreach ($iterator as $file) {

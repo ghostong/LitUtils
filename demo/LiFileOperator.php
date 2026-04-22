@@ -33,7 +33,7 @@ foreach ($listFiles as $file) {
 var_dump(LiFileOperator::dirToArray(dirname(__DIR__)));
 
 //获取一个临时文件名
-var_dump(LiFileOperator::getTmpFileName());
+var_dump(LiFileOperator::getTmpFileName('.mp3'));
 
 //文件写入临时文件
-var_dump(LiFileOperator::writeToTmpFile(111222));
+var_dump(LiFileOperator::writeToTmpFile(111222, 'mp3'));
