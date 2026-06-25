@@ -46,7 +46,7 @@ class LiFileCache
             if ($dataCache["ttl"] >= $time || $dataCache["ttl"] === 0) {
                 return $dataCache["data"];
             } elseif ($dataCache["ttl"] > 0) {
-                self::del($key);
+                self::delByPath($key);
                 return null;
             } else {
                 return null;
@@ -84,7 +84,18 @@ class LiFileCache
      */
     public static function del($key) {
         $key = self::mkKeyPath($key);
-        return @unlink($key);
+        return self::delByPath($key);
+    }
+
+    /**
+     * 按缓存文件路径删除缓存
+     * @date 2026/6/25
+     * @param string $path
+     * @return bool
+     * @author litong
+     */
+    private static function delByPath($path) {
+        return @unlink($path);
     }
 
     /**

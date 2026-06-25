@@ -101,7 +101,13 @@ class LiFileOperator
     public static function getTmpFileName($ext = '')
     {
         $ext = trim($ext, " \t\n\r\0\x0B.");
-        return tempnam(sys_get_temp_dir(), "php_tmp_") . ($ext ? '.' . $ext : '');
+        do {
+            $tmpName = sys_get_temp_dir() . DIRECTORY_SEPARATOR . uniqid("php_tmp_", true) . mt_rand(1000, 9999);
+            if ($ext) {
+                $tmpName .= '.' . $ext;
+            }
+        } while (file_exists($tmpName));
+        return $tmpName;
     }
 
     /**

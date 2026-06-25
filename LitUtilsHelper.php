@@ -95,7 +95,7 @@ if (!function_exists('liDate')) {
      */
     function liDate($ts = null)
     {
-        return date("Y-m-d", $ts ?: time());
+        return date("Y-m-d", $ts === null ? time() : $ts);
     }
 }
 
@@ -109,7 +109,7 @@ if (!function_exists('liTime')) {
      */
     function liTime($ts = null)
     {
-        return date("H:i:s", $ts ?: time());
+        return date("H:i:s", $ts === null ? time() : $ts);
     }
 }
 
@@ -123,7 +123,7 @@ if (!function_exists('liDatetime')) {
      */
     function liDatetime($ts = null)
     {
-        return date("Y-m-d H:i:s", $ts ?: time());
+        return date("Y-m-d H:i:s", $ts === null ? time() : $ts);
     }
 }
 

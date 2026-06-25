@@ -336,7 +336,7 @@ class LiHttp
     }
 
     public function getHttpCode() {
-        return $this->result["info"]["http_code"];
+        return isset($this->result["info"]["http_code"]) ? $this->result["info"]["http_code"] : 0;
     }
 
     public function getHttpResult() {
