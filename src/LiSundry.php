@@ -38,8 +38,7 @@ class LiSundry
             $ip = $_SERVER['REMOTE_ADDR'];
         }
         $long = sprintf("%u", ip2long($ip));  // IP地址合法验证
-        $ip = $long ? $ip : '0.0.0.0';
-        return $ip;
+        return $long ? $ip : '0.0.0.0';
     }
 
     /**
