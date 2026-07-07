@@ -42,3 +42,4 @@ composer require lit/utils
 12. [文件操作](doc/LiFileOperator.md)
 13. [简单日志](doc/LiLogs.md)
 14. [位开关](doc/LiBitSwitch.md)
+15. [APCu 缓存](doc/LiApcu.md)
